@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/kiranrajpurohit/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/Users/kiranrajpurohit/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    url = "https://github.com/nvim-lua/popup.nvim"
+  },
   ["tokyonight.nvim"] = {
     loaded = true,
     path = "/Users/kiranrajpurohit/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",

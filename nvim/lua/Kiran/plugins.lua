@@ -11,8 +11,11 @@ return require('packer').startup(function(use)
 
     -- Packer and manage Packer?!
     use 'wbthomason/packer.nvim'
+    use 'nvim-lua/popup.nvim'
+    
     -- colorscheme of choice
     use 'folke/tokyonight.nvim'
+
     --nvim completions
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-buffer'
@@ -29,9 +32,8 @@ return require('packer').startup(function(use)
         run = ":TSUpdate",
     }
 
-
     --Quality of Life
     use {'pboettch/vim-cmake-syntax', opt = true, ft = {'cmake'}}
-    use {'sbdchd/neoformat'}
+    use 'sbdchd/neoformat'
     use 'tpope/vim-surround'
 end)
