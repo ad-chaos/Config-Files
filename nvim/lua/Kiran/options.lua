@@ -8,6 +8,7 @@ p.smartcase = true
 
 -- Annoying things
 vim.cmd [[set noerrorbells]]
+vim.cmd [[set pumheight=10]]
 p.visualbell = true
 p.shortmess:append "I"
 
@@ -25,3 +26,6 @@ p.splitright = true
 
 --Enable more colors!
 p.termguicolors = true
+
+-- cmp related shit
+p.completeopt = { "menuone", "noselect"}

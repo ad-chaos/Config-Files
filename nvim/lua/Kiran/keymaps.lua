@@ -11,6 +11,10 @@ vim.g.maplocalleader = " "
 keymap("t", ",q", "<C-\\><C-n>", opts)
 
 --  Normal Mode mappings
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>" ,opts)
+keymap("n", "<leader>fg","<cmd>Telescope<CR> live_grep",opts)
+keymap("n", "<leader>fb","<cmd>Telescope<CR> buffers",opts)
+keymap("n", "<leader>fh","<cmd>Telescope<CR> help_tags",opts)
 keymap("n", "<leader>a", ":Lex 30<CR>", opts)
 keymap("n", "<C-h>", ":resize -2<CR>", opts)
 keymap("n", "<C-l>", ":resize +2<CR>", opts)
@@ -27,7 +31,7 @@ keymap("v", "p", '"_dP', opts)
 keymap("v", "//", "y/\\V<C-R>=escape(@\",'/\')<CR><CR>", opts)
 
 -- Insert Mode mappings
--- Note: Might Use mappings
+-- Poor man's quote and bracket completion
 keymap("i", "(", "()<Left>", opts)
 keymap("i", "[", "[]<Left>", opts)
 keymap("i", "{", "{}<Left>", opts)

@@ -1,4 +1,4 @@
---If I save plugins.lua file then reload neovim
+--If I save plugins.lua file then run PackerSync
 vim.cmd [[
     augroup packer_user_config
         autocmd!
@@ -22,6 +22,11 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-nvim-lsp'
+
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = {'nvim-lua/plenary.nvim'} 
+    }
 
     -- LSP
     use 'neovim/nvim-lspconfig'
