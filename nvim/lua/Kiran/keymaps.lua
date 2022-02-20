@@ -23,12 +23,12 @@ keymap("n", "<C-l>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-n>", ":noh<CR>", opts)
 
 -- Visual Mode mappings
-keymap("v", ">", ">gv", opts)
-keymap("v", "<", "<gv", opts)
-keymap("v", "K",":m +1<CR>gv=gv", opts)
-keymap("v", "J",":m -2<CR>gv=gv", opts)
+keymap("v", "J",":m '>+1<CR>gv=gv", opts)
+keymap("v", "K",":m '<-2<CR>gv=gv", opts)
 keymap("v", "p", '"_dP', opts)
 keymap("v", "//", "y/\\V<C-R>=escape(@\",'/\')<CR><CR>", opts)
+keymap("v", ">", ">gv", opts)
+keymap("v", "<", "<gv", opts)
 
 -- Insert Mode mappings
 -- Poor man's quote and bracket completion

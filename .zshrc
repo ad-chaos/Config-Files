@@ -1,8 +1,6 @@
 # Enable vi mode
 bindkey -v
 export KEYTIMEOUT=1
-autoload colors && colors
-
 
 # Change My prompt
 PS1="%F{14}%2d%f %B%(?.%F{112}ζ%f.%F{196}ζ%f)%b "
@@ -67,27 +65,27 @@ alias la="exa --icons --group-directories-first -aF"
 alias ll="exa --long -F --group-directories-first --icons"
 alias grep="grep --color=always"
 alias icat="kitty +kitten icat"
-alias cdp="cd ~/Coding-Adventures/CSES/"
-alias cdm="cd ~/Documents/Manim_Ende/My\ Projects"
-alias cdmh="cd ~/Documents/Manim_Ende/Helping-People"
-alias cdev="cd ~/git-repos/manim"
+alias cdm="cd ~/Documents/Manim"
+alias pip="pip3"
+alias python="python3"
 
-# Setup fzf
-# ---------
-if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
-fi
+# Functions
+cdev () {
+    cd ~/git-repos/$1
+}
+
+cdc () {
+    cd ~/Coding-Adventures/$1
+}
 
 # Auto-completion
-# ---------------
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
-# Key bindings
-# ------------
+# Key bindings for fzf
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
-#PATH variable
-export PATH="$HOME/Library/TinyTeX/bin/universal-darwin:$HOME/.poetry/bin:$PATH"
+# PATH variable
+export PATH="/opt/homebrew/opt/fzf/bin:$HOME/Library/TinyTeX/bin/universal-darwin:$HOME/.poetry/bin:$PATH"
 
 # Load zsh-syntax-highlighting; should be last.
-source /opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
+source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

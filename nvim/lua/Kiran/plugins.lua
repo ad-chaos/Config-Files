@@ -12,7 +12,7 @@ return require('packer').startup(function(use)
     -- Packer and manage Packer?!
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/popup.nvim'
-    
+
     -- colorscheme of choice
     use 'folke/tokyonight.nvim'
 
@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
 
     use {
       'nvim-telescope/telescope.nvim',
-      requires = {'nvim-lua/plenary.nvim'} 
+      requires = {'nvim-lua/plenary.nvim'}
     }
 
     -- LSP
