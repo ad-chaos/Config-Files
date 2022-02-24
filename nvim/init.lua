@@ -4,6 +4,7 @@ require "Kiran.plugins"
 require "Kiran.cmp"
 require "Kiran.treesitter"
 require "Kiran.lsp"
+require "Kiran.gitsigns"
 
 --  Change cursor depending on modes
 --  SI is Insert
