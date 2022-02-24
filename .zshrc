@@ -70,17 +70,19 @@ alias pip="pip3"
 alias python="python3"
 
 # Functions
-cdev () {
-    cd ~/git-repos/$1
-}
+cdev() { cd ~/git-repos/$1 }
+_cdev() { _path_files -W ~/git-repos; }
+compdef _cdev cdev
 
-cdc () {
-    cd ~/Coding-Adventures/$1
-}
+cdc() { cd ~/Coding-Adventures/$1 }
+_cdc() { _path_files -W ~/Coding-Adventures }
+compdef _cdc cdc
 
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
+# Manim shell completion
+source ~/.manim.zsh
 # Key bindings for fzf
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
