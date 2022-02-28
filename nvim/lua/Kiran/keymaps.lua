@@ -23,7 +23,7 @@ keymap("n", "<C-l>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-n>", ":noh<CR>", opts)
 keymap("n", "<leader>gb", ":Gitsigns blame_line<CR>", opts)
 keymap("n", "vs", ":vs<CR>", opts)
-keymap("n", "sv", ":q<CR>", opts)
+keymap("n", "qv", ":q<CR>", opts)
 
 -- Visual Mode mappings
 keymap("v", "J",":m '>+1<CR>gv", opts)

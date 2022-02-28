@@ -14,7 +14,8 @@ return require('packer').startup(function(use)
     use 'nvim-lua/popup.nvim'
 
     -- colorscheme of choice
-    use 'folke/tokyonight.nvim'
+    -- use 'folke/tokyonight.nvim'
+    use 'marko-cerovac/material.nvim'
 
     --nvim completions
     use 'hrsh7th/nvim-cmp'
@@ -23,11 +24,13 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-nvim-lsp'
 
+    -- Fuzzy File Finder
     use {
       'nvim-telescope/telescope.nvim',
       requires = {'nvim-lua/plenary.nvim'}
     }
 
+    -- Git integration
     use 'lewis6991/gitsigns.nvim'
 
     -- LSP
@@ -38,9 +41,11 @@ return require('packer').startup(function(use)
     use {'nvim-treesitter/nvim-treesitter',
         run = ":TSUpdate",
     }
+    use 'nvim-treesitter/playground'
+
+    use 'chrisbra/Colorizer'
 
     --Quality of Life
-    use {'pboettch/vim-cmake-syntax', opt = true, ft = {'cmake'}}
     use 'sbdchd/neoformat'
     use 'tpope/vim-surround'
 end)

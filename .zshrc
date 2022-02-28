@@ -3,7 +3,7 @@ bindkey -v
 export KEYTIMEOUT=1
 
 # Change My prompt
-PS1="%F{14}%2d%f %B%(?.%F{112}ζ%f.%F{196}ζ%f)%b "
+PS1="%F{190}%2d%f %B%(?.%F{112}ζ%f.%F{196}ζ%f)%b "
 RPS1='-- INSERT --'
 
 # Show what mode I am in
@@ -82,12 +82,12 @@ compdef _cdc cdc
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
 # Manim shell completion
-source ~/.manim.zsh
+# source ~/.manim.zsh
 # Key bindings for fzf
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
 # PATH variable
-export PATH="/opt/homebrew/opt/fzf/bin:$HOME/Library/TinyTeX/bin/universal-darwin:$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$HOME/Library/TinyTeX/bin/universal-darwin:$HOME/.poetry/bin:$PATH"
 
 # Load zsh-syntax-highlighting; should be last.
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
