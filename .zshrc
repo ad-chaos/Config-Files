@@ -1,3 +1,6 @@
+# No Beeps please
+unsetopt BEEP
+
 # Enable vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -65,9 +68,17 @@ alias la="exa --icons --group-directories-first -aF"
 alias ll="exa --long -F --group-directories-first --icons"
 alias grep="grep --color=always"
 alias icat="kitty +kitten icat"
+alias diff="kitty +kitten diff"
 alias cdm="cd ~/Documents/Manim"
 alias pip="pip3"
 alias python="python3"
+alias ga="git add"
+alias gcm="git commit -m"
+alias ga="git add ."
+alias gph="git push origin $1"
+alias gpl="git pull upstream main"
+alias ps="poetry shell"
+alias c-="cd -"
 
 # Functions
 cdev() { cd ~/git-repos/$1 }
