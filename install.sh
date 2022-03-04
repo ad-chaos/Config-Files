@@ -31,7 +31,7 @@ link_config() {
 
 check_and_link() {
 if [[ -L ~/.$1 ]]; then
-    read "choice?Found an existing zsh config file [O]verwrite/[R]etain:"
+    read "choice?Found an existing $1 config file [O]verwrite/[R]etain:"
     link_config $1 $choice
 else
     link_config $1
