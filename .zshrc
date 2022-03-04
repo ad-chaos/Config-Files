@@ -65,18 +65,20 @@ function TRAPINT() {
 #Some QOL aliases
 alias ls="exa --icons --group-directories-first -F"
 alias la="exa --icons --group-directories-first -aF"
-alias ll="exa --long -F --group-directories-first --icons"
+alias ll="exa --icons --group-directories-first -aF --long"
 alias grep="grep --color=always"
 alias icat="kitty +kitten icat"
 alias diff="kitty +kitten diff"
 alias cdm="cd ~/Documents/Manim"
 alias pip="pip3"
 alias python="python3"
-alias ga="git add"
 alias gcm="git commit -m"
 alias ga="git add ."
-alias gph="git push origin $1"
+alias gph="git push upstream main"
 alias gpl="git pull upstream main"
+alias gst="git status"
+alias gc="git checkout $1"
+alias gb="git branch"
 alias ps="poetry shell"
 alias c-="cd -"
 
@@ -92,8 +94,9 @@ compdef _cdc cdc
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
-# Manim shell completion
+# Manim shell completion very slow 
 # source ~/.manim.zsh
+
 # Key bindings for fzf
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
