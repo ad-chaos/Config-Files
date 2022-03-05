@@ -4,9 +4,32 @@ unsetopt BEEP
 # Enable vi mode
 bindkey -v
 export KEYTIMEOUT=1
+autoload -Uz vcs_info
+autoload -U colors && colors
+
+# enable only git 
+zstyle ':vcs_info:*' enable git 
+
+# setup a hook that runs before every ptompt. 
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
+# https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+# 
++vi-git-untracked(){
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        hook_com[staged]+='!' 
+    fi
+}
+
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git:*' formats "%{$fg[red]%}%m%u%c%{$fg[yellow]%} %F{214}%b%f"
 
 # Change My prompt
-PS1="%F{190}%2d%f %B%(?.%F{112}ζ%f.%F{196}ζ%f)%b "
+PROMPT="%F{226}%2d%f \$vcs_info_msg_0_ %B%(?.%F{112}ζ%f.%F{196}ζ%f)%b "
 RPS1='-- INSERT --'
 
 # Show what mode I am in
