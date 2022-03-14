@@ -26,7 +26,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats "%{$fg[red]%}%m%u%c%{$fg[yellow]%} %F{214}%b%f"
+zstyle ':vcs_info:git:*' formats "%{$fg[red]%}%m%u%c%{$fg[yellow]%} %F{214}%b%f"
 
 # Change My prompt
 PROMPT="%F{226}%2d%f \$vcs_info_msg_0_ %B%(?.%F{112}ζ%f.%F{196}ζ%f)%b "
@@ -97,13 +97,14 @@ alias pip="pip3"
 alias python="python3"
 alias gcm="git commit -m"
 alias ga="git add ."
-alias gph="git push upstream main"
+alias gph="git push"
 alias gpl="git pull upstream main"
 alias gst="git status"
-alias gc="git checkout $1"
+alias gc="git checkout"
 alias gb="git branch"
 alias ps="poetry shell"
 alias c-="cd -"
+
 
 # Functions
 cdev() { cd ~/git-repos/$1 }
@@ -114,6 +115,7 @@ cdc() { cd ~/Coding-Adventures/$1 }
 _cdc() { _path_files -W ~/Coding-Adventures }
 compdef _cdc cdc
 
+mcd() { mkdir $1 && cd $1 }
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
