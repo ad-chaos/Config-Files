@@ -1,31 +1,31 @@
-p = vim.opt
+P = vim.opt
 
-p.number = true
-p.relativenumber = true
+P.number = true
+P.relativenumber = true
 
-p.ignorecase = true
-p.smartcase = true
+P.ignorecase = true
+P.smartcase = true
 
 -- Annoying things
-vim.cmd [[set noerrorbells]]
-vim.cmd [[set pumheight=10]]
-p.visualbell = true
-p.shortmess:append "I"
+vim.cmd([[set noerrorbells]])
+vim.cmd([[set pumheight=10]])
+P.visualbell = true
+P.shortmess:append("I")
 
 --Useful to use mouse sometimes
-p.mouse:append "a"
+P.mouse:append("a")
 
 -- 4 spaces are better than 1 tab
-p.softtabstop = 4
-p.shiftwidth = 4
-p.expandtab = true
+P.softtabstop = 4
+P.shiftwidth = 4
+P.expandtab = true
 
 --Intuitive spliting behaviour
-p.splitbelow = true
-p.splitright = true
+P.splitbelow = true
+P.splitright = true
 
 --Enable more colors!
-p.termguicolors = true
+P.termguicolors = true
 
 -- cmp related shit
-p.completeopt = { "menuone", "noselect"}
+P.completeopt = { "menuone", "noselect" }

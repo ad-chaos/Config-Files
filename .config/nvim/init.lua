@@ -3,6 +3,7 @@ require "Kiran.keymaps"
 require "Kiran.plugins"
 require "Kiran.cmp"
 require "Kiran.treesitter"
+require "Kiran.telescope"
 require "Kiran.lsp"
 require "Kiran.gitsigns"
 
