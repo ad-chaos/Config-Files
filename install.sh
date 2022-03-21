@@ -9,7 +9,7 @@ if ! [[ -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
     git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
     echo "Packer Installed"
 else
-    echo "found continuing install"
+    echo "Found continuing install"
 fi
 
 link_config() {
@@ -21,17 +21,18 @@ link_config() {
             echo "Renamed and Retained"
             mv ~/.$1 $1_old
         else
-            echo "Something went wrong, I don't know"
+            echo "Invalid Selection. Please Try again:"
+            check_and_link $1
         fi
     fi
 
-    echo "linked $1"
     ln -s $current_dir/.$1 ~/.$1
+    echo "linked $1"
 }
 
 check_and_link() {
-if [[ -L ~/.$1 ]]; then
-    read "choice?Found an existing $1 config file [O]verwrite/[R]etain:"
+if [[ -f ~/.$1 ]]; then
+    read "choice?Found an existing $1 config file [O]verwrite/[R]etain: "
     link_config $1 $choice
 else
     link_config $1
