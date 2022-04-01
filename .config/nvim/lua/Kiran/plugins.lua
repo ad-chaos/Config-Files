@@ -31,7 +31,6 @@ return require("packer").startup(function(use)
 
     -- Git integration
     use("lewis6991/gitsigns.nvim")
-    use("tpope/vim-fugitive")
 
     -- LSP
     use("neovim/nvim-lspconfig")
@@ -41,6 +40,8 @@ return require("packer").startup(function(use)
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
     use("chrisbra/Colorizer")
+    use("L3MON4D3/LuaSnip")
+    use("saadparwaiz1/cmp_luasnip")
 
     --Quality of Life
     use("sbdchd/neoformat")
