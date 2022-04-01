@@ -29,7 +29,7 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git:*' formats "%{$fg[red]%}%m%u%c%{$fg[yellow]%} %F{214}%b%f"
 
 # Change My prompt
-PROMPT="%F{226}%2d%f \$vcs_info_msg_0_ %B%(?.%F{112}ζ%f.%F{196}ζ%f)%b "
+PROMPT="%F{226}%2~%f \$vcs_info_msg_0_ %B%(?.%F{112}ζ%f.%F{196}ζ%f)%b "
 RPS1='-- INSERT --'
 
 # Show what mode I am in
@@ -104,7 +104,9 @@ alias gc="git checkout"
 alias gb="git branch"
 alias ps="poetry shell"
 alias c-="cd -"
-
+alias c='clang++ -Wall -Wextra -Wshadow -fsanitize=undefined,address -D_GLIBCXX_DEBUG -g main.cpp'
+alias b='cat test.txt | ./a.out'
+alias g='c && echo done && b'
 
 # Functions
 cdev() { cd ~/git-repos/$1 }
