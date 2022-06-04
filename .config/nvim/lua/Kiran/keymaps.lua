@@ -23,7 +23,6 @@ keymap("n", "<C-l>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-n>", ":noh<CR>", opts)
 keymap("n", "<leader>gb", ":Gitsigns blame_line<CR>", opts)
 keymap("n", "vs", ":vs<CR>", opts)
-keymap("n", "qv", ":q<CR>", opts)
 
 -- Visual Mode mappings
 keymap("v", "J", ":m '>+1<CR>gv", opts)
@@ -32,12 +31,3 @@ keymap("v", "p", '"_dP', opts)
 keymap("v", "//", "y/\\V<C-R>=escape(@\",'/')<CR><CR>", opts)
 keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
-
--- Insert Mode mappings
--- Poor man's quote and bracket completion
-keymap("i", "(", "()<Left>", opts)
-keymap("i", "[", "[]<Left>", opts)
-keymap("i", "{", "{}<Left>", opts)
-keymap("i", "<", "<><Left>", opts)
-keymap("i", "'", "''<Left>", opts)
-keymap("i", '"', '""<Left>', opts)

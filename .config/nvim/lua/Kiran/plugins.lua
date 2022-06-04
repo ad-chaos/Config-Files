@@ -34,6 +34,7 @@ return require("packer").startup(function(use)
 
     -- LSP
     use("neovim/nvim-lspconfig")
+
     use("williamboman/nvim-lsp-installer")
 
     --Tree Sitter
@@ -41,6 +42,7 @@ return require("packer").startup(function(use)
 
     use("chrisbra/Colorizer")
     use("L3MON4D3/LuaSnip")
+    use("jiangmiao/auto-pairs")
     use("saadparwaiz1/cmp_luasnip")
 
     --Quality of Life
