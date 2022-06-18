@@ -6,9 +6,9 @@ vim.cmd([[
     augroup end
 ]])
 
---Plugins
+--Plugins {{{
 return require("packer").startup(function(use)
-    -- Packer and manage Packer?!
+    -- Packer can manage Packer?!
     use("wbthomason/packer.nvim")
     use("nvim-lua/popup.nvim")
 
@@ -49,3 +49,4 @@ return require("packer").startup(function(use)
     use("sbdchd/neoformat")
     use("tpope/vim-surround")
 end)
+-- }}}

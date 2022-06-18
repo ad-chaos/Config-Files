@@ -21,7 +21,9 @@ vim.cmd [[let &t_EI.="\e[1 q"]]
 
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 -- vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
-
+vim.cmd([[ set foldmethod=marker ]])
+vim.cmd([[ let g:netrw_banner=0 ]])
+vim.cmd([[ set fo+=/ ]])
 -- Load the colorscheme
 vim.g.material_style = "darker"
 vim.cmd [[colorscheme material]]

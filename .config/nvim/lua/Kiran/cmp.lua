@@ -6,6 +6,7 @@ local check_backspace = function()
     return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
+-- Icons for completions and other niceties {{{
 local kind_icons = {
     Text = "",
     Method = " ",
@@ -32,6 +33,7 @@ local kind_icons = {
     Operator = "",
     TypeParameter = "",
 }
+-- }}}
 
 cmp.setup({
     mapping = {
