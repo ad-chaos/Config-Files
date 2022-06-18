@@ -7,6 +7,8 @@ P.ignorecase = true
 P.smartcase = true
 
 -- Annoying things
+vim.cmd([[set diffopt+=algorithm:patience]])
+vim.cmd([[set diffopt+=indent-heuristic]])
 vim.cmd([[set noerrorbells]])
 vim.cmd([[set pumheight=10]])
 P.visualbell = true

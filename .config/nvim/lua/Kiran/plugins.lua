@@ -13,8 +13,7 @@ return require("packer").startup(function(use)
     use("nvim-lua/popup.nvim")
 
     -- colorscheme of choice
-    -- use 'folke/tokyonight.nvim'
-    use("marko-cerovac/material.nvim")
+    use("Mofiqul/dracula.nvim")
 
     --nvim completions
     use("hrsh7th/nvim-cmp")
