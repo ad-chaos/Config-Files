@@ -4,8 +4,7 @@ set nocompatible
 " Using the vim-plugged package manager
 call plug#begin('~/.vim/plugins')
 
-Plug 'pboettch/vim-cmake-syntax'
-"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
@@ -58,6 +57,9 @@ filetype plugin indent on
 "show tab with four spaces width because Chris says so
 set tabstop=8
 
+" map leader to space
+let mapleader=" "
+
 " from r/vim
 set softtabstop=4
 " when indenting with '>' use four spaces
@@ -77,6 +79,11 @@ set splitbelow splitright
 " SI is Insert
 " SR is Replace
 " EI is Normal (Else)
-let &t_SI.="\e[6 q"
-let &t_SR.="\e[4 q"
-let &t_EI.="\e[2 q"
+"let &t_SI.="\e[6 q"
+"let &t_SR.="\e[4 q"
+"let &t_EI.="\e[2 q"
+nnoremap <leader>w :w<CR>
+
+set background=dark
+colorscheme solarized
+
