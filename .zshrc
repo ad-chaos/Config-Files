@@ -5,7 +5,6 @@ unsetopt BEEP
 bindkey -v
 export KEYTIMEOUT=1
 autoload -Uz vcs_info
-autoload -U colors && colors
 
 # enable only git 
 zstyle ':vcs_info:*' enable git 
@@ -26,10 +25,10 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats "%{$fg[red]%}%m%u%c%{$fg[yellow]%} %F{214}%b%f"
+zstyle ':vcs_info:git:*' formats "%F{#fd5cba}%m%u%c%f%F{#ffffff} %f%F{#eefd7a}%b%f"
 
 # Change My prompt
-PROMPT="%F{226}%2~%f \$vcs_info_msg_0_ %B%(?.%F{112}ζ%f.%F{196}ζ%f)%b "
+PROMPT="%B%{$fg[cyan]%}%2~%f%b \$vcs_info_msg_0_ %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
 RPS1='-- INSERT --'
 
 # Show what mode I am in
@@ -65,6 +64,9 @@ zle -N zle-line-init
 echo -ne '\e[6 q'
 preexec() { echo -ne '\e[6 q'; }
 
+# Add completions for brew installed tools
+fpath+=/opt/homebrew/share/zsh/site-functions
+
 #better tab completion
 autoload -U compinit
 zstyle ':completion:*' menu select
@@ -72,11 +74,14 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
-#use vim bindings for traversing through tab complete menu
+# use vim bindings for traversing through tab complete menu
+# https://thevaluable.dev/zsh-completion-guide-examples/
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect '^[' send-break
+bindkey -M menuselect '+' accept-and-hold
 bindkey -v '^?' backward-delete-char
 
 #Some magic for C-c error handling
@@ -86,9 +91,11 @@ function TRAPINT() {
 }
 
 #Some QOL aliases
+
 alias ls="exa --icons --group-directories-first -F"
 alias la="exa --icons --group-directories-first -aF"
 alias ll="exa --icons --group-directories-first -aF --long"
+
 alias grep="grep --color=always"
 alias icat="kitty +kitten icat"
 alias diff="kitty +kitten diff"
@@ -97,17 +104,23 @@ alias pip="pip3"
 alias python="python3"
 alias gcm="git commit -m"
 alias ga="git add ."
-alias gph="git push"
-alias gpl="git pull upstream main"
 alias gst="git status"
+alias gd="git diff"
 alias gc="git checkout"
 alias gb="git branch"
 alias ps="poetry shell"
 alias c-="cd -"
-alias c='clang++ -Wall -Wextra -Wshadow -fsanitize=undefined,address -D_GLIBCXX_DEBUG -g main.cpp'
+alias c='clang++ -std=c++11 -Wall -Wextra -Wshadow -fsanitize=undefined,address -D_GLIBCXX_DEBUG -g main.cpp'
 alias b='cat test.txt | ./a.out'
 alias g='c && echo done && b'
+alias cdroot='cd "$(git rev-parse --show-toplevel || echo .)"'
 
+# Zsh syntax highlighting
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#ccb521'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#22b587'
+
+ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(~/Documents)
 # Functions
 cdev() { cd ~/git-repos/$1 }
 _cdev() { _path_files -W ~/git-repos; }
@@ -118,17 +131,27 @@ _cdc() { _path_files -W ~/Coding-Adventures }
 compdef _cdc cdc
 
 mcd() { mkdir $1 && cd $1 }
+
+rotate_vid() {
+    if [ $2 ]; then
+        ffmpeg -i $1 -vf "transpose=1" $2
+    else
+        ffmpeg -i $1 -vf "transpose=1" $1_rot.mp4
+    fi
+}
+
+
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
-
-# Manim shell completion very slow 
-# source ~/.manim.zsh
 
 # Key bindings for fzf
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
 # PATH variable
-export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$HOME/Library/TinyTeX/bin/universal-darwin:$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$HOME/Library/TinyTeX/bin/universal-darwin:$PATH"
+#:$HOME/.poetry/bin:$PATH"
+export CPATH=/opt/homebrew/include/
+export LIBRARY_PATH=/opt/homebrew/lib/
 
 # Load zsh-syntax-highlighting; should be last.
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
