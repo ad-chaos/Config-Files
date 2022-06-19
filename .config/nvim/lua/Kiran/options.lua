@@ -1,33 +1,38 @@
-P = vim.opt
+OPT = vim.opt
 
-P.number = true
-P.relativenumber = true
+OPT.number = true
+OPT.relativenumber = true
 
-P.ignorecase = true
-P.smartcase = true
+OPT.ignorecase = true
+OPT.smartcase = true
 
 -- Annoying things
-vim.cmd([[set diffopt+=algorithm:patience]])
-vim.cmd([[set diffopt+=indent-heuristic]])
 vim.cmd([[set noerrorbells]])
-vim.cmd([[set pumheight=10]])
-P.visualbell = true
-P.shortmess:append("I")
+OPT.visualbell = true
+OPT.shortmess:append("I")
 
 --Useful to use mouse sometimes
-P.mouse:append("a")
+OPT.mouse:append("a")
 
 -- 4 spaces are better than 1 tab
-P.softtabstop = 4
-P.shiftwidth = 4
-P.expandtab = true
+OPT.softtabstop = 4
+OPT.shiftwidth = 4
+OPT.expandtab = true
 
 --Intuitive spliting behaviour
-P.splitbelow = true
-P.splitright = true
+OPT.splitbelow = true
+OPT.splitright = true
 
 --Enable more colors!
-P.termguicolors = true
+OPT.termguicolors = true
 
 -- cmp related shit
-P.completeopt = { "menuone", "noselect" }
+OPT.completeopt = { "menuone", "noselect" }
+
+-- Extra opts, just look at :h
+OPT.diffopt:append({ "algorithm:patience", "indent-heuristic" })
+OPT.pumheight = 10
+OPT.nrformats:append("alpha")
+OPT.autochdir = true
+OPT.foldmethod = "marker"
+OPT.fo:append("/")

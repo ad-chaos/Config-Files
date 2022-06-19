@@ -1,4 +1,3 @@
-require("Kiran.options")
 require("Kiran.keymaps")
 require("Kiran.plugins")
 require("Kiran.cmp")
@@ -7,6 +6,7 @@ require("Kiran.telescope")
 require("Kiran.lsp")
 require("Kiran.gitsigns")
 require("Kiran.neovide")
+require("Kiran.options")
 
 --  Change cursor depending on modes
 --  SI is Insert
@@ -22,8 +22,6 @@ require("Kiran.neovide")
 
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 -- vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
-vim.cmd([[ set foldmethod=marker ]])
 vim.cmd([[ let g:netrw_banner=0 ]])
-vim.cmd([[ set fo+=/ ]])
 -- Load the colorscheme
 vim.cmd([[ colorscheme dracula ]])
