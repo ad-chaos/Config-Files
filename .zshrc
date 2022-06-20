@@ -113,7 +113,7 @@ alias c-="cd -"
 alias c='clang++ -std=c++11 -Wall -Wextra -Wshadow -fsanitize=undefined,address -D_GLIBCXX_DEBUG -g main.cpp'
 alias b='cat test.txt | ./a.out'
 alias g='c && echo done && b'
-alias cdroot='cd "$(git rev-parse --show-toplevel || echo .)"'
+alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
 
 # Zsh syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
