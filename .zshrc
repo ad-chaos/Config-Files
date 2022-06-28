@@ -5,6 +5,8 @@ unsetopt BEEP
 bindkey -v
 export KEYTIMEOUT=1
 autoload -Uz vcs_info
+autoload edit-command-line
+zle -N edit-command-line
 
 # enable only git 
 zstyle ':vcs_info:*' enable git 
@@ -28,7 +30,7 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git:*' formats "%F{#fd5cba}%m%u%c%f%F{#ffffff} %f%F{#eefd7a}%b%f"
 
 # Change My prompt
-PROMPT="%B%{$fg[cyan]%}%2~%f%b \$vcs_info_msg_0_ %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
+PROMPT="%B%F{#6ffffd}%2~%f%b \$vcs_info_msg_0_ %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
 RPS1='-- INSERT --'
 
 # Show what mode I am in
@@ -77,12 +79,12 @@ _comp_options+=(globdots)
 # use vim bindings for traversing through tab complete menu
 # https://thevaluable.dev/zsh-completion-guide-examples/
 bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'k' vi-history-search-backward
+bindkey -M menuselect 'j' vi-history-search-forward
 bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect '^[' send-break
 bindkey -M menuselect '+' accept-and-hold
-bindkey -v '^?' backward-delete-char
+bindkey -M vicmd '^ ' edit-command-line
 
 #Some magic for C-c error handling
 function TRAPINT() {
