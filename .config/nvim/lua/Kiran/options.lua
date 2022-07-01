@@ -36,3 +36,4 @@ OPT.nrformats:append("alpha")
 OPT.autochdir = true
 OPT.foldmethod = "marker"
 OPT.fo:append("/")
+OPT.laststatus = 3
