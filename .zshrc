@@ -79,8 +79,8 @@ _comp_options+=(globdots)
 # use vim bindings for traversing through tab complete menu
 # https://thevaluable.dev/zsh-completion-guide-examples/
 bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-history-search-backward
-bindkey -M menuselect 'j' vi-history-search-forward
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect '^[' send-break
 bindkey -M menuselect '+' accept-and-hold
@@ -112,9 +112,6 @@ alias gc="git checkout"
 alias gb="git branch"
 alias ps="poetry shell"
 alias c-="cd -"
-alias c='clang++ -std=c++11 -Wall -Wextra -Wshadow -fsanitize=undefined,address -D_GLIBCXX_DEBUG -g main.cpp'
-alias b='cat test.txt | ./a.out'
-alias g='c && echo done && b'
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
 
 # Zsh syntax highlighting
@@ -133,6 +130,11 @@ _cdc() { _path_files -W ~/Coding-Adventures }
 compdef _cdc cdc
 
 mcd() { mkdir $1 && cd $1 }
+
+g() {
+    clang++ -std=c++11 -g -fsanitize=undefined,address problem$1.cpp
+    ./a.out 
+}
 
 rotate_vid() {
     if [ $2 ]; then
@@ -155,5 +157,8 @@ export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$HOME/Library/TinyTeX/bin
 export CPATH=/opt/homebrew/include/
 export LIBRARY_PATH=/opt/homebrew/lib/
 
+# default editor neovim please
+export EDITOR=nvim
+export VISUAL=nvim
 # Load zsh-syntax-highlighting; should be last.
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
