@@ -4,7 +4,8 @@ set nocompatible
 " Using the vim-plugged package manager
 call plug#begin('~/.vim/plugins')
 
-Plug 'altercation/vim-colors-solarized'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'vim/killersheep'
 
 call plug#end()
 
@@ -84,6 +85,5 @@ set splitbelow splitright
 "let &t_EI.="\e[2 q"
 nnoremap <leader>w :w<CR>
 
-set background=dark
-colorscheme solarized
+colorscheme dracula
 
