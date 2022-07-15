@@ -22,6 +22,9 @@ return require("packer").startup(function(use)
     use("hrsh7th/cmp-cmdline")
     use("hrsh7th/cmp-nvim-lsp")
 
+    use("L3MON4D3/LuaSnip")
+    use("saadparwaiz1/cmp_luasnip")
+
     -- Fuzzy File Finder
     use({
         "nvim-telescope/telescope.nvim",
@@ -39,10 +42,11 @@ return require("packer").startup(function(use)
     --Tree Sitter
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
+    -- Misc
     use("chrisbra/Colorizer")
-    use("L3MON4D3/LuaSnip")
     use("jiangmiao/auto-pairs")
-    use("saadparwaiz1/cmp_luasnip")
+    use("godlygeek/tabular")
+    use("terrortylor/nvim-comment")
 
     --Quality of Life
     use("sbdchd/neoformat")
