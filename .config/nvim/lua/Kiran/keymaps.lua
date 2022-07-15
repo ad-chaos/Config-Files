@@ -31,10 +31,14 @@ keymap("n", "<C-h>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-l>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-n>", ":noh<CR>", opts)
 keymap("n", "vs", ":vs<CR>", opts)
+keymap("n", "<leader>rr", ':Gitsigns reset_hunk<CR>', opts)
+keymap("n", "<leader>re", ':Gitsigns reset_buffer<CR>', opts)
 -- }}}
 
 -- Visual Mode mappings {{{
-keymap("v", "<leader>i", "1g<C-a>", opts)
+keymap("v", "<leader>ii", "1g<C-a>", opts)
+keymap("v", "<leader>i2", "2g<C-a>", opts)
+keymap("v", "<leader>i3", "3g<C-a>", opts)
 keymap("v", "<leader>y", '"+y', opts)
 keymap("v", "J", ":m '>+1<CR>gv", opts)
 keymap("v", "K", ":m '<-2<CR>gv", opts)
@@ -43,3 +47,6 @@ keymap("v", "//", "y/\\V<C-R>=escape(@\",'/')<CR><CR>", opts)
 keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
 -- }}}
+
+-- Insert Mode Mappings
+keymap("i", "<C-p>", "copilot#Accept(\"<CR>\")", {silent = true, script = true, expr = true})

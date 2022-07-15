@@ -37,3 +37,4 @@ OPT.autochdir = true
 OPT.foldmethod = "marker"
 OPT.fo:append("/")
 OPT.laststatus = 3
+vim.cmd([[ let g:copilot_no_tab_map = v:true ]])
