@@ -39,7 +39,7 @@ cmp.setup({
     mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+        ["<C-y>"] = cmp.config.disable,
         ["<C-e>"] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
@@ -108,7 +108,14 @@ cmp.setup({
 })
 
 cmp.setup.cmdline(":", {
-    sources = {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = "path" },
+    }, {
         { name = "cmdline" },
-    },
+    }),
+})
+
+cmp.setup.filetype("markdown", {
+    sources = cmp.config.sources({}),
 })
