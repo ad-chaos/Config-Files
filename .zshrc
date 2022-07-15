@@ -131,25 +131,31 @@ compdef _cdc cdc
 
 mcd() { mkdir $1 && cd $1 }
 
+# Project Euler
 g() {
     clang++ -std=c++11 -g -fsanitize=undefined,address problem$1.cpp
     ./a.out 
 }
 
-rotate_vid() {
-    if [ $2 ]; then
-        ffmpeg -i $1 -vf "transpose=1" $2
-    else
-        ffmpeg -i $1 -vf "transpose=1" $1_rot.mp4
-    fi
-}
+nup() {
+    echo "Clearing old compilation of neovim"
+    rm -rf neovim
+    cdev neovim; rm -rf build
 
+    echo "Compiling and Installing Neovim"
+    cdev neovim; git pull > /dev/null; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
+    make install
+}
 
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings for fzf
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+
+#auto pairs
+source "/Users/kiranrajpurohit/git-repos/zsh-autopair/autopair.zsh"
+autopair-init
 
 # PATH variable
 export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$HOME/Library/TinyTeX/bin/universal-darwin:$PATH"
