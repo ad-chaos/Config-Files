@@ -119,3 +119,7 @@ cmp.setup.cmdline(":", {
 cmp.setup.filetype("markdown", {
     sources = cmp.config.sources({}),
 })
+
+cmp.setup.filetype("text", {
+    sources = cmp.config.sources({}),
+})
