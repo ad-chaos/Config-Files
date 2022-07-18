@@ -8,6 +8,7 @@ require("Kiran.gitsigns")
 require("Kiran.neovide")
 require("Kiran.options")
 require("Kiran.comment")
+require("Kiran.commands")
 
 vim.cmd([[ let g:netrw_banner=0 ]])
 vim.cmd([[ colorscheme dracula ]])
