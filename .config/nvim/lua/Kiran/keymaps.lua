@@ -11,7 +11,7 @@ vim.g.maplocalleader = " "
 keymap("t", ",q", "<C-\\><C-n>", opts)
 
 --  Normal Mode mappings {{{
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
+keymap("n", "<leader>ff", "<cmd>Telescope find_files hidden=true <CR>", opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
@@ -36,9 +36,7 @@ keymap("n", "<leader>re", ':Gitsigns reset_buffer<CR>', opts)
 -- }}}
 
 -- Visual Mode mappings {{{
-keymap("v", "<leader>ii", "1g<C-a>", opts)
-keymap("v", "<leader>i2", "2g<C-a>", opts)
-keymap("v", "<leader>i3", "3g<C-a>", opts)
+keymap("v", "<leader>i", "1g<C-a>", opts)
 keymap("v", "<leader>y", '"+y', opts)
 keymap("v", "J", ":m '>+1<CR>gv", opts)
 keymap("v", "K", ":m '<-2<CR>gv", opts)
