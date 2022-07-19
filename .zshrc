@@ -158,7 +158,7 @@ source "/Users/kiranrajpurohit/git-repos/zsh-autopair/autopair.zsh"
 autopair-init
 
 # PATH variable
-export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$HOME/Library/TinyTeX/bin/universal-darwin:$PATH"
+export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$PATH"
 #:$HOME/.poetry/bin:$PATH"
 export CPATH=/opt/homebrew/include/
 export LIBRARY_PATH=/opt/homebrew/lib/
