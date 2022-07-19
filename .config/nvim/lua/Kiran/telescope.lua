@@ -7,3 +7,4 @@ telescope.setup({
         selection_caret = "  ",
     },
 })
+telescope.load_extension("fzf")
