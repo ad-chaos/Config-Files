@@ -17,6 +17,7 @@ keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
 keymap("n", "<leader>gb", ":Gitsigns blame_line<CR>", opts)
 keymap("n", "<leader>a", ":Lex 30<CR>", opts)
+keymap("n", "%", "g%", opts)
 -- keymap("n", "<leader>o", ":e <C-R>=expand('%:p:h') .. '/' <CR>", opts)
 -- not using lua api because it is not responsive
 vim.cmd[[nnoremap <leader>o :e <C-R>=expand('%:p:h')..'/'<CR>]]
