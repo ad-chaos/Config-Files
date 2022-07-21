@@ -5,7 +5,6 @@ set nocompatible
 call plug#begin('~/.vim/plugins')
 
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'vim/killersheep'
 
 call plug#end()
 
@@ -84,6 +83,4 @@ set splitbelow splitright
 "let &t_SR.="\e[4 q"
 "let &t_EI.="\e[2 q"
 nnoremap <leader>w :w<CR>
-
 colorscheme dracula
-
