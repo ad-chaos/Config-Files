@@ -52,6 +52,7 @@ return require("packer").startup(function(use)
     --Quality of Life
     use("sbdchd/neoformat")
     use("tpope/vim-surround")
+    -- use("kylechui/nvim-surround")
 
     -- some fun
     use("github/copilot.vim")

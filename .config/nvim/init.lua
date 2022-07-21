@@ -1,13 +1,7 @@
 require("Kiran.keymaps")
 require("Kiran.plugins")
-require("Kiran.cmp")
-require("Kiran.treesitter")
-require("Kiran.telescope")
 require("Kiran.lsp")
-require("Kiran.gitsigns")
-require("Kiran.neovide")
 require("Kiran.options")
-require("Kiran.comment")
 require("Kiran.commands")
 
 vim.cmd([[ let g:netrw_banner=0 ]])
