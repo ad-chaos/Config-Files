@@ -113,6 +113,8 @@ alias gb="git branch"
 alias ps="poetry shell"
 alias c-="cd -"
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
+alias ...="cd ../../"
+alias ..="cd .."
 
 # Zsh syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
