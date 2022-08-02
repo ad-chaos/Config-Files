@@ -7,7 +7,6 @@ OPT.ignorecase = true
 OPT.smartcase = true
 
 -- Annoying things
-vim.cmd([[set noerrorbells]])
 OPT.visualbell = true
 OPT.shortmess:append("I")
 
@@ -37,4 +36,5 @@ OPT.autochdir = true
 OPT.foldmethod = "marker"
 OPT.fo:append("/")
 OPT.laststatus = 3
+OPT.iskeyword:remove("_")
 vim.cmd([[ let g:copilot_no_tab_map = v:true ]])

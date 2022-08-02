@@ -39,7 +39,7 @@ cmp.setup({
     mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-y>"] = cmp.config.disable,
+        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
         ["<C-e>"] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
@@ -47,7 +47,7 @@ cmp.setup({
 
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        -- ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
         -- Have Tab to multiple things
         ["<Tab>"] = cmp.mapping(function(fallback)
