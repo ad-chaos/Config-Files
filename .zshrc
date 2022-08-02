@@ -105,7 +105,6 @@ alias cdm="cd ~/Documents/Manim"
 alias pip="pip3"
 alias python="python3"
 alias gcm="git commit -m"
-alias ga="git add ."
 alias gst="git status"
 alias gd="git diff"
 alias gc="git checkout"
@@ -113,8 +112,10 @@ alias gb="git branch"
 alias ps="poetry shell"
 alias c-="cd -"
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
+alias cdcon="cd ~/Config-Files/.config"
 alias ...="cd ../../"
 alias ..="cd .."
+alias vimgolf='/opt/homebrew/lib/ruby/gems/3.1.0/bin/vimgolf'
 
 # Zsh syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -133,6 +134,13 @@ compdef _cdc cdc
 
 mcd() { mkdir $1 && cd $1 }
 
+ga() {
+    if [ $1 ]; then
+        git add $1
+    else
+        git add .
+    fi
+}
 # Project Euler
 g() {
     clang++ -std=c++11 -g -fsanitize=undefined,address problem$1.cpp
@@ -156,7 +164,7 @@ nup() {
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
 #auto pairs
-source "/Users/kiranrajpurohit/git-repos/zsh-autopair/autopair.zsh"
+source "/Users/kiranrajpurohit/autopair.zsh"
 autopair-init
 
 # PATH variable
@@ -168,5 +176,8 @@ export LIBRARY_PATH=/opt/homebrew/lib/
 # default editor neovim please
 export EDITOR=nvim
 export VISUAL=nvim
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 # Load zsh-syntax-highlighting; should be last.
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
