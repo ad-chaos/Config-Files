@@ -8,6 +8,8 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
+unlet! skip_defaults_vim
+runtime defaults.vim
 " Turn on syntax highlighting.
 syntax on
 
