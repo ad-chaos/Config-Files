@@ -16,7 +16,6 @@ nnoremap <leader>gb <cmd>Gitsigns blame_line<CR>
 nnoremap <leader>rr <cmd>Gitsigns reset_hunk<CR>
 nnoremap <leader>re <cmd>Gitsigns reset_buffer<CR>
 nnoremap <leader>a <cmd>Lex 30<CR>
-nnoremap % g%
 nnoremap <leader>u g~w
 nnoremap <leader>fm <cmd>Neoformat<CR>
 nnoremap <leader>w <cmd>w<CR>
