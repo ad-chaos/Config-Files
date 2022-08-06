@@ -30,12 +30,9 @@ function! TabMessage(cmd)
     endif
 endfunction
 
-" abcd
-"
-augroup undercurls
-    au!
-    au ColorScheme dracula hi SpellBad   gui=undercurl 
-                       \ | hi SpellCap   gui=undercurl
-                       \ | hi SpellRare  gui=undercurl
-                       \ | hi SpellLocal gui=undercurl
-augroup END
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc

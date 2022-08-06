@@ -1,9 +1,9 @@
-local telescope = require("telescope")
+local telescope = require "telescope"
 
-telescope.setup({
+telescope.setup {
     defaults = {
         prompt_prefix = "  ",
         selection_caret = "  ",
     },
-})
-telescope.load_extension("fzf")
+}
+telescope.load_extension "fzf"

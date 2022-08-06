@@ -1,11 +1,7 @@
 let g:mapleader = " "
 let g:maplocalleader = "\\"
-
 "  Terminal mode mappings
-"  Have <Esc> mapped to intuitiveness
 tnoremap ,q <C-\><C-n>
-
-
 " Normal Mode mappings {{{
 nnoremap <leader>o :e <C-R>=expand('%:p:h')..'/'<CR>
 nnoremap <leader>ff <cmd>Telescope find_files hidden=true<CR>
@@ -31,7 +27,6 @@ nnoremap gJ @="Jx"<CR>
 nnoremap <M-k> <cmd>m -2<CR>
 nnoremap <M-j> <cmd>m +1<CR>
 " }}}
-
 " Visual Mode mappings {{{
 xnoremap <leader>i g<C-a>
 xnoremap <leader>y "+y
@@ -42,6 +37,5 @@ xnoremap // y/\\V<C-R>=escape(@\",'/')<CR><CR>
 xnoremap > >gv
 xnoremap < <gv
 " }}}
-
 " Insert Mode Mappings
 inoremap <silent><script><expr> <C-p> copilot#Accept("\<CR>")

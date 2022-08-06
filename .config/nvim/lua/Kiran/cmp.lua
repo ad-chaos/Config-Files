@@ -1,9 +1,9 @@
-local cmp = require("cmp")
-local luasnip = require("luasnip")
+local cmp = require "cmp"
+local luasnip = require "luasnip"
 
 local check_backspace = function()
-    local col = vim.fn.col(".") - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+    local col = vim.fn.col "." - 1
+    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
 -- Icons for completions and other niceties {{{
@@ -35,15 +35,15 @@ local kind_icons = {
 }
 -- }}}
 
-cmp.setup({
+cmp.setup {
     mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-e>"] = cmp.mapping({
+        ["<C-y>"] = cmp.mapping.confirm { select = true },
+        ["<C-e>"] = cmp.mapping {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
-        }),
+        },
 
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
@@ -106,7 +106,7 @@ cmp.setup({
         ghost_text = false,
         native_menu = false,
     },
-})
+}
 
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
@@ -118,9 +118,9 @@ cmp.setup.cmdline(":", {
 })
 
 cmp.setup.filetype("markdown", {
-    sources = cmp.config.sources({}),
+    sources = cmp.config.sources {},
 })
 
 cmp.setup.filetype("text", {
-    sources = cmp.config.sources({}),
+    sources = cmp.config.sources {},
 })

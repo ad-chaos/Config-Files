@@ -33,5 +33,5 @@ vim.keymap.set({ "n", "i" }, "<C-BS>", function()
     ResetGuiFont()
 end, opts)
 
-vim.cmd([[ let g:neovide_refresh_rate=140 ]])
-vim.cmd([[ let g:neovide_refresh_rate=140 ]])
+vim.cmd [[ let g:neovide_refresh_rate=140 ]]
+vim.cmd [[ let g:neovide_refresh_rate=140 ]]

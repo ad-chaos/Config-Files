@@ -46,7 +46,6 @@ return require("packer").startup(function(use)
 
     -- Misc
     use "chrisbra/Colorizer"
-    use "jiangmiao/auto-pairs"
     use "godlygeek/tabular"
     use {
         "terrortylor/nvim-comment",
@@ -64,8 +63,13 @@ return require("packer").startup(function(use)
     }
     --Quality of Life
     use "sbdchd/neoformat"
-    use "tpope/vim-surround"
-    -- use("kylechui/nvim-surround")
+    -- use "tpope/vim-surround"
+    use {
+        "kylechui/nvim-surround",
+        config = function()
+            require("nvim-surround").setup()
+        end,
+    }
 
     -- some fun
     use "github/copilot.vim"

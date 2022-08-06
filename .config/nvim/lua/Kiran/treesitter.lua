@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.configs").setup {
     sync_install = false,
     ensure_installed = { "lua", "python", "cpp", "c", "javascript", "vim", "toml", "markdown" },
     highlight = {
@@ -7,4 +7,5 @@ require("nvim-treesitter.configs").setup({
     },
     -- TODO: Remove python once it is fixed upstream
     indent = { enable = true, disable = { "python" } },
-})
+    incremental_selection = { enable = true },
+}
