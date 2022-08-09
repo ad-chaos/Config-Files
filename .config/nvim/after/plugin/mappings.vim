@@ -5,6 +5,7 @@ tnoremap ,q <C-\><C-n>
 " Normal Mode mappings {{{
 nnoremap <leader>o :e <C-R>=expand('%:p:h')..'/'<CR>
 nnoremap <leader>ff <cmd>Telescope find_files hidden=true<CR>
+nnoremap <leader>gf <cmd>Telescope git_files<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
@@ -17,6 +18,7 @@ nnoremap <leader>fm <cmd>Neoformat<CR>
 nnoremap <leader>w <cmd>w<CR>
 nnoremap <leader>Y "+y$
 nnoremap <leader>yy "+yy
+nnoremap <leader>- <C-^>
 nnoremap <Up> <cmd>resize -4<CR>
 nnoremap <Down> <cmd>resize +4<CR>
 nnoremap <Left> <cmd>vertical resize -4<CR>
