@@ -40,3 +40,4 @@ OPT.gdefault = true
 vim.cmd [[ let g:copilot_no_tab_map = v:true ]]
 OPT.list = true
 OPT.listchars = { tab = ">> ", eol = "↲", nbsp = "␣", trail = "•" }
+OPT.undofile = true
