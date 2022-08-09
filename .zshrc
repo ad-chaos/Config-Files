@@ -33,29 +33,6 @@ zstyle ':vcs_info:git:*' formats "%F{#fd5cba}%m%u%c%f%F{#ffffff} %f%F{#eefd7a
 PROMPT="%B%F{#6ffffd}%2~%f%b \$vcs_info_msg_0_ %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
 RPS1='-- INSERT --'
 
-# Show what mode I am in
-function zle-keymap-select {
-     # Block cursor when normal mode
-     if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-    
-     # Beam cursor when insert mode
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[6 q'
-  fi
-
-    #sees keymap state and changes text displayes accordingly
-    RPS1=""${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --} 
-    RPS2=$RPS1
-    zle reset-prompt
-}
-
-zle -N zle-keymap-select
-
 function zle-line-init() {
     zle -K viins
     echo -ne '\e[6 q'
