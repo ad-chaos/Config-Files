@@ -5,6 +5,7 @@ require "Kiran.telescope"
 require "Kiran.plugins"
 require "Kiran.lsp"
 require "Kiran.options"
+require "Kiran.neovide"
 
 vim.cmd [[
 augroup overides
