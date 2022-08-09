@@ -36,6 +36,10 @@ xnoremap p "_dP
 xnoremap // y/\\V<C-R>=escape(@\",'/')<CR><CR>
 xnoremap > >gv
 xnoremap < <gv
+xnoremap <C-l> lOhO
+xnoremap <C-h> hOlO
+xnoremap <C-j> joko
+xnoremap <C-k> kojo
 " }}}
 " Insert Mode Mappings
 inoremap <silent><script><expr> <C-p> copilot#Accept("\<CR>")
