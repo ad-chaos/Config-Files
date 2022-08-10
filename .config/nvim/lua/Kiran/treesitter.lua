@@ -7,5 +7,5 @@ require("nvim-treesitter.configs").setup {
     },
     -- TODO: Remove python once it is fixed upstream
     indent = { enable = true, disable = { "python" } },
-    incremental_selection = { enable = true },
+    incremental_selection = { enable = true, disable = { "" } },
 }
