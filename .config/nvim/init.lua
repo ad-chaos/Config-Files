@@ -1,11 +1,11 @@
-require "Kiran.cmp"
-require "Kiran.treesitter"
-require "Kiran.gitsigns"
-require "Kiran.telescope"
-require "Kiran.plugins"
-require "Kiran.lsp"
-require "Kiran.options"
-require "Kiran.neovide"
+require "nvim-lua.cmp"
+require "nvim-lua.treesitter"
+require "nvim-lua.gitsigns"
+require "nvim-lua.telescope"
+require "nvim-lua.plugins"
+require "nvim-lua.lsp"
+require "nvim-lua.options"
+require "nvim-lua.neovide"
 
 vim.cmd [[
 augroup overides
