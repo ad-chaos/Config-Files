@@ -8,21 +8,20 @@ autoload -Uz vcs_info
 autoload edit-command-line
 zle -N edit-command-line
 
-# enable only git 
-zstyle ':vcs_info:*' enable git 
+# enable only git
+zstyle ':vcs_info:*' enable git
 
-# setup a hook that runs before every ptompt. 
+# setup a hook that runs before every ptompt.
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
 # https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-# 
 +vi-git-untracked(){
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
         git status --porcelain | grep '??' &> /dev/null ; then
-        hook_com[staged]+='!' 
+        hook_com[staged]+='!'
     fi
 }
 
@@ -121,7 +120,7 @@ ga() {
 # Project Euler
 g() {
     clang++ -std=c++11 -g -fsanitize=undefined,address problem$1.cpp
-    ./a.out 
+    ./a.out
 }
 
 nup() {
@@ -145,7 +144,7 @@ source "/Users/kiranrajpurohit/autopair.zsh"
 autopair-init
 
 # PATH variable
-export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$PATH"
+export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$HOME/.emacs.d/bin:$PATH"
 #:$HOME/.poetry/bin:$PATH"
 export CPATH=/opt/homebrew/include/
 export LIBRARY_PATH=/opt/homebrew/lib/
