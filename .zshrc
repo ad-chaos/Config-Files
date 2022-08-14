@@ -30,7 +30,6 @@ zstyle ':vcs_info:git:*' formats "%F{#fd5cba}%m%u%c%f%F{#ffffff} %f%F{#eefd7a
 
 # Change My prompt
 PROMPT="%B%F{#6ffffd}%2~%f%b \$vcs_info_msg_0_ %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
-RPS1='-- INSERT --'
 
 function zle-line-init() {
     zle -K viins
