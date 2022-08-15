@@ -4,7 +4,7 @@ let g:maplocalleader = "\\"
 tnoremap ,q <C-\><C-n>
 " Normal Mode mappings {{{
 nnoremap <leader>o :e <C-R>=expand('%:p:h')..'/'<CR>
-nnoremap <leader>ff <cmd>Telescope find_files hidden=true<CR>
+nnoremap <leader>fl <cmd>Telescope find_files hidden=true<CR>
 nnoremap <leader>gf <cmd>Telescope git_files<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
