@@ -35,3 +35,5 @@ end, opts)
 
 vim.cmd [[ let g:neovide_refresh_rate=140 ]]
 vim.cmd [[ let g:neovide_refresh_rate=140 ]]
+vim.cmd [[ let g:neovide_remember_window_size = v:true ]]
+vim.cmd [[ let g:neovide_fullscreen=v:true ]]
