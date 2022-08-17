@@ -28,7 +28,7 @@ nnoremap vs <cmd>vs<CR>
 nnoremap gJ @="Jx"<CR>
 nnoremap <M-k> <cmd>m -2<CR>
 nnoremap <M-j> <cmd>m +1<CR>
-nnoremap [c <cmd>cnext<CR>
+nnoremap [c <cmd>cprevious<CR>
 nnoremap ]c <cmd>cnext<CR>
 " }}}
 " Visual Mode mappings {{{
