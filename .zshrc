@@ -15,6 +15,8 @@ zstyle ':vcs_info:*' enable git
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
+setopt autocd
+setopt histignoredups
 
 # https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
@@ -30,16 +32,6 @@ zstyle ':vcs_info:git:*' formats "%F{#fd5cba}%m%u%c%f%F{#ffffff} %f%F{#eefd7a
 
 # Change My prompt
 PROMPT="%B%F{#6ffffd}%2~%f%b \$vcs_info_msg_0_ %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
-
-function zle-line-init() {
-    zle -K viins
-    echo -ne '\e[6 q'
-}
-
-zle -N zle-line-init
-
-echo -ne '\e[6 q'
-preexec() { echo -ne '\e[6 q'; }
 
 # Add completions for brew installed tools
 fpath+=/opt/homebrew/share/zsh/site-functions
@@ -76,7 +68,6 @@ alias ll="exa --icons --group-directories-first -aF --long"
 alias grep="grep --color=always"
 alias icat="kitty +kitten icat"
 alias diff="kitty +kitten diff"
-alias cdm="cd ~/Documents/Manim"
 alias pip="pip3"
 alias python="python3"
 alias gcm="git commit -m"
@@ -87,9 +78,8 @@ alias gb="git branch"
 alias ps="poetry shell"
 alias c-="cd -"
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
-alias cdcon="cd ~/Config-Files/.config"
-alias ...="cd ../../"
-alias ..="cd .."
+alias cdcon="~/Config-Files/.config"
+alias ...="../../"
 alias vimgolf='/opt/homebrew/lib/ruby/gems/3.1.0/bin/vimgolf'
 
 # Zsh syntax highlighting
