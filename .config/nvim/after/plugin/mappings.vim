@@ -15,7 +15,7 @@ nnoremap <leader>re <cmd>Gitsigns reset_buffer<CR>
 nnoremap <leader>a <cmd>Lex 30<CR>
 nnoremap <leader>u g~w
 nnoremap <leader>fm <cmd>Neoformat<CR>
-nnoremap <leader>w <cmd>w<CR>
+nnoremap <silent> <leader>w <cmd>silent w<CR>
 nnoremap <leader>Y "+y$
 nnoremap <leader>yy "+yy
 nnoremap <leader>- <C-^>
@@ -30,6 +30,8 @@ nnoremap <M-k> <cmd>m -2<CR>
 nnoremap <M-j> <cmd>m +1<CR>
 nnoremap [c <cmd>cprevious<CR>
 nnoremap ]c <cmd>cnext<CR>
+nnoremap v <C-v>
+nnoremap <C-v> v
 " }}}
 " Visual Mode mappings {{{
 xnoremap <leader>i g<C-a>
