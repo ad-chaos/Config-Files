@@ -33,7 +33,7 @@ vim.keymap.set({ "n", "i" }, "<C-BS>", function()
     ResetGuiFont()
 end, opts)
 
-vim.cmd [[ let g:neovide_refresh_rate=140 ]]
-vim.cmd [[ let g:neovide_refresh_rate=140 ]]
-vim.cmd [[ let g:neovide_remember_window_size = v:true ]]
-vim.cmd [[ let g:neovide_fullscreen=v:true ]]
+vim.keymap.set("n", "<D-v>", "\"+p")
+vim.cmd [[let g:neovide_refresh_rate=100]]
+vim.cmd [[let g:neovide_refresh_rate=100]]
+vim.cmd [[let g:neovide_remember_window_size = v:true]]

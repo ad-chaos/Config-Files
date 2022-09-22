@@ -73,6 +73,7 @@ alias ps="poetry shell"
 alias c-="cd -"
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
 alias cdcon="~/Config-Files/.config"
+alias hg="kitty +kitten hyperlinked_grep"
 alias ...="../../"
 alias vimgolf='/opt/homebrew/lib/ruby/gems/3.1.0/bin/vimgolf'
 

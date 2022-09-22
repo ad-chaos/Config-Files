@@ -5,10 +5,8 @@ require "nvim-lua.telescope"
 require "nvim-lua.plugins"
 require "nvim-lua.lsp"
 require "nvim-lua.options"
-require "nvim-lua.neovide"
 
-vim.cmd [[
-augroup overrides
+vim.cmd [[augroup overrides
     au!
     au ColorScheme dracula hi SpellBad   gui=undercurl
                        \ | hi SpellCap   gui=undercurl
@@ -17,15 +15,10 @@ augroup overrides
                        \ | hi link WhiteSpace Directory
 augroup END
 ]]
-
-vim.cmd [[ let g:netrw_banner=0 ]]
-vim.cmd [[ colorscheme dracula ]]
-vim.g.loaded_matchit=1
+vim.cmd [[let g:netrw_banner=0]]
+vim.cmd [[colorscheme tokyonight-night]]
+vim.cmd [[set statusline=%!v:lua.require'me'.statusline()]]
 
 if vim.g.neovide then
-    vim.keymap.set("n", "<D-v>", "\"+p")
+    require "nvim-lua.neovide"
 end
--- local ts_utils = require("nvim-treesitter.ts_utils")
--- local node = ts_utils.get_node_at_cursor()
--- local prev_node = ts_utils.get_previous_node(node, true, true)
--- vim.keymap.set("n", "[p", ts_utils.goto_node(prev_node, true, true))

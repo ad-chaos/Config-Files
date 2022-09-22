@@ -1,6 +1,6 @@
 require("nvim-treesitter.configs").setup {
     sync_install = false,
-    ensure_installed = { "lua", "python", "cpp", "c", "javascript", "vim", "toml", "markdown" },
+    ensure_installed = { "lua", "python", "cpp", "c", "javascript", "toml", "markdown", "rust", "comment"},
     highlight = {
         enable = true,
         disable = { "" },

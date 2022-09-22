@@ -1,8 +1,8 @@
-function! InterleaveR(seperator) range
+function! InterleaveR(seperator="") range
     if empty(a:seperator)
         let @m="'bj:m 'ajma"
     else
-        let @t=a:seperator[0]
+        let @t=a:seperator
         let @m="'bj:m 'ak$\"tpgJjma"
     endif
 

@@ -72,8 +72,6 @@ return require("packer").startup(function(use)
     }
 
     -- some fun
-    use "github/copilot.vim"
-
     use "nvim-treesitter/playground"
 end)
 -- }}}
