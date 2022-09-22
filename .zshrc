@@ -11,7 +11,7 @@ zle -N edit-command-line
 # enable only git
 zstyle ':vcs_info:*' enable git
 
-# setup a hook that runs before every ptompt.
+# setup a hook that runs before every prompt.
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
@@ -52,12 +52,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect '^[' send-break
 bindkey -M menuselect '+' accept-and-hold
 bindkey -M vicmd '^ ' edit-command-line
-
-#Some magic for C-c error handling
-function TRAPINT() {
-  vim_mode=$vim_ins_mode
-  return $(( 128 + $1 ))
-}
 
 #Some QOL aliases
 
@@ -122,6 +116,8 @@ nup() {
     make install
 }
 
+nfzf() {"nvim $(fzf)"}
+
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
@@ -133,8 +129,8 @@ source "/Users/kiranrajpurohit/autopair.zsh"
 autopair-init
 
 # PATH variable
-export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$HOME/.emacs.d/bin:$PATH"
-#:$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/neovim/bin:opt/homebrew/opt/fzf/bin:$PATH"
+
 export CPATH=/opt/homebrew/include/
 export LIBRARY_PATH=/opt/homebrew/lib/
 
