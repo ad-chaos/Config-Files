@@ -61,9 +61,10 @@ return require("packer").startup(function(use)
             require("spellsitter").setup()
         end,
     }
+    use "gpanders/editorconfig.nvim"
     --Quality of Life
     use "sbdchd/neoformat"
-    -- use "tpope/vim-surround"
+
     use {
         "kylechui/nvim-surround",
         config = function()
