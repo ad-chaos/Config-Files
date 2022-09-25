@@ -29,3 +29,4 @@ OPT.wrap = false
 OPT.scrolloff = 5
 OPT.showmode = false
 OPT.showcmd = false
+OPT.cpoptions:remove("_")
