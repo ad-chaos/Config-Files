@@ -15,6 +15,7 @@ vim.cmd [[augroup overrides
                        \ | hi link WhiteSpace Directory
 augroup END
 ]]
+vim.cmd [[autocmd User LspProgressUpdate redrawstatus]]
 vim.cmd [[let g:netrw_banner=0]]
 vim.cmd [[colorscheme tokyonight-night]]
 vim.cmd [[set statusline=%!v:lua.require'me'.statusline()]]
