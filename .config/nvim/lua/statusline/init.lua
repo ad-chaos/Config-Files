@@ -49,7 +49,7 @@ end
 
 function M.statusline()
     local parts = {
-        [[» %{luaeval("require'me'.file_or_lsp_status()")} %m%r%=]],
+        [[» %{luaeval("require'statusline'.file_or_lsp_status()")} %m%r%=]],
 
         -- New things below:
         -- %# starts a highlight group; Another # indicates the end of the highlight group name
@@ -68,7 +68,7 @@ function M.statusline()
         -- Same as before with the file format, except for the file encoding and checking for `utf-8`
         "%{(&fenc!='utf-8' && &fenc!='') ? '['.&fenc.'] ' : ''}",
         "%*",
-        [[%{luaeval("require'me'.diagnostic_status()")}]],
+        [[%{luaeval("require'statusline'.diagnostic_status()")}]],
     }
     -- Parts aren't empty, see remainder of the post
     -- Instead of defining one long string I use the parts/table.concat pattern
