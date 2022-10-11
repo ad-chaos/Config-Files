@@ -23,7 +23,7 @@ OPT.fo:append("/", "r", "o")
 OPT.laststatus = 3
 OPT.gdefault = true
 OPT.list = true
-OPT.listchars = { tab = "|- ", eol = "↲", nbsp = "␣", trail = "•" }
+OPT.listchars = { tab = "├─ ", eol = "↲", nbsp = "␣", trail = "•" }
 OPT.undofile = true
 OPT.wrap = false
 OPT.scrolloff = 5
