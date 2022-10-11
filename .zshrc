@@ -82,7 +82,6 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#ccb521'
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#22b587'
 
-ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(~/Documents)
 # Functions
 cdev() { cd ~/git-repos/$1 }
 _cdev() { _path_files -W ~/git-repos; }
