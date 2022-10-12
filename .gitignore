@@ -1,4 +1,5 @@
 .config/nvim/plugin/packer_compiled.lua
 .config/nvim/spell/**
+.config/kitty/kitty.app.icns
 stylua.toml
 .DS_Store
