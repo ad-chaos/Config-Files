@@ -116,7 +116,14 @@ nup() {
     make install
 }
 
-nfzf() {"nvim $(fzf)"}
+fzf() { 
+    file_dir=$(command fzf)
+    if [[ $? -eq 0 ]]; then
+        nvim $file_dir
+    fi
+}
+
+gcd() { git clone $1 && cd $(basename $1) }
 
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
