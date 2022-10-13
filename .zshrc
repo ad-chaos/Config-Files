@@ -117,7 +117,7 @@ nup() {
 }
 
 fzf() { 
-    file_dir=$(command fzf)
+    file_dir=$(command fzf "$@")
     if [[ $? -eq 0 ]]; then
         nvim $file_dir
     fi
