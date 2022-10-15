@@ -148,6 +148,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*' | cut -c 3-"
 
 # Load zsh-syntax-highlighting; should be last.
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
