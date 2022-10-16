@@ -51,7 +51,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect '^[' send-break
 bindkey -M menuselect '+' accept-and-hold
-bindkey -M vicmd '^ ' edit-command-line
+bindkey -a '^ ' edit-command-line
 # TODO: This feels like a zsh bug
 bindkey -v '^?' backward-delete-char
 
