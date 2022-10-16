@@ -71,6 +71,7 @@ alias gst="git status"
 alias gd="git diff"
 alias gc="git checkout"
 alias gb="git branch"
+alias gcma="git commit -am"
 alias ps="poetry shell"
 alias c-="cd -"
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
