@@ -149,6 +149,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export FZF_DEFAULT_OPTS='--color=fg:#c0caf5,bg:#1a1b26,hl:#bb9af72a2940or=fg+:#c0caf5,bg+:#2a2940,hl+:#7dcfff --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
 export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*' -print 2> /dev/null | cut -c 3-"
 export FZF_ALT_C_COMMAND="find -L . -mindepth 1 -not -path '*/\.git/*' -type d -print 2> /dev/null | cut -c 3-"
 
