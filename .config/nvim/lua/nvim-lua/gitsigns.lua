@@ -1,6 +1,6 @@
 local gitsigns = require "gitsigns"
 
-gitsigns.setup {
+gitsigns.setup({
     signs = {
         add = { text = "🮇" },
         change = { text = "🮇" },
@@ -10,4 +10,4 @@ gitsigns.setup {
             text = "🮇",
         },
     },
-}
+})

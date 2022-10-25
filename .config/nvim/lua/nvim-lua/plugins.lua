@@ -27,11 +27,11 @@ return require("packer").startup(function(use)
     use "saadparwaiz1/cmp_luasnip"
 
     -- Fuzzy File Finder
-    use {
+    use({
         "nvim-telescope/telescope.nvim",
         requires = { "nvim-lua/plenary.nvim" },
-    }
-    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+    })
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
     -- Git integration
     use "lewis6991/gitsigns.nvim"
@@ -42,35 +42,35 @@ return require("packer").startup(function(use)
     use "williamboman/nvim-lsp-installer"
 
     --Tree Sitter
-    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
     -- Misc
     use "chrisbra/Colorizer"
     use "godlygeek/tabular"
-    use {
+    use({
         "terrortylor/nvim-comment",
         config = function()
-            require("nvim_comment").setup {
+            require("nvim_comment").setup({
                 comment_empty = false,
-            }
+            })
         end,
-    }
-    use {
+    })
+    use({
         "lewis6991/spellsitter.nvim",
         config = function()
             require("spellsitter").setup()
         end,
-    }
+    })
     use "gpanders/editorconfig.nvim"
     --Quality of Life
     use "sbdchd/neoformat"
 
-    use {
+    use({
         "kylechui/nvim-surround",
         config = function()
             require("nvim-surround").setup()
         end,
-    }
+    })
 
     -- some fun
     use "nvim-treesitter/playground"

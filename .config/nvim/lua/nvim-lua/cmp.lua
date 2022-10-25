@@ -35,15 +35,15 @@ local kind_icons = {
 }
 -- }}}
 
-cmp.setup {
+cmp.setup({
     mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
         ["<C-y>"] = cmp.config.disable,
-        ["<C-e>"] = cmp.mapping {
+        ["<C-e>"] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
-        },
+        }),
 
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
 
@@ -100,7 +100,7 @@ cmp.setup {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
     },
-}
+})
 
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
@@ -112,9 +112,15 @@ cmp.setup.cmdline(":", {
 })
 
 cmp.setup.filetype("markdown", {
-    sources = cmp.config.sources {},
+    sources = cmp.config.sources({}),
 })
 
 cmp.setup.filetype("text", {
-    sources = cmp.config.sources {},
+    sources = cmp.config.sources({}),
+})
+
+cmp.setup.filetype("svg", {
+    sources = cmp.config.sources({
+        name = "buffer",
+    }),
 })

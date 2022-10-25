@@ -1,7 +1,7 @@
 local telescope = require "telescope"
 local action_layout = require "telescope.actions.layout"
 
-telescope.setup {
+telescope.setup({
     defaults = {
         prompt_prefix = "  ",
         selection_caret = "  ",
@@ -11,5 +11,5 @@ telescope.setup {
             },
         },
     },
-}
+})
 telescope.load_extension "fzf"

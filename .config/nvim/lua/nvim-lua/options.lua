@@ -14,7 +14,7 @@ OPT.splitbelow = true
 OPT.splitright = true
 OPT.termguicolors = true
 OPT.completeopt = { "menuone", "noselect" }
-OPT.diffopt:append { "algorithm:patience", "indent-heuristic" }
+OPT.diffopt:append({ "algorithm:patience", "indent-heuristic" })
 OPT.pumheight = 10
 OPT.nrformats:append "alpha"
 OPT.autochdir = true
@@ -29,4 +29,4 @@ OPT.wrap = false
 OPT.scrolloff = 5
 OPT.showmode = false
 OPT.showcmd = false
-OPT.cpoptions:remove("_")
+OPT.cpoptions:remove "_"
