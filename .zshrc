@@ -126,8 +126,6 @@ fzf() {
     fi
 }
 
-gcd() { git clone $1 && cd $(basename $1) }
-
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
