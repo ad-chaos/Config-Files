@@ -43,6 +43,7 @@ return require("packer").startup(function(use)
 
     --Tree Sitter
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    use "nvim-treesitter/nvim-treesitter-context"
 
     -- Misc
     use "chrisbra/Colorizer"
