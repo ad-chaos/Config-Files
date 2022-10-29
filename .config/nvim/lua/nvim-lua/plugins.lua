@@ -72,6 +72,7 @@ return require("packer").startup(function(use)
             require("nvim-surround").setup()
         end,
     })
+    use "tpope/vim-vinegar"
 
     -- some fun
     use "nvim-treesitter/playground"
