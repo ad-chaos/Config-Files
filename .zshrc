@@ -110,6 +110,7 @@ g() {
 }
 
 nup() {
+    local NO_CD_HOOK="ye_no_list"
     echo "Clearing old compilation of neovim"
     rm -rf neovim
     cdev neovim; rm -rf build
@@ -127,8 +128,12 @@ fzf() {
 }
 
 chpwd() {
-    la
+    if [[ $- =~ i && -z $NO_CD_HOOK ]]; then
+        clear
+        la
+    fi
 }
+
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
