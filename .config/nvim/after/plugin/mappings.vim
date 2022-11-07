@@ -54,3 +54,5 @@ xnoremap <C-k> kojo
 " }}}
 " Insert Mode Mappings
 inoremap <silent><script><expr> <C-p> copilot#Accept("\<CR>")
+inoremap <M-k> <esc><cmd>m -2<CR>a
+inoremap <M-j> <esc><cmd>m +1<CR>a
