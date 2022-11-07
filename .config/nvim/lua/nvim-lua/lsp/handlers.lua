@@ -65,10 +65,8 @@ M.on_attach = function(client, bufnr)
     lsp_keymaps(bufnr)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
-M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+M.capabilities = cmp_nvim_lsp.default_capabilities()
 
 return M
