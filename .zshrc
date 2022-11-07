@@ -61,6 +61,7 @@ alias ls="exa --icons --group-directories-first -F"
 alias la="exa --icons --group-directories-first -aF"
 alias ll="exa --icons --group-directories-first -aF --long"
 
+alias gimme="rg -F -uuu"
 alias grep="grep --color=always"
 alias icat="kitty +kitten icat"
 alias diff="kitty +kitten diff"
