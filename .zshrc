@@ -65,8 +65,8 @@ alias gimme="rg -F -uuu"
 alias grep="grep --color=always"
 alias icat="kitty +kitten icat"
 alias diff="kitty +kitten diff"
-alias pip="pip3"
-alias python="python3"
+alias pip="pip3.10"
+alias python="python3.10"
 alias gcm="git commit -m"
 alias gst="git status"
 alias gd="git diff"
@@ -80,6 +80,8 @@ alias cdcon="~/Config-Files/.config"
 alias hg="kitty +kitten hyperlinked_grep"
 alias ...="../../"
 alias vimgolf='/opt/homebrew/lib/ruby/gems/3.1.0/bin/vimgolf'
+alias find='command find . -name'
+alias findf='command find . -type f -name'
 
 # Zsh syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
