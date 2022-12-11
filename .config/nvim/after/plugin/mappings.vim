@@ -37,7 +37,8 @@ nnoremap v <C-v>
 nnoremap <C-v> v
 nnoremap <C-,> gT
 nnoremap <C-.> gt
-nnoremap <CR> o<ESC>
+nnoremap <S-CR> S<CR><ESC>
+nnoremap <C-CR> o<ESC>
 " }}}
 " Visual Mode mappings {{{
 xnoremap <leader>i g<C-a>
