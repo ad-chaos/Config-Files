@@ -123,12 +123,23 @@ nup() {
     make install
 }
 
-fzf() { 
-    file_dir=$(command fzf "$@")
+fzf-map() {
+    local file_dir=$(command fzf "$@" </dev/tty)
     if [[ $? -eq 0 ]]; then
-        nvim $file_dir
+        local program="nvim"
+        case $file_dir in
+            *.pdf | *.jpeg | *.png | *.jpg)
+                program="open"
+                ;;
+            *)
+                program="nvim"
+                ;;
+        esac
+        $program $file_dir
     fi
 }
+zle -N fzf-map
+bindkey -M viins '^O' fzf-map
 
 chpwd() {
     if [[ $- =~ i && -z $NO_CD_HOOK ]]; then
