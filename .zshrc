@@ -106,11 +106,6 @@ ga() {
         git add .
     fi
 }
-# Project Euler
-g() {
-    clang++ -std=c++11 -g -fsanitize=undefined,address problem$1.cpp
-    ./a.out
-}
 
 nup() {
     local NO_CD_HOOK="ye_no_list"
