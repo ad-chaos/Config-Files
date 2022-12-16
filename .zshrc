@@ -124,7 +124,8 @@ nup() {
 }
 
 fzf-map() {
-    local file_dir=$(command fzf "$@" </dev/tty)
+    local file_dir
+    file_dir=$(command fzf "$@" </dev/tty)
     if [[ $? -eq 0 ]]; then
         local program="nvim"
         case $file_dir in
