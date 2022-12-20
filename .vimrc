@@ -1,88 +1,84 @@
-" Use vim not vi
+let mapleader=" "
+filetype plugin indent on
 set nocompatible
 
-" Using the vim-plugged package manager
-call plug#begin('~/.vim/plugins')
-
-Plug 'dracula/vim', { 'as': 'dracula' }
-
-call plug#end()
-
-unlet! skip_defaults_vim
-runtime defaults.vim
-" Turn on syntax highlighting.
-syntax on
-
-" Disable the default Vim startup message.
+" Options
 set shortmess+=I
-
-" Show line numbers.
 set number 
-
-" Relative line numbers ftw
 set relativenumber
-
-" Always show the status line at the bottom, even if you only have one window open.
 set laststatus=2
-
-" Use backspace because of course
 set backspace=indent,eol,start
-
-" Enable hidden buffers
 set hidden
-
-" Handle case selection
 set ignorecase
 set smartcase
-
-" Enable searching as you type, rather than waiting till you press enter.
 set incsearch
-
-" Enable highlighting as I search
 set hls
+set noerrorbells visualbell t_vb=
+set mouse+=a
+set ai
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set splitbelow splitright
+set nrformats+=alpha
+set autochdir
+set foldmethod=marker
+set formatoptions+=/ro
+set undofile
+set undodir=~/.vim/undo
+set cpoptions-=_
 
-" Unbind some useless default key bindings.
+colorscheme boring
+
+" Mappings {{{
+
+" Normal Mode {{{
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 
-" Disable audible bell because it's annoying.
-set noerrorbells visualbell t_vb=
-
-" Enable mouse for convinience
-set mouse+=a
-
-" Enable auto Indentation
-set ai
-
-" Enable file specific indentation
-filetype plugin indent on
-
-"show tab with four spaces width because Chris says so
-set tabstop=8
-
-" map leader to space
-let mapleader=" "
-
-" from r/vim
-set softtabstop=4
-" when indenting with '>' use four spaces
-set shiftwidth=4
-
-"on pressing tab insert 4 spaces
-set expandtab
-
-" change default ctrlp behaviour
-let g:ctrlp_map = '<c-p>'
-let g:ctrl_cmd = 'CtrlP'
-
-" Make splitting more intuitive
-set splitbelow splitright
-
-" Change cursor depending on modes
-" SI is Insert
-" SR is Replace
-" EI is Normal (Else)
-"let &t_SI.="\e[6 q"
-"let &t_SR.="\e[4 q"
-"let &t_EI.="\e[2 q"
 nnoremap <leader>w :w<CR>
-colorscheme dracula
+nnoremap Y y$
+nnoremap <leader>a <cmd>Lex 30<CR>
+nnoremap <leader>u g~w
+nnoremap <leader>fm <cmd>Neoformat<CR>
+nnoremap <silent> <leader>w <cmd>silent w<CR>
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+y$
+nnoremap <leader>yy "+yy
+nnoremap <leader>- <C-^>
+nnoremap <Up> <cmd>resize -4<CR>
+nnoremap <Down> <cmd>resize +4<CR>
+nnoremap <Left> <cmd>vertical resize -4<CR>
+nnoremap <Right> <cmd>vertical resize +4<CR>
+nnoremap <C-n> <cmd>noh<CR>
+nnoremap vs <cmd>vs<CR>
+nnoremap gJ @="Jx"<CR>
+nnoremap <M-k> <cmd>m -2<CR>
+nnoremap <M-j> <cmd>m +1<CR>
+nnoremap [c <cmd>cprevious<CR>
+nnoremap ]c <cmd>cnext<CR>
+nnoremap v <C-v>
+nnoremap <C-v> v
+nnoremap <C-,> gT
+nnoremap <C-.> gt
+nnoremap <S-CR> S<CR><ESC>
+nnoremap <C-CR> o<ESC>
+" }}}
+" Visual Mode {{{
+xnoremap <leader>i g<C-a>
+xnoremap <leader>y "+y
+xnoremap <M-j> :m '>+1<CR>gv
+xnoremap <M-k> :m '<-2<CR>gv
+xnoremap p "_dP
+xnoremap // y/\\V<C-R>=escape(@\",'/')<CR><CR>
+xnoremap > >gv
+xnoremap < <gv
+xnoremap <C-l> lOhO
+xnoremap <C-h> hOlO
+xnoremap <C-j> joko
+xnoremap <C-k> kojo
+" }}}
+" Insert Mode {{{
+inoremap <M-k> <esc><cmd>m -2<CR>a
+inoremap <M-j> <esc><cmd>m +1<CR>a
+" }}}
