@@ -1,11 +1,10 @@
 let mapleader=" "
+let g:netrw_banner=0
 filetype plugin indent on
 set nocompatible
 
 " Options
 set shortmess+=I
-set number 
-set relativenumber
 set laststatus=2
 set backspace=indent,eol,start
 set hidden
@@ -28,7 +27,9 @@ set formatoptions+=/ro
 set undofile
 set undodir=~/.vim/undo
 set cpoptions-=_
-
+set gdefault
+set autoread
+set signcolumn=yes
 colorscheme boring
 
 " Mappings {{{
@@ -64,6 +65,7 @@ nnoremap <C-.> gt
 nnoremap <S-CR> S<CR><ESC>
 nnoremap <C-CR> o<ESC>
 " }}}
+
 " Visual Mode {{{
 xnoremap <leader>i g<C-a>
 xnoremap <leader>y "+y
@@ -78,6 +80,7 @@ xnoremap <C-h> hOlO
 xnoremap <C-j> joko
 xnoremap <C-k> kojo
 " }}}
+
 " Insert Mode {{{
 inoremap <M-k> <esc><cmd>m -2<CR>a
 inoremap <M-j> <esc><cmd>m +1<CR>a
