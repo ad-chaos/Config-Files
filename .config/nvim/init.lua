@@ -12,12 +12,11 @@ vim.cmd [[augroup overrides
                        \ | hi SpellCap   gui=undercurl
                        \ | hi SpellRare  gui=undercurl
                        \ | hi SpellLocal gui=undercurl
-                       \ | hi link WhiteSpace Directory
 augroup END
 ]]
 vim.cmd [[autocmd User LspProgressUpdate redrawstatus]]
 vim.cmd [[let g:netrw_banner=0]]
-vim.cmd [[colorscheme tokyonight-night]]
+vim.cmd [[colorscheme dracula]]
 vim.cmd [[set statusline=%!v:lua.require'statusline'.statusline()]]
 
 if vim.g.neovide then
