@@ -33,6 +33,9 @@ set signcolumn=yes
 colorscheme boring
 
 " Mappings {{{
+" nvo mode
+noremap <leader>p "0p
+noremap <leader>P "0P
 
 " Normal Mode {{{
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.

@@ -1,5 +1,9 @@
 let g:mapleader = " "
 let g:maplocalleader = "\\"
+" nvo mappings
+noremap <leader>P "0P
+noremap <leader>p "0p
+
 "  Terminal mode mappings
 tnoremap ;q <C-\><C-n>
 " Normal Mode mappings {{{
