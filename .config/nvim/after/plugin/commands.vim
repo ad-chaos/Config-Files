@@ -3,3 +3,4 @@ command -range -nargs=? Interleave <line1>,<line2>call InterleaveR(<f-args>)
 command -nargs=+ -complete=command TabMessage call TabMessage(<q-args>)
 command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis | wincmd p | diffthis
 command! -nargs=* -complete=customlist,v:lua.require'packer'.plugin_complete PackerSync lua require('packer').snapshot("PrevToSync") require('packer').sync(<f-args>)
+command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
