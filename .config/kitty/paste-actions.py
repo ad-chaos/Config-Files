@@ -1,5 +1,10 @@
 def filter_paste(text: str) -> str:
-    # Only going to have it for links that look like https://github.com/{user_or_org}/{project_name}
+    """Fancy Git cloner
+    Filters links that look like https://github.com/{user_or_org}/{project_name}/{modifiers}
+    when modifier is `i` it means it should ignore the link for modification
+    else it'll be considered the remote name
+    """
+
     github_link = text.find("github.com")
     project = text[github_link:].split("/")
     if github_link > 0:
@@ -7,8 +12,8 @@ def filter_paste(text: str) -> str:
         match (len(project), project[-1]):
             case (3, _):
                 return f"git clone {text} && cd {project[-1]}"
-            case (4, "r"):
-                return f"git remote add temp_tt {text}; git remote rename temp_tt "
             case (4, "i"):
                 return text[:-1]
+            case (4, remote_name):
+                return f"git remote add {remote_name} {text}"
     return text
