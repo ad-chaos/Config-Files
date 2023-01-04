@@ -6,9 +6,8 @@ def filter_paste(text: str) -> str:
     """
 
     github_link = text.find("github.com")
-    project = text[github_link:].split("/")
     if github_link > 0:
-        print(len(project), project[-1])
+        project = text[github_link:].split("/")
         match (len(project), project[-1]):
             case (3, _):
                 return f"git clone {text} && cd {project[-1]}"
