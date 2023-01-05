@@ -101,7 +101,7 @@ mcd() { mkdir $1 && cd $1 }
 
 ga() {
     if [ $1 ]; then
-        git add $1
+        git add $@
     else
         git add .
     fi
