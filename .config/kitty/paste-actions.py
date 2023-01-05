@@ -5,9 +5,7 @@ def filter_paste(text: str) -> str:
     else it'll be considered the remote name
     """
 
-    if (github_link := text.find("github.com")) == -1:
-        return text
-
+    github_link = text.find("github.com")
     link, _, modifier = text.rpartition("/")
     parts = text[github_link:].count("/") + 1
     match (parts, modifier):
@@ -17,11 +15,15 @@ def filter_paste(text: str) -> str:
             return text[:-1]
         case (4, remote_name):
             return f"git remote add {remote_name} {link}"
-
-    assert False, "unreachable"
+        case _:
+            return text
 
 # Tests
 if __name__ == "__main__":
     print(filter_paste("https://github.com/org/user"))
     print(filter_paste("https://github.com/org/user/i"))
     print(filter_paste("https://github.com/org/user/a_remote"))
+    print(filter_paste("https://github.com/org/user/commit/aab81c2d32895950d46a62d34cba86c6eac11a15"))
+    print(filter_paste("https://www.notawebsite.com/"))
+    print(filter_paste("/////////"))
+    print(filter_paste("github.com"))
