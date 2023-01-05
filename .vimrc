@@ -57,6 +57,7 @@ nnoremap <Right> <cmd>vertical resize +4<CR>
 nnoremap <C-n> <cmd>noh<CR>
 nnoremap vs <cmd>vs<CR>
 nnoremap gJ @="Jx"<CR>
+nnoremap gn ngn<esc>
 nnoremap <M-k> <cmd>m -2<CR>
 nnoremap <M-j> <cmd>m +1<CR>
 nnoremap [c <cmd>cprevious<CR>
