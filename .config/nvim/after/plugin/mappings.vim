@@ -50,8 +50,6 @@ xnoremap <leader>i g<C-a>
 xnoremap <leader>y "+y
 xnoremap <M-j> :m '>+1<CR>gv
 xnoremap <M-k> :m '<-2<CR>gv
-xnoremap p "_dP
-xnoremap // y/\\V<C-R>=escape(@\",'/')<CR><CR>
 xnoremap > >gv
 xnoremap < <gv
 xnoremap <C-l> lOhO
