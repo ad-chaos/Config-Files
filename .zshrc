@@ -52,7 +52,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect '^[' send-break
 bindkey -M menuselect '+' accept-and-hold
 bindkey -a '^ ' edit-command-line
-# TODO: This feels like a zsh bug
 bindkey -v '^?' backward-delete-char
 
 #Some QOL aliases
