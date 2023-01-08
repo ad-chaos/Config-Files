@@ -47,6 +47,7 @@ nnoremap <C-CR> o<ESC>
 " }}}
 " Visual Mode mappings {{{
 xnoremap <leader>i g<C-a>
+xnoremap <leader>s r0gvg<C-a>
 xnoremap <leader>y "+y
 xnoremap <M-j> :m '>+1<CR>gv
 xnoremap <M-k> :m '<-2<CR>gv
