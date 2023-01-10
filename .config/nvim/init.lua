@@ -6,19 +6,21 @@ require "nvim-lua.plugins"
 require "nvim-lua.lsp"
 require "nvim-lua.options"
 
-vim.cmd [[augroup overrides
-    au!
-    au ColorScheme dracula hi SpellBad   gui=undercurl
-                       \ | hi SpellCap   gui=undercurl
-                       \ | hi SpellRare  gui=undercurl
-                       \ | hi SpellLocal gui=undercurl
-augroup END
-]]
-vim.cmd [[autocmd User LspProgressUpdate redrawstatus]]
-vim.cmd [[let g:netrw_banner=0]]
-vim.cmd [[colorscheme dracula]]
-vim.cmd [[set statusline=%!v:lua.require'statusline'.statusline()]]
 
 if vim.g.neovide then
     require "nvim-lua.neovide"
 end
+
+vim.cmd [[autocmd User LspProgressUpdate redrawstatus]]
+vim.cmd [[let g:netrw_banner=0]]
+vim.cmd [[set statusline=%!v:lua.require'statusline'.statusline()]]
+
+require("tokyonight").setup({
+    style = "night",
+    on_colors = function(colors)
+        colors.bg = "#161619"
+        colors.bg_dark = "#161619"
+        colors.bg_highlight = "#161619"
+      end
+})
+vim.cmd [[colorscheme tokyonight-night]]

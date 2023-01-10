@@ -143,6 +143,10 @@ chpwd() {
     fi
 }
 
+webm2mp4() {
+    ffmpeg -i $1 -acodec aac -vcodec libx264 ${1%%.webm}.mp4
+}
+
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
@@ -150,7 +154,7 @@ chpwd() {
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
 #auto pairs
-source "/Users/kiranrajpurohit/autopair.zsh"
+source "$HOME/autopair.zsh"
 autopair-init
 
 # PATH variable

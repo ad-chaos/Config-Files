@@ -13,7 +13,6 @@ return require("packer").startup(function(use)
     use "nvim-lua/popup.nvim"
 
     -- colorscheme of choice
-    use "Mofiqul/dracula.nvim"
     use "folke/tokyonight.nvim"
 
     --nvim completions
