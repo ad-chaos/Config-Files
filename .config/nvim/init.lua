@@ -18,9 +18,9 @@ vim.cmd [[set statusline=%!v:lua.require'statusline'.statusline()]]
 require("tokyonight").setup({
     style = "night",
     on_colors = function(colors)
-        colors.bg = "#161619"
-        colors.bg_dark = "#161619"
-        colors.bg_highlight = "#161619"
+        colors.bg = "#0d0e12"
+        colors.bg_dark = "#0d0e12"
+        colors.bg_highlight = "#0d0e12"
       end
 })
 vim.cmd [[colorscheme tokyonight-night]]

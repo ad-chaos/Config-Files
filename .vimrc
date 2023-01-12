@@ -30,7 +30,6 @@ set cpoptions-=_
 set gdefault
 set autoread
 set signcolumn=yes
-colorscheme boring
 
 " Mappings {{{
 " nvo mode
