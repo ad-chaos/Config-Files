@@ -30,3 +30,4 @@ OPT.scrolloff = 5
 OPT.showmode = false
 OPT.showcmd = false
 OPT.cpoptions:remove "_"
+OPT.splitkeep = "screen"

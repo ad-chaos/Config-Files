@@ -38,8 +38,6 @@ return require("packer").startup(function(use)
     -- LSP
     use "neovim/nvim-lspconfig"
 
-    use "williamboman/nvim-lsp-installer"
-
     --Tree Sitter
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use "nvim-treesitter/nvim-treesitter-context"
@@ -47,20 +45,8 @@ return require("packer").startup(function(use)
     -- Misc
     use "chrisbra/Colorizer"
     use "godlygeek/tabular"
-    use({
-        "terrortylor/nvim-comment",
-        config = function()
-            require("nvim_comment").setup({
-                comment_empty = false,
-            })
-        end,
-    })
-    use({
-        "lewis6991/spellsitter.nvim",
-        config = function()
-            require("spellsitter").setup()
-        end,
-    })
+    use "terrortylor/nvim-comment"
+    use "lewis6991/spellsitter.nvim"
     --Quality of Life
     use "sbdchd/neoformat"
 

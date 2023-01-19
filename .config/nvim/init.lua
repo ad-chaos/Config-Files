@@ -23,4 +23,8 @@ require("tokyonight").setup({
         colors.bg_highlight = "#0d0e12"
       end
 })
+require("nvim_comment").setup({
+    comment_empty = false,
+})
+require("spellsitter").setup()
 vim.cmd [[colorscheme tokyonight-night]]

@@ -42,6 +42,8 @@ nnoremap v <C-v>
 nnoremap <C-v> v
 nnoremap <C-,> gT
 nnoremap <C-.> gt
+nnoremap <S-Right> <cmd>tabmove +1<CR>
+nnoremap <S-Left> <cmd>tabmove -1<CR>
 nnoremap <S-CR> S<CR><ESC>
 nnoremap <C-CR> o<ESC>
 nnoremap cb cvb
