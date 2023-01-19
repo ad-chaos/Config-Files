@@ -53,6 +53,7 @@ bindkey -M menuselect '^[' send-break
 bindkey -M menuselect '+' accept-and-hold
 bindkey -a '^ ' edit-command-line
 bindkey -v '^?' backward-delete-char
+bindkey -v '^K' up-line-or-history
 
 #Some QOL aliases
 
@@ -72,6 +73,7 @@ alias gd="git diff"
 alias gc="git checkout"
 alias gb="git branch"
 alias gcma="git commit -am"
+alias oops="git commit --amend --no-edit"
 alias ps="poetry shell"
 alias c-="cd -"
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
@@ -168,7 +170,11 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
+export FZF_DEFAULT_OPTS='
+--color=fg:#c0caf5,bg:#0d0e12,hl:#bb9af7
+--color=fg+:#c0caf5,bg+:#0d0e12,hl+:#7dcfff
+--color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff 
+--color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
 export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*' -print 2> /dev/null | cut -c 3-"
 export FZF_ALT_C_COMMAND="find -L . -mindepth 1 -not -path '*/\.git/*' -type d -print 2> /dev/null | cut -c 3-"
 export PYTHONBREAKPOINT='ipdb.set_trace'
