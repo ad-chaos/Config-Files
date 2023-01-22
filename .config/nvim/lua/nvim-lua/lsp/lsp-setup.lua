@@ -1,5 +1,5 @@
 local lsp_conf = require "lspconfig"
-local servers = { "clangd", "pyright", "sumneko_lua", "yamlls" }
+local servers = { "clangd", "pyright", "sumneko_lua", "yamlls", "rust_analyzer"}
 local server_opts = {
     sumneko_lua = {
         settings = {

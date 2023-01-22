@@ -25,9 +25,11 @@ OPT.gdefault = true
 OPT.list = true
 OPT.listchars = { tab = "├─ ", eol = "↲", nbsp = "␣", trail = "•" }
 OPT.undofile = true
-OPT.wrap = false
 OPT.scrolloff = 5
 OPT.showmode = false
 OPT.showcmd = false
 OPT.cpoptions:remove "_"
 OPT.splitkeep = "screen"
+OPT.showbreak = "++ "
+OPT.breakindent = true
+OPT.breakindentopt = { sbr = true }
