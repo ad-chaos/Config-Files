@@ -149,6 +149,11 @@ webm2mp4() {
     ffmpeg -i $1 -acodec aac -vcodec libx264 ${1%%.webm}.mp4
 }
 
+pair() {
+    local dir="/tmp/pair"
+    mkdir $dir && code $dir
+}
+
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
