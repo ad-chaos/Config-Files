@@ -4,7 +4,6 @@ require "nvim-lua.gitsigns"
 require "nvim-lua.telescope"
 require "nvim-lua.plugins"
 require "nvim-lua.lsp"
-require "nvim-lua.options"
 
 
 if vim.g.neovide then
