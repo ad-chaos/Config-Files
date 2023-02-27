@@ -1,3 +1,4 @@
+-- Taken from ogham/exa https://github.com/ogham/exa/blob/f3ca1fe6f7d8242cee3d9fd602c96c9db041a7a0/src/output/icons.rs :)
 return {
     ai = '\u{e7b4}',
     android = '\u{e70e}',
