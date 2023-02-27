@@ -7,7 +7,6 @@ noremap <leader>p "0p
 "  Terminal mode mappings
 tnoremap ;q <C-\><C-n>
 " Normal Mode mappings {{{
-nnoremap <leader>o :e <C-R>=expand('%:p:h')..'/'<CR>
 nnoremap <leader>fl <cmd>Telescope find_files hidden=true<CR>
 nnoremap <leader>gf <cmd>Telescope git_files<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
@@ -18,6 +17,8 @@ nnoremap <leader>rr <cmd>Gitsigns reset_hunk<CR>
 nnoremap <leader>re <cmd>Gitsigns reset_buffer<CR>
 nnoremap ]g <cmd>Gitsigns next_hunk<CR>
 nnoremap [g <cmd>Gitsigns prev_hunk<CR>
+
+nnoremap <leader>o :e <C-R>=expand('%:p:h')..'/'<CR>
 nnoremap <leader>a <cmd>Lex 30<CR>
 nnoremap <leader>u g~w
 nnoremap <leader>fm <cmd>Neoformat<CR>
@@ -33,7 +34,6 @@ nnoremap <Right> <cmd>vertical resize +4<CR>
 nnoremap <C-n> <cmd>noh<CR>
 nnoremap vs <cmd>vs<CR>
 nnoremap gJ @="Jx"<CR>
-nnoremap gn ngn<esc>
 nnoremap <M-k> <cmd>m -2<CR>
 nnoremap <M-j> <cmd>m +1<CR>
 nnoremap [c <cmd>cprevious<CR>
@@ -44,11 +44,14 @@ nnoremap <C-,> gT
 nnoremap <C-.> gt
 nnoremap <S-Right> <cmd>tabmove +1<CR>
 nnoremap <S-Left> <cmd>tabmove -1<CR>
-nnoremap <S-CR> S<CR><ESC>
-nnoremap <C-CR> o<ESC>
 nnoremap cb cvb
 nnoremap db dvb
+nnoremap 0 ^
+nnoremap ^ 0
+nnoremap ' `
+nnoremap ` '
 " }}}
+
 " Visual Mode mappings {{{
 xnoremap <leader>i g<C-a>
 xnoremap <leader>s r0gvg<C-a>
@@ -59,10 +62,11 @@ xnoremap > >gv
 xnoremap < <gv
 xnoremap <C-l> lOhO
 xnoremap <C-h> hOlO
-xnoremap <C-j> joko
-xnoremap <C-k> kojo
+xnoremap Q :normal @<c-r>=reg_recorded()<cr><cr>
 " }}}
+
 " Insert Mode Mappings
 inoremap <M-k> <esc><cmd>m -2<CR>a
 inoremap <M-j> <esc><cmd>m +1<CR>a
-inoremap <expr> <c-y> getline(line('.')-1)->matchstr('\v\k*.', virtcol('.')-1)
+inoremap <expr> <c-y> (line('.')-1)->getline()->matchstr('\v\k*.', col('.')-1)
+inoremap <C-o> <ESC>o<ESC>S

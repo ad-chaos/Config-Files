@@ -30,9 +30,15 @@ function! TabMessage(cmd)
     endif
 endfunction
 
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+function! Evaluate()
+    normal dab
+    call getreg()->eval()->string()->setreg("")
+    normal p
+endfunction
+
+nnoremap <leader>e <cmd>call Evaluate()<CR>
+
+let g:visb = v:false
+au ModeChanged [\x16]:* let g:visb = v:true
+au ModeChanged c:* let g:visb = v:false
+cnorea <expr> <silent> s g:visb ? {-> 's'.getcharstr(0).'\%V'}() : 's'
