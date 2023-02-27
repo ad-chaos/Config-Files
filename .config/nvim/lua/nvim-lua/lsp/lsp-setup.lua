@@ -1,7 +1,7 @@
 local lsp_conf = require "lspconfig"
-local servers = { "clangd", "pyright", "sumneko_lua", "yamlls", "rust_analyzer"}
+local servers = { "clangd", "pyright", "lua_ls", "yamlls", "rust_analyzer"}
 local server_opts = {
-    sumneko_lua = {
+    lua_ls = {
         settings = {
             Lua = {
                 diagnostics = {
@@ -12,11 +12,13 @@ local server_opts = {
                         [vim.fn.expand "$VIMRUNTIME/lua"] = true,
                         [vim.fn.stdpath "config" .. "/lua"] = true,
                     },
+                    checkThirdParty = false,
                 },
             },
         },
     },
 }
+
 for _, server in ipairs(servers) do
     local opts = {
         on_attach = require("nvim-lua.lsp.handlers").on_attach,

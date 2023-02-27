@@ -22,8 +22,18 @@ require("tokyonight").setup({
         colors.bg_highlight = "#0d0e12"
       end
 })
-require("nvim_comment").setup({
-    comment_empty = false,
+require("fidget").setup({
+    text = {
+        spinner = "dots"
+    }
 })
-require("spellsitter").setup()
+
 vim.cmd [[colorscheme tokyonight-night]]
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.vim = {
+  install_info = {
+    url = "~/git-repos/tree-sitter-viml", -- local path or git repo
+    files = {"src/parser.c", "src/scanner.c"}
+  }
+}

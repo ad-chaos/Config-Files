@@ -12,7 +12,7 @@ return require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
     use "nvim-lua/popup.nvim"
 
-    -- colorscheme of choice
+    -- colorscheme
     use "folke/tokyonight.nvim"
 
     --nvim completions
@@ -45,8 +45,6 @@ return require("packer").startup(function(use)
     -- Misc
     use "chrisbra/Colorizer"
     use "godlygeek/tabular"
-    use "terrortylor/nvim-comment"
-    use "lewis6991/spellsitter.nvim"
     --Quality of Life
     use "sbdchd/neoformat"
 
@@ -56,9 +54,11 @@ return require("packer").startup(function(use)
             require("nvim-surround").setup()
         end,
     })
-    use "tpope/vim-vinegar"
 
     -- some fun
     use "nvim-treesitter/playground"
+    use "nvim-treesitter/nvim-treesitter-textobjects"
+    use "mbbill/undotree"
+    use "j-hui/fidget.nvim"
 end)
 -- }}}

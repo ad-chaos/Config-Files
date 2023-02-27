@@ -119,6 +119,10 @@ cmp.setup.filetype("text", {
     sources = cmp.config.sources({}),
 })
 
+cmp.setup.filetype("", {
+    sources = cmp.config.sources({}),
+})
+
 cmp.setup.filetype("svg", {
     sources = cmp.config.sources({
         name = "buffer",
