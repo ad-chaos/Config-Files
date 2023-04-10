@@ -60,13 +60,14 @@ bindkey -v '^K' up-line-or-history
 alias ls="exa --icons --group-directories-first -F"
 alias la="exa --icons --group-directories-first -aF"
 alias ll="exa --icons --group-directories-first -aF --long"
+alias tree="exa --icons --tree"
 
 alias gimme="rg -F -uuu"
 alias grep="grep --color=always"
 alias icat="kitty +kitten icat"
 alias diff="kitty +kitten diff"
-alias pip="pip3.10"
-alias python="python3.10"
+alias pip="pip3.11"
+alias python="python3.11"
 alias gcm="git commit -m"
 alias gst="git status"
 alias gd="git diff"
@@ -121,7 +122,7 @@ nup() {
 
 fzf-map() {
     local file_dir
-    file_dir=$(command fzf "$@" </dev/tty)
+    file_dir=$(command fzf --preview 'bat --color=always {}' --preview-window '~3' "$@" </dev/tty)
     if [[ $? -eq 0 ]]; then
         local program="nvim"
         case $file_dir in
@@ -180,10 +181,12 @@ export FZF_DEFAULT_OPTS='
 --color=fg+:#c0caf5,bg+:#0d0e12,hl+:#7dcfff
 --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff 
 --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
-export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*' -print 2> /dev/null | cut -c 3-"
+export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix"
 export FZF_ALT_C_COMMAND="find -L . -mindepth 1 -not -path '*/\.git/*' -type d -print 2> /dev/null | cut -c 3-"
 export PYTHONBREAKPOINT='ipdb.set_trace'
 
 
 # Load zsh-syntax-highlighting; should be last.
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+bat -p $HOME/TODO.md
