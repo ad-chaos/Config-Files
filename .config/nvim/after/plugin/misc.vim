@@ -47,5 +47,5 @@ au ModeChanged [c]:* let g:visb = v:false
 cnorea <expr> <silent> s g:visb ? {-> 's'.getcharstr(0).'\%V'}() : 's'
 
 augroup autosave
-    au TextChanged,InsertLeave * if &modifiable | update | endif
+    au TextChanged,InsertLeave * if &modifiable && !empty(bufname()) | update | endif
 augroup END
