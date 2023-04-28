@@ -3,7 +3,13 @@ let g:netrw_banner=0
 filetype plugin indent on
 set nocompatible
 
-" Options
+" Autocommands {{{
+augroup autosave
+    au TextChanged,InsertLeave * if &modifiable && !empty(bufname()) | update | endif
+augroup END
+" }}}
+
+" Options {{{
 set shortmess+=I
 set laststatus=2
 set backspace=indent,eol,start
@@ -30,6 +36,7 @@ set cpoptions-=_
 set gdefault
 set autoread
 set signcolumn=yes
+" }}}
 
 " Mappings {{{
 " nvo mode
@@ -44,7 +51,6 @@ nnoremap Y y$
 nnoremap <leader>a <cmd>Lex 30<CR>
 nnoremap <leader>u g~w
 nnoremap <leader>fm <cmd>Neoformat<CR>
-nnoremap <silent> <leader>w <cmd>silent w<CR>
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
 nnoremap <leader>yy "+yy

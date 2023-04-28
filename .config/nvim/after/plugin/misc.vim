@@ -42,10 +42,12 @@ nnoremap <leader>e <cmd>call Evaluate()<CR>
 " mode is same as going from visual block to normal to command :/
 "
 let g:visb = v:false
-au ModeChanged [\x16]:* let g:visb = v:true
-au ModeChanged [c]:* let g:visb = v:false
-cnorea <expr> <silent> s g:visb ? {-> 's'.getcharstr(0).'\%V'}() : 's'
+augroup visual_block_select
+    au ModeChanged [\x16]:* let g:visb = v:true
+    au ModeChanged [c]:* let g:visb = v:false
+augroup END
+cnorea <expr> <silent> s g:visb ? {-> 's'..getcharstr(0).'\%V'}() : 's'
 
 augroup autosave
-    au TextChanged,InsertLeave * if &modifiable && !empty(bufname()) | update | endif
+    au TextChanged,InsertLeave * if &modifiable && !empty(bufname()) && &buftype != 'nofile' | update | endif
 augroup END
