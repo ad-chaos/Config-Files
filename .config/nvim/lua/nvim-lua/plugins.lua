@@ -44,7 +44,7 @@ return require("packer").startup(function(use)
 
     -- Misc
     use "chrisbra/Colorizer"
-    use "godlygeek/tabular"
+    use "chaoren/vim-wordmotion"
     --Quality of Life
     use "sbdchd/neoformat"
 

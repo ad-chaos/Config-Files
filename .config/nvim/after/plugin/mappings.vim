@@ -49,8 +49,6 @@ nnoremap 0 ^
 nnoremap ^ 0
 nnoremap ' `
 nnoremap ` '
-nnoremap <leader>m ct_
-nnoremap \e f_l
 " }}}
 
 " Visual Mode mappings {{{

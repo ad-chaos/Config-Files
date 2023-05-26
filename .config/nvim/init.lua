@@ -32,12 +32,8 @@ require("gitsigns").setup({
     signs = {
         add = { text = "🮇" },
         change = { text = "🮇" },
-        delete = { text = "契" },
-        topdelete = { text = "契" },
-        changedelete = {
-            text = "🮇",
-        },
     },
+    current_line_blame = true
 })
 
 require("tokyonight").setup({
@@ -56,11 +52,4 @@ require("fidget").setup({
 })
 
 vim.cmd [[colorscheme tokyonight-night]]
-
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.vim = {
-  install_info = {
-    url = "~/git-repos/tree-sitter-viml", -- local path or git repo
-    files = {"src/parser.c", "src/scanner.c"}
-  }
-}
+vim.g.wordmotion_prefix = "\\"

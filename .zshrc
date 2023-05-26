@@ -116,7 +116,7 @@ nup() {
     cdev neovim; rm -rf build
 
     echo "Compiling and Installing Neovim"
-    cdev neovim; git pull > /dev/null; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
+    cdev neovim; git pull --rebase origin master > /dev/null; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
     make install
 }
 
