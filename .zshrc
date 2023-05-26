@@ -84,6 +84,7 @@ alias ...="../../"
 alias vimgolf='/opt/homebrew/lib/ruby/gems/3.1.0/bin/vimgolf'
 alias find='command find . -name'
 alias findf='command find . -type f -name'
+alias idli='nvim'
 
 # Zsh syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
