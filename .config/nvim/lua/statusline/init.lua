@@ -24,7 +24,7 @@ end
 
 function M.statusline()
     local parts = {
-        [[%{luaeval("require'statusline'.file()")} %m%r]],
+        [[ %{luaeval("require'statusline'.file()")} %m%r]],
         [[%{get(b:,'gitsigns_status','')}%=]],
         "%#warningmsg#",
         "%{&ff!='unix' ? '['.&ff.'] ' : ''}",

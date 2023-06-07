@@ -31,3 +31,4 @@ set showbreak=++
 set breakindent 
 set breakindentopt=sbr
 set linebreak
+set smoothscroll
