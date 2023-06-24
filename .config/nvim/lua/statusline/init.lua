@@ -5,7 +5,7 @@ M.file_icons = require "statusline.icons"
 function M.file()
     local file_name = vim.fn.expand "%:t"
     local file_ext_icon = M.file_icons[vim.fn.expand "%:e"] or M.file_icons[file_name] or "»"
-    return file_ext_icon .. " " .. file_name
+    return file_ext_icon .. "  " .. file_name
 end
 
 function M.diagnostic_status()
@@ -24,7 +24,7 @@ end
 
 function M.statusline()
     local parts = {
-        [[ %{luaeval("require'statusline'.file()")} %m%r]],
+        [[%{luaeval("require'statusline'.file()")} %m%r]],
         [[%{get(b:,'gitsigns_status','')}%=]],
         "%#warningmsg#",
         "%{&ff!='unix' ? '['.&ff.'] ' : ''}",

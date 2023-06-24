@@ -1,5 +1,5 @@
 local lsp_conf = require "lspconfig"
-local servers = { "clangd", "pyright", "lua_ls", "yamlls", "rust_analyzer"}
+local servers = { "clangd", "pyright", "lua_ls", "yamlls", "rust_analyzer", "tsserver"}
 local server_opts = {
     lua_ls = {
         settings = {

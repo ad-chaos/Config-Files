@@ -58,6 +58,6 @@ return require("packer").startup(function(use)
     -- some fun
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "mbbill/undotree"
-    use "j-hui/fidget.nvim"
+    use({"j-hui/fidget.nvim", tag="legacy"})
 end)
 -- }}}

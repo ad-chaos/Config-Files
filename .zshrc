@@ -28,7 +28,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats "%F{#fd5cba}%m%u%c%f%F{#ffffff} %f%F{#eefd7a}%b%f"
+zstyle ':vcs_info:git:*' formats "%F{#fd5cba}%m%u%c%f%F{#ffffff} %f%F{#eefd7a}%b%f"
 
 # Change My prompt
 PROMPT="%B%F{#6ffffd}%2~%f%b \$vcs_info_msg_0_ %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
@@ -154,6 +154,11 @@ webm2mp4() {
 pair() {
     local dir="/tmp/pair"
     mkdir $dir && code $dir
+}
+
+swap() {
+    mv $1 tmp && mv $2 $1 && mv tmp $2
+
 }
 
 # Auto-completion
