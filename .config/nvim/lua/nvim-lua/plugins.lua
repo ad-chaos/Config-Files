@@ -34,6 +34,7 @@ return require("packer").startup(function(use)
 
     -- Git integration
     use "lewis6991/gitsigns.nvim"
+    use "sindrets/diffview.nvim"
 
     -- LSP
     use "neovim/nvim-lspconfig"
@@ -43,6 +44,7 @@ return require("packer").startup(function(use)
     use "nvim-treesitter/nvim-treesitter-context"
 
     -- Misc
+    use "nvim-tree/nvim-web-devicons"
     use "chrisbra/Colorizer"
     use "chaoren/vim-wordmotion"
     --Quality of Life

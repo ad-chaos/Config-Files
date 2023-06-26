@@ -51,5 +51,18 @@ require("fidget").setup({
     }
 })
 
+require("diffview").setup({
+    merge_tool = {
+        layout = "diff4_mixed"
+    },
+    file_panel = {
+      win_config = {                      -- See |diffview-config-win_config|
+        position = "left",
+        width = 25,
+        win_opts = {},
+      },
+    }
+})
+
 vim.cmd [[colorscheme tokyonight-night]]
 vim.g.wordmotion_prefix = "\\"
