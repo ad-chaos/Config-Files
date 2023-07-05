@@ -55,6 +55,32 @@ bindkey -a '^ ' edit-command-line
 bindkey -v '^?' backward-delete-char
 bindkey -v '^K' up-line-or-history
 
+# autoload -Uz surround
+# zle -N delete-surround surround
+# zle -N add-surround surround
+# zle -N change-surround surround
+# bindkey -a cs change-surround
+# bindkey -a ds delete-surround
+# bindkey -a ys add-surround
+# bindkey -M visual S add-surround
+
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+    for c in {a,i}{\',\",\`}; do
+        bindkey -M $m $c select-quoted
+    done
+done
+
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $m $c select-bracketed
+    done
+done
+
+
 #Some QOL aliases
 
 alias ls="exa --icons --group-directories-first -F"
@@ -125,7 +151,7 @@ fzf-map() {
     local file_dir
     file_dir=$(command fzf --preview 'bat --color=always {}' --preview-window '~3' "$@" </dev/tty)
     if [[ $? -eq 0 ]]; then
-        local program="nvim"
+        local program=
         case $file_dir in
             *.pdf | *.jpeg | *.png | *.jpg)
                 program="open"
@@ -158,7 +184,6 @@ pair() {
 
 swap() {
     mv $1 tmp && mv $2 $1 && mv tmp $2
-
 }
 
 # Auto-completion
@@ -190,7 +215,6 @@ export FZF_DEFAULT_OPTS='
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix"
 export FZF_ALT_C_COMMAND="find -L . -mindepth 1 -not -path '*/\.git/*' -type d -print 2> /dev/null | cut -c 3-"
 export PYTHONBREAKPOINT='ipdb.set_trace'
-
 
 # Load zsh-syntax-highlighting; should be last.
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
