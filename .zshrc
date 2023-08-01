@@ -55,14 +55,14 @@ bindkey -a '^ ' edit-command-line
 bindkey -v '^?' backward-delete-char
 bindkey -v '^K' up-line-or-history
 
-# autoload -Uz surround
-# zle -N delete-surround surround
-# zle -N add-surround surround
-# zle -N change-surround surround
-# bindkey -a cs change-surround
-# bindkey -a ds delete-surround
-# bindkey -a ys add-surround
-# bindkey -M visual S add-surround
+autoload -Uz surround
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+bindkey -a cs change-surround
+bindkey -a ds delete-surround
+bindkey -a ys add-surround
+bindkey -M visual S add-surround
 
 autoload -U select-quoted
 zle -N select-quoted
@@ -89,9 +89,9 @@ alias ll="exa --icons --group-directories-first -aF --long"
 alias tree="exa --icons --tree"
 
 alias gimme="rg -F -uuu"
-alias grep="grep --color=always"
-alias icat="kitty +kitten icat"
-alias diff="kitty +kitten diff"
+alias grep="rg"
+alias icat="kitten icat"
+alias diff="kitten diff"
 alias pip="pip3.11"
 alias python="python3.11"
 alias gcm="git commit -m"
@@ -108,9 +108,7 @@ alias cdcon="~/Config-Files/.config"
 alias hg="kitty +kitten hyperlinked_grep"
 alias ...="../../"
 alias vimgolf='/opt/homebrew/lib/ruby/gems/3.1.0/bin/vimgolf'
-alias find='command find . -name'
-alias findf='command find . -type f -name'
-alias idli='nvim'
+alias ssh='kitten ssh'
 
 # Zsh syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
