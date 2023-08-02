@@ -1,13 +1,13 @@
 local M = {}
 
-local file_icons = require "nvim-web-devicons"
+local icons = require "nvim-web-devicons"
+icons.set_up_highlights()
 
 function M.file()
     local file_name = vim.fn.expand "%:t"
     local ext = vim.fn.expand "%:e"
-    local icon, color = file_icons.get_icon_color(file_name, ext, {default = "»"})
-    vim.api.nvim_set_hl(0, "User1", {fg = color})
-    return "%1*" .. icon .. "%*  " .. file_name
+    local icon, hl = icons.get_icon(file_name, ext, {default = "»"})
+    return "%#" .. hl .. "#" .. icon .. "%*  " .. file_name
 end
 
 function M.diagnostic_status()
