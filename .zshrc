@@ -203,9 +203,6 @@ source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 source "$HOME/autopair.zsh"
 autopair-init
 
-# PATH variable
-export PATH="$HOME/neovim/bin:$PATH"
-
 export CPATH=/opt/homebrew/include/
 export LIBRARY_PATH=/opt/homebrew/lib/
 
