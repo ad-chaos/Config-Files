@@ -58,6 +58,12 @@ bindkey -a '^ ' edit-command-line
 bindkey -v '^?' backward-delete-char
 bindkey -v '^K' up-line-or-history
 
+autoload -Uz history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey -a 'k' history-beginning-search-backward-end
+bindkey -a 'j' history-beginning-search-forward-end
+
 autoload -Uz surround
 zle -N delete-surround surround
 zle -N add-surround surround
