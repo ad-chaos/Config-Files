@@ -68,7 +68,6 @@ xnoremap Q :normal @<c-r>=reg_recorded()<cr><cr>
 inoremap <M-k> <esc><cmd>m -2<CR>a
 inoremap <M-j> <esc><cmd>m +1<CR>a
 inoremap <expr> <c-y> (line('.')-1)->getline()->matchstr('\v\k*.', col('.')-1)
-inoremap <C-o> <ESC>o<ESC>S
 
 " Operator Pending Mode
 onoremap <expr> iw ['<esc>', v:operator, 2*v:count1-1, 'iw']->join('')

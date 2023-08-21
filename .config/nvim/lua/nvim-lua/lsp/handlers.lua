@@ -45,7 +45,7 @@ end
 function M.on_attach(_, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", bufopts)
-    vim.keymap.set("n", "gd", "<cmd>vs | lua vim.lsp.buf.definition()<CR>", bufopts)
+    vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", bufopts)
     vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", bufopts)
     vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", bufopts)
     vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", bufopts)
