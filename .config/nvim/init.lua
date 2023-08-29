@@ -30,8 +30,8 @@ telescope.load_extension "fzf"
 
 require("gitsigns").setup({
     signs = {
-        add = { text = "🮇" },
-        change = { text = "🮇" },
+        add = { text = "▎" },
+        change = { text = "▎" },
     },
     current_line_blame = true
 })
