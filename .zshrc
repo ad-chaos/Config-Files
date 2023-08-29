@@ -64,13 +64,42 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey -a 'k' history-beginning-search-backward-end
 bindkey -a 'j' history-beginning-search-forward-end
 
+
+# https://github.com/zsh-vi-more/vi-motions/tree/dev
+# https://www.reddit.com/r/zsh/comments/gktca7/comment/fqtw0gf
 autoload -Uz surround
+
+push-string() {
+    local arg
+    for arg; zle -U "$arg"
+}
+
+zle -N push-string
+
+viopp-wrapper() {
+    local key
+    read -k 1 key
+    if [[ $key = 's' ]]; then
+        case $WIDGET in
+            vi-change*) zle change-surround -w ;;
+            vi-delete*) zle delete-surround -w ;;
+            vi-yank*)   zle add-surround -w ;;
+        esac
+    else
+        zle push-string $key
+        sched +0 bindkey -M "$KEYMAP" "$KEYS" "$WIDGET"
+        bindkey -M "$KEYMAP" "$KEYS" "${WIDGET%-wrapper}"
+        zle ${WIDGET%-wrapper} -w
+    fi
+}
+
 zle -N delete-surround surround
 zle -N add-surround surround
 zle -N change-surround surround
-bindkey -a cs change-surround
-bindkey -a ds delete-surround
-bindkey -a ys add-surround
+zle -N vi-change-wrapper viopp-wrapper
+zle -N vi-delete-wrapper viopp-wrapper
+zle -N vi-yank-wrapper   viopp-wrapper
+bindkey -M vicmd c vi-change-wrapper d vi-delete-wrapper y vi-yank-wrapper
 bindkey -M visual S add-surround
 
 autoload -U select-quoted
