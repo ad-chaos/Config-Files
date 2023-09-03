@@ -1,4 +1,4 @@
-local surround = require "nvim-surround"
+local surround = require("nvim-surround")
 
 surround.buffer_setup({
     surrounds = {
@@ -26,7 +26,7 @@ surround.buffer_setup({
     },
 })
 
-vim.cmd "setlocal textwidth=120"
-vim.cmd "setlocal comments-=fb:- comments+=:-"
-vim.cmd "setlocal formatoptions+=ro"
-vim.cmd "setlocal conceallevel=2"
+vim.cmd("setlocal textwidth=120")
+vim.cmd("setlocal comments-=fb:- comments+=:-")
+vim.cmd("setlocal formatoptions+=ro")
+vim.cmd("setlocal conceallevel=2")

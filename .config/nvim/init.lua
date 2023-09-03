@@ -3,6 +3,5 @@ vim.g.wordmotion_prefix = "\\"
 vim.g.mapleader = " "
 
 require("world.plugins")
-
-vim.cmd [[colorscheme tokyonight-night]]
-vim.cmd [[set statusline=%!v:lua.require'statusline'.statusline()]]
+vim.cmd([[colorscheme tokyonight-night]])
+vim.cmd([[set statusline=%!v:lua.require'statusline'.statusline()]])

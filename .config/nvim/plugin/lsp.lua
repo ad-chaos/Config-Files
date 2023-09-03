@@ -53,7 +53,7 @@ local function on_attach(_, bufnr)
 end
 
 local lsp_conf = require("lspconfig")
-local servers = { "clangd", "pyright", "lua_ls", "yamlls", "rust_analyzer", "tsserver"}
+local servers = { "clangd", "pyright", "lua_ls", "yamlls", "rust_analyzer", "tsserver" }
 local server_opts = {
     lua_ls = {
         settings = {
@@ -63,8 +63,8 @@ local server_opts = {
                 },
                 workspace = {
                     library = {
-                        [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                        [vim.fn.stdpath "config" .. "/lua"] = true,
+                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                        [vim.fn.stdpath("config") .. "/lua"] = true,
                     },
                     checkThirdParty = false,
                 },
@@ -76,7 +76,7 @@ local server_opts = {
 for _, server in ipairs(servers) do
     local opts = {
         on_attach = on_attach,
-        capabilities = require("cmp_nvim_lsp").default_capabilities()
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
     }
 
     if server_opts[server] then

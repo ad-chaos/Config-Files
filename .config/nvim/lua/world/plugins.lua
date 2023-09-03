@@ -1,4 +1,4 @@
-vim.opt.rtp:prepend(vim.fn.stdpath "data" .. "/lazy/lazy.nvim")
+vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
 require("lazy").setup({
     {
@@ -38,9 +38,9 @@ require("lazy").setup({
             },
         },
         config = function()
-            local telescope = require "telescope"
-            local telescope_builtin = require "telescope.builtin"
-            local action_layout = require "telescope.actions.layout"
+            local telescope = require("telescope")
+            local telescope_builtin = require("telescope.builtin")
+            local action_layout = require("telescope.actions.layout")
 
             telescope.setup({
                 defaults = {
@@ -54,7 +54,7 @@ require("lazy").setup({
                 },
             })
 
-            telescope.load_extension "fzf"
+            telescope.load_extension("fzf")
             vim.keymap.set("n", "<leader>fl", telescope_builtin.find_files)
             vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
             vim.keymap.set("n", "<leader>gf", telescope_builtin.git_files)
@@ -73,7 +73,7 @@ require("lazy").setup({
             },
             current_line_blame = true,
             on_attach = function()
-                local gs = require "gitsigns"
+                local gs = require("gitsigns")
                 vim.keymap.set("n", "<leader>gb", gs.blame_line)
                 vim.keymap.set("n", "<leader>rh", gs.reset_hunk)
                 vim.keymap.set("n", "<leader>rb", gs.reset_buffer)
@@ -164,5 +164,5 @@ require("lazy").setup({
         config = true,
     },
 }, {
-    lockfile = vim.fn.stdpath "state" .. "lazy/lazy-lock.json",
+    lockfile = vim.fn.stdpath("state") .. "lazy/lazy-lock.json",
 })

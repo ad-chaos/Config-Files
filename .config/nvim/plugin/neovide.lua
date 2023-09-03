@@ -38,6 +38,6 @@ vim.keymap.set({ "n", "i" }, "<C-BS>", function()
 end, opts)
 
 vim.keymap.set("n", "<D-v>", '"+p')
-vim.cmd [[let g:neovide_refresh_rate=100]]
-vim.cmd [[let g:neovide_refresh_rate=100]]
-vim.cmd [[let g:neovide_remember_window_size = v:true]]
+vim.cmd([[let g:neovide_refresh_rate=100]])
+vim.cmd([[let g:neovide_refresh_rate=100]])
+vim.cmd([[let g:neovide_remember_window_size = v:true]])

@@ -1,12 +1,12 @@
 local M = {}
 
-local icons = require "nvim-web-devicons"
+local icons = require("nvim-web-devicons")
 icons.set_up_highlights()
 
 function M.file()
-    local file_name = vim.fn.expand "%:t"
-    local ext = vim.fn.expand "%:e"
-    local icon, hl = icons.get_icon(file_name, ext, {default = "»"})
+    local file_name = vim.fn.expand("%:t")
+    local ext = vim.fn.expand("%:e")
+    local icon, hl = icons.get_icon(file_name, ext, { default = "»" })
     return "%#" .. hl .. "#" .. icon .. "%*  " .. file_name
 end
 
