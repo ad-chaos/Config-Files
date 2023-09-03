@@ -1,7 +1,4 @@
-.config/nvim/plugin/packer_compiled.lua
 .config/nvim/spell/**
 .config/kitty/kitty.app.icns
 .config/kitty/theme
-.config/kitty/diff.conf
-stylua.toml
 .DS_Store
