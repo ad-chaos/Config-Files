@@ -1,3 +1,6 @@
+if vim.g.nocmp then
+    return
+end
 local cmp = require "cmp"
 local luasnip = require "luasnip"
 

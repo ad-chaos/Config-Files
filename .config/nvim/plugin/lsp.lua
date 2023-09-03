@@ -1,3 +1,6 @@
+if vim.g.nolsp then
+    return
+end
 local signs = {
     { name = "DiagnosticSignError", text = "" },
     { name = "DiagnosticSignWarn", text = "" },
