@@ -1,3 +1,7 @@
+if not vim.g.neovide then
+    return
+end
+
 vim.g.gui_font_default_size = 17.5
 vim.g.gui_font_size = vim.g.gui_font_default_size
 vim.g.gui_font_face = "JetBrains Mono"

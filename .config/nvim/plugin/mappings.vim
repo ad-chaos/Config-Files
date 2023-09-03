@@ -1,23 +1,11 @@
-let g:mapleader = " "
-let g:maplocalleader = "\\"
 " nvo mappings
 noremap <leader>P "0P
 noremap <leader>p "0p
+noremap <leader>d "_d
 
 "  Terminal mode mappings
 tnoremap ;q <C-\><C-n>
 " Normal Mode mappings {{{
-nnoremap <leader>fl <cmd>Telescope find_files hidden=true<CR>
-nnoremap <leader>gf <cmd>Telescope git_files<CR>
-nnoremap <leader>fg <cmd>Telescope live_grep<CR>
-nnoremap <leader>fb <cmd>Telescope buffers<CR>
-nnoremap <leader>fh <cmd>Telescope help_tags<CR>
-nnoremap <leader>gb <cmd>Gitsigns blame_line<CR>
-nnoremap <leader>rr <cmd>Gitsigns reset_hunk<CR>
-nnoremap <leader>re <cmd>Gitsigns reset_buffer<CR>
-nnoremap ]g <cmd>Gitsigns next_hunk<CR>
-nnoremap [g <cmd>Gitsigns prev_hunk<CR>
-
 nnoremap <leader>o :e <C-R>=expand('%:p:h')..'/'<CR>
 nnoremap <leader>a <cmd>Lex 30<CR>
 nnoremap <leader>u g~w
