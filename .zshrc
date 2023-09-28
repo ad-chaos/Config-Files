@@ -121,10 +121,10 @@ done
 
 #Some QOL aliases
 
-alias ls="exa --icons --group-directories-first -F"
-alias la="exa --icons --group-directories-first -aF"
-alias ll="exa --icons --group-directories-first -aF --long"
-alias tree="exa --icons --tree"
+alias ls="eza --icons --group-directories-first -F"
+alias la="eza --icons --group-directories-first -aF"
+alias ll="eza --icons --group-directories-first -aF --long"
+alias tree="eza --icons --tree"
 
 alias gimme="rg -F -uuu"
 alias grep="rg"
@@ -232,6 +232,10 @@ source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 source "$HOME/autopair.zsh"
 autopair-init
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 export CPATH=/opt/homebrew/include/
 export LIBRARY_PATH=/opt/homebrew/lib/
 
@@ -252,4 +256,5 @@ export PYTHONBREAKPOINT='ipdb.set_trace'
 # Load zsh-syntax-highlighting; should be last.
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-bat -p $HOME/TODO.md
+# bat -p $HOME/TODO.md
+
