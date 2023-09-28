@@ -58,6 +58,9 @@ local server_opts = {
     lua_ls = {
         settings = {
             Lua = {
+                runtime = {
+                    version = "LuaJIT"
+                },
                 diagnostics = {
                     globals = { "vim" },
                 },
