@@ -167,6 +167,10 @@ require("lazy").setup({
         },
         config = true,
     },
+
+    {
+        "iamcco/markdown-preview.nvim"
+    }
 }, {
     lockfile = vim.fn.stdpath("state") .. "lazy/lazy-lock.json",
 })
