@@ -169,8 +169,15 @@ require("lazy").setup({
     },
 
     {
-        "iamcco/markdown-preview.nvim"
-    }
+        "iamcco/markdown-preview.nvim",
+    },
+
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {},
+        config = true
+    },
 }, {
     lockfile = vim.fn.stdpath("state") .. "lazy/lazy-lock.json",
 })

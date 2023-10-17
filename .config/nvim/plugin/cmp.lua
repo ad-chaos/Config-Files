@@ -2,6 +2,7 @@ if vim.g.nocmp then
     return
 end
 local cmp = require("cmp")
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local luasnip = require("luasnip")
 
 local check_backspace = function()
@@ -104,6 +105,11 @@ cmp.setup({
         select = false,
     },
 })
+
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
