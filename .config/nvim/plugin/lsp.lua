@@ -53,13 +53,36 @@ local function on_attach(_, bufnr)
 end
 
 local lsp_conf = require("lspconfig")
-local servers = { "clangd", "pyright", "lua_ls", "yamlls", "rust_analyzer", "tsserver" }
+local servers = { "clangd", "pylsp", "lua_ls", "yamlls", "rust_analyzer", "tsserver" }
 local server_opts = {
+    pylsp = {
+        settings = {
+            pylsp = {
+                plugins = {
+                    pylsp_mypy = {
+                        enabled = true,
+                        overrides = { "--new-type-inference", true },
+                        report_progress = true,
+                    },
+                    ruff = {
+                        enabled = true,
+                    },
+                    rope_autoimport = {
+                        enabled = true,
+                        memory = true,
+                    },
+                    rope_completion = {
+                        enabled = true,
+                    },
+                },
+            },
+        },
+    },
     lua_ls = {
         settings = {
             Lua = {
                 runtime = {
-                    version = "LuaJIT"
+                    version = "LuaJIT",
                 },
                 diagnostics = {
                     globals = { "vim" },
