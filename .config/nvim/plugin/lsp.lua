@@ -53,51 +53,30 @@ local function on_attach(_, bufnr)
 end
 
 local lsp_conf = require("lspconfig")
-local servers = { "clangd", "pylsp", "lua_ls", "yamlls", "rust_analyzer", "tsserver" }
-local server_opts = {
-    pylsp = {
-        settings = {
-            pylsp = {
-                plugins = {
-                    pylsp_mypy = {
-                        enabled = true,
-                        overrides = { "--new-type-inference", true },
-                        report_progress = true,
-                    },
-                    ruff = {
-                        enabled = true,
-                    },
-                    rope_autoimport = {
-                        enabled = true,
-                        memory = true,
-                    },
-                    rope_completion = {
-                        enabled = true,
-                    },
-                },
-            },
-        },
-    },
-    lua_ls = {
-        settings = {
-            Lua = {
-                runtime = {
-                    version = "LuaJIT",
-                },
-                diagnostics = {
-                    globals = { "vim" },
-                },
-                workspace = {
-                    library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.stdpath("config") .. "/lua"] = true,
-                    },
-                    checkThirdParty = false,
-                },
-            },
-        },
-    },
+local servers = { "clangd", "pylsp", "lua_ls", "yamlls", "rust_analyzer", "tsserver", "gopls" }
+local server_opts = vim.defaulttable()
+
+local pylsp = server_opts.pylsp.settings
+pylsp.plugins.pylsp_mypy.enabled = true
+pylsp.plugins.pylsp_mypy.dmypy = true
+pylsp.plugins.pylsp_mypy.overrides =
+    { "--new-type-inference", "--enable-incomplete-feature=TypeVarTuple", "--enable-incomplete-feature=Unpack", true }
+pylsp.plugins.ruff.enabled = true
+pylsp.plugins.rope_autoimport.enabled = true
+pylsp.plugins.rope_autoimport.memory = true
+pylsp.plugins.rope_completion.enabled = true
+
+local luals = server_opts.lua_ls.settings
+luals.Lua.runtime.version = "LuaJIT"
+luals.Lua.diagnostics.globals = { "vim" }
+luals.Lua.workspace.library = {
+    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+    [vim.fn.stdpath("config") .. "/lua"] = true,
 }
+luals.workspace.library.checkThirdParty = false
+
+local tsserver = server_opts.tsserver.settings
+tsserver.javascript.suggestionActions.enabled = false
 
 for _, server in ipairs(servers) do
     local opts = {
