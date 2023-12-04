@@ -139,7 +139,6 @@ alias gc="git checkout"
 alias gb="git branch"
 alias gcma="git commit -am"
 alias oops="git commit --amend --no-edit"
-alias ps="poetry shell"
 alias c-="cd -"
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
 alias cdcon="~/Config-Files/.config"
@@ -231,13 +230,13 @@ source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 #auto pairs
 source "$HOME/autopair.zsh"
 autopair-init
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export CPATH=/opt/homebrew/include/
 export LIBRARY_PATH=/opt/homebrew/lib/
+export DYLD_LIBRARY_PATH=/opt/homebrew/lib/
 
 # default editor neovim please
 export EDITOR=nvim
@@ -257,4 +256,3 @@ export PYTHONBREAKPOINT='ipdb.set_trace'
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # bat -p $HOME/TODO.md
-
