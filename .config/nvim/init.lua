@@ -118,32 +118,7 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
 
     --Tree Sitter
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = {
-            sync_install = false,
-            ensure_installed = {
-                "c",
-                "comment",
-                "cpp",
-                "css",
-                "html",
-                "javascript",
-                "lua",
-                "rust",
-                "toml",
-                "typescript",
-                "vim",
-            },
-            highlight = {
-                enable = true,
-            },
-            indent = { enable = true, disable = { "python" } },
-            incremental_selection = { enable = false },
-        },
-        main = "nvim-treesitter.configs",
-        config = true,
-    },
+    "nvim-treesitter/nvim-treesitter",
 
     "nvim-treesitter/nvim-treesitter-context",
 

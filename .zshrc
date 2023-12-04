@@ -232,6 +232,11 @@ nvim() {
         argv[$nocmp]=("--cmd" "let g:nocmp=1")
     fi
 
+    local nots="${argv[(Ie)--nots]}"
+    if (( "$nots" != 0)); then
+        argv[$nots]=("--cmd" "let g:nots=1")
+    fi
+
     command nvim "${argv[@]}"
 }
 
