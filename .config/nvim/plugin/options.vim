@@ -26,7 +26,7 @@ set scrolloff=5
 set noshowmode
 set noshowcmd
 set cpoptions-=_
-" set splitkeep=screen
+set splitkeep=screen
 set showbreak=++ 
 set breakindent 
 set breakindentopt=sbr
