@@ -4,6 +4,12 @@ vim.g.mapleader = " "
 
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
+package.path = package.path .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+
+-- To remove the flicker of the builtin colorscheme's Normal group at startup
+vim.cmd.highlight("Normal", "guifg=#0d0e12")
+
 require("lazy").setup({
     {
         "folke/tokyonight.nvim",
@@ -16,6 +22,8 @@ require("lazy").setup({
             end,
         },
         config = true,
+        lazy = false,
+        priority = 1000,
     },
 
     {
@@ -28,7 +36,7 @@ require("lazy").setup({
         },
     },
 
-    "L3MON4D3/LuaSnip",
+    { "L3MON4D3/LuaSnip", event = "VeryLazy" },
     "saadparwaiz1/cmp_luasnip",
 
     -- Fuzzy File Finder
@@ -103,6 +111,7 @@ require("lazy").setup({
             },
         },
         config = true,
+        lazy = true,
     },
 
     -- LSP
@@ -129,7 +138,6 @@ require("lazy").setup({
             highlight = {
                 enable = true,
             },
-            -- TODO: Remove python once it is fixed upstream
             indent = { enable = true, disable = { "python" } },
             incremental_selection = { enable = false },
         },
@@ -141,8 +149,8 @@ require("lazy").setup({
 
     -- Misc
     "nvim-tree/nvim-web-devicons",
-    "chrisbra/Colorizer",
-    "chaoren/vim-wordmotion",
+    { "chrisbra/Colorizer", lazy = true },
+    { "chaoren/vim-wordmotion", event = "VeryLazy"},
     {
         "sbdchd/neoformat",
         config = function()
@@ -166,17 +174,28 @@ require("lazy").setup({
             },
         },
         config = true,
+        lazy = true,
     },
 
     {
         "iamcco/markdown-preview.nvim",
+        lazy = true,
+    },
+
+    {
+        "3rd/image.nvim",
+        opts = {
+            max_height_window_percentage = 100,
+        },
+        config = true,
+        lazy = true,
     },
 
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         opts = {},
-        config = true
+        config = true,
     },
 }, {
     lockfile = vim.fn.stdpath("state") .. "lazy/lazy-lock.json",
