@@ -221,6 +221,20 @@ swap() {
     mv $1 tmp && mv $2 $1 && mv tmp $2
 }
 
+nvim() {
+    local nolsp="${argv[(Ie)--nolsp]}"
+    if (( "$nolsp" != 0 )); then
+        argv[$nolsp]=("--cmd" "let g:nolsp=1")
+    fi
+
+    local nocmp="${argv[(Ie)--nocmp]}"
+    if (( "$nocmp" != 0)); then
+        argv[$nocmp]=("--cmd" "let g:nocmp=1")
+    fi
+
+    command nvim "${argv[@]}"
+}
+
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
