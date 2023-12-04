@@ -37,6 +37,8 @@ nnoremap 0 ^
 nnoremap ^ 0
 nnoremap ' `
 nnoremap ` '
+nnoremap zj mzyyP`z
+nnoremap zk mzyyp`z
 " }}}
 
 " Visual Mode mappings {{{
