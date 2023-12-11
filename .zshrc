@@ -71,7 +71,7 @@ autoload -Uz surround
 
 push-string() {
     local arg
-    for arg; zle -U "$arg"
+    for arg; zle -U $arg
 }
 
 zle -N push-string
@@ -87,8 +87,8 @@ viopp-wrapper() {
         esac
     else
         zle push-string $key
-        sched +0 bindkey -M "$KEYMAP" "$KEYS" "$WIDGET"
-        bindkey -M "$KEYMAP" "$KEYS" "${WIDGET%-wrapper}"
+        sched +0 bindkey -M $KEYMAP $KEYS $WIDGET
+        bindkey -M $KEYMAP $KEYS ${WIDGET%-wrapper}
         zle ${WIDGET%-wrapper} -w
     fi
 }
@@ -222,22 +222,22 @@ swap() {
 }
 
 nvim() {
-    local nolsp="${argv[(Ie)--nolsp]}"
-    if (( "$nolsp" != 0 )); then
+    local nolsp=${argv[(Ie)--nolsp]}
+    if (( $nolsp != 0 )); then
         argv[$nolsp]=("--cmd" "let g:nolsp=1")
     fi
 
-    local nocmp="${argv[(Ie)--nocmp]}"
-    if (( "$nocmp" != 0)); then
+    local nocmp=${argv[(Ie)--nocmp]}
+    if (( $nocmp != 0)); then
         argv[$nocmp]=("--cmd" "let g:nocmp=1")
     fi
 
-    local nots="${argv[(Ie)--nots]}"
-    if (( "$nots" != 0)); then
+    local nots=${argv[(Ie)--nots]}
+    if (( $nots != 0)); then
         argv[$nots]=("--cmd" "let g:nots=1")
     fi
 
-    command nvim "${argv[@]}"
+    command nvim ${argv[@]}
 }
 
 # Auto-completion
