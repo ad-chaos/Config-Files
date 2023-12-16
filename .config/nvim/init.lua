@@ -7,9 +7,6 @@ vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
 
--- To remove the flicker of the builtin colorscheme's Normal group at startup
-vim.cmd.highlight("Normal", "guifg=#0d0e12")
-
 require("lazy").setup({
     {
         "folke/tokyonight.nvim",
@@ -125,7 +122,7 @@ require("lazy").setup({
     -- Misc
     "nvim-tree/nvim-web-devicons",
     { "chrisbra/Colorizer", lazy = true },
-    { "chaoren/vim-wordmotion", event = "VeryLazy"},
+    { "chaoren/vim-wordmotion", event = "VeryLazy" },
     {
         "sbdchd/neoformat",
         config = function()
