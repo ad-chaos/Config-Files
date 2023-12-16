@@ -1,32 +1,29 @@
 if vim.g.nolsp then
     return
 end
-local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-}
-
-for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-end
 
 vim.diagnostic.config({
-    virtual_text = true,
-    signs = {
-        active = signs,
-    },
-    update_in_insert = true,
     underline = true,
     severity_sort = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.INFO] = "",
+            [vim.diagnostic.severity.HINT] = "",
+        },
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+            [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+            [vim.diagnostic.severity.INFO] = "DiagnosticSignHint",
+            [vim.diagnostic.severity.HINT] = "DiagnosticSignInfo",
+        },
+    },
     float = {
         focusable = false,
         style = "minimal",
         border = "rounded",
         source = "always",
-        header = "",
-        prefix = "",
     },
 })
 
