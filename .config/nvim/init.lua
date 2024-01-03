@@ -1,5 +1,4 @@
 vim.g.netrw_banner = 0
-vim.g.wordmotion_prefix = "\\"
 vim.g.mapleader = " "
 
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
@@ -108,7 +107,6 @@ require("lazy").setup({
             },
         },
         config = true,
-        lazy = true,
     },
 
     -- LSP
@@ -122,14 +120,13 @@ require("lazy").setup({
     -- Misc
     "nvim-tree/nvim-web-devicons",
     { "chrisbra/Colorizer", lazy = true },
-    { "chaoren/vim-wordmotion", event = "VeryLazy" },
     {
-        "sbdchd/neoformat",
-        config = function()
-            vim.keymap.set("n", "<leader>fm", "<cmd>Neoformat<cr>")
-        end,
+        "echasnovski/mini.ai",
+        opts = {
+            search_method = 'cover_or_nearest'
+        },
+        config = true
     },
-
     {
         "kylechui/nvim-surround",
         config = true,

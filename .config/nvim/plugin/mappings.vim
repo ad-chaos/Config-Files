@@ -9,7 +9,6 @@ tnoremap ;q <C-\><C-n>
 nnoremap <leader>o :e <C-R>=expand('%:p:h')..'/'<CR>
 nnoremap <leader>a <cmd>Lex 30<CR>
 nnoremap <leader>u g~w
-nnoremap <leader>fm <cmd>Neoformat<CR>
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
 nnoremap <leader>yy "+yy
@@ -51,7 +50,6 @@ xnoremap > >gv
 xnoremap < <gv
 xnoremap <C-l> lOhO
 xnoremap <C-h> hOlO
-xnoremap Q :normal @<c-r>=reg_recorded()<cr><cr>
 " }}}
 
 " Insert Mode Mappings

@@ -37,31 +37,34 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 local function on_attach(_, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", bufopts)
-    vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", bufopts)
-    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", bufopts)
-    vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", bufopts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+    vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, bufopts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", bufopts)
-    vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", bufopts)
-    vim.keymap.set("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', bufopts)
-    vim.keymap.set("n", "gl", '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>', bufopts)
-    vim.keymap.set("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', bufopts)
-    vim.keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", bufopts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
+    vim.keymap.set("n", "gl", vim.diagnostic.open_float, bufopts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
 end
 
-local lsp_conf = require("lspconfig")
+local lspconfig = require("lspconfig")
 local servers = { "clangd", "pylsp", "lua_ls", "yamlls", "rust_analyzer", "tsserver", "gopls" }
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local server_opts = vim.defaulttable()
 
 local pylsp = server_opts.pylsp.settings
 pylsp.plugins.pylsp_mypy.enabled = true
 pylsp.plugins.pylsp_mypy.dmypy = true
 pylsp.plugins.pylsp_mypy.overrides =
-    { "--new-type-inference", "--enable-incomplete-feature=TypeVarTuple", "--enable-incomplete-feature=Unpack", true }
+{ "--new-type-inference", "--enable-incomplete-feature=TypeVarTuple", "--enable-incomplete-feature=Unpack", true }
 pylsp.plugins.ruff.enabled = true
 pylsp.plugins.rope_autoimport.enabled = true
 pylsp.plugins.rope_autoimport.memory = true
 pylsp.plugins.rope_completion.enabled = true
+pylsp.plugins.black.enabled = true
 
 local luals = server_opts.lua_ls.settings
 luals.Lua.runtime.version = "LuaJIT"
@@ -75,15 +78,18 @@ luals.workspace.library.checkThirdParty = false
 local tsserver = server_opts.tsserver.settings
 tsserver.javascript.suggestionActions.enabled = false
 
+local rust_analyzer = server_opts.rust_analyzer.settings['rust-analyzer']
+rust_analyzer.check.command = "clippy"
+
 for _, server in ipairs(servers) do
     local opts = {
         on_attach = on_attach,
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        capabilities = capabilities,
     }
 
     if server_opts[server] then
         opts = vim.tbl_deep_extend("force", server_opts[server], opts)
     end
 
-    lsp_conf[server].setup(opts)
+    lspconfig[server].setup(opts)
 end
