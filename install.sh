@@ -2,16 +2,6 @@
 
 current_dir=$(pwd)
 
-# Neovim plugin manager
-echo "Searching for Packer..."
-if ! [[ -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
-    echo "Packer not found: Installing"
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-    echo "Packer Installed"
-else
-    echo "Found continuing install"
-fi
-
 link_config() {
     if [ $2 ]; then
         if [[ "$2" =~ ^[Oo]$ ]]; then
