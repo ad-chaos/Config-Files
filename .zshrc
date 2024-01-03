@@ -39,12 +39,14 @@ PROMPT="%B%F{#6ffffd}%2~%f%b \$vcs_info_msg_0_ %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f
 # Add completions for brew installed tools
 fpath+=/opt/homebrew/share/zsh/site-functions
 
-#better tab completion
-autoload -U compinit
+# better tab completion
+autoload -Uz compinit
+compinit
+
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
 _comp_options+=(globdots)
+
 
 # use vim bindings for traversing through tab complete menu
 # https://thevaluable.dev/zsh-completion-guide-examples/
@@ -130,8 +132,6 @@ alias gimme="rg -F -uuu"
 alias grep="rg"
 alias icat="kitten icat"
 alias diff="kitten diff"
-alias pip="pip3.11"
-alias python="python3.11"
 alias gcm="git commit -m"
 alias gst="git status"
 alias gd="git diff"
@@ -162,6 +162,7 @@ _cdc() { _path_files -W ~/Coding-Adventures }
 compdef _cdc cdc
 
 mcd() { mkdir $1 && cd $1 }
+compdef _directories mcd
 
 ga() {
     if [ $1 ]; then
@@ -170,16 +171,12 @@ ga() {
         git add .
     fi
 }
+compdef _git ga=git-add
 
 nup() {
     local NO_CD_HOOK="ye_no_list"
-    echo "Clearing old compilation of neovim"
-    rm -rf neovim
-    cdev neovim; rm -rf build
-
-    echo "Compiling and Installing Neovim"
-    cdev neovim; git pull --rebase origin master > /dev/null; make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
-    make install
+    rm -rf build
+    make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
 }
 
 fzf-map() {
@@ -240,6 +237,12 @@ nvim() {
     command nvim ${argv[@]}
 }
 
+load_nvm() {
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
@@ -249,9 +252,11 @@ source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 #auto pairs
 source "$HOME/autopair.zsh"
 autopair-init
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 export CPATH=/opt/homebrew/include/
 export LIBRARY_PATH=/opt/homebrew/lib/
@@ -267,11 +272,10 @@ export FZF_DEFAULT_OPTS='
 --color=fg+:#c0caf5,bg+:#0d0e12,hl+:#7dcfff
 --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff 
 --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
-export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix"
+export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --follow"
 export FZF_ALT_C_COMMAND="find -L . -mindepth 1 -not -path '*/\.git/*' -type d -print 2> /dev/null | cut -c 3-"
 export PYTHONBREAKPOINT='ipdb.set_trace'
 
 # Load zsh-syntax-highlighting; should be last.
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
 # bat -p $HOME/TODO.md
