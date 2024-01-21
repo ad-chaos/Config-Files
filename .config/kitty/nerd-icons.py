@@ -11,7 +11,9 @@ hexint = partial(int, base=16)
 codepoint = lambda code: hex(code)[2:].upper()
 
 
-def json_to_int_ranges(json_data: dict[str, dict[str, str]]) -> Iterator[tuple[int, int | None]]:
+def json_to_int_ranges(
+    json_data: dict[str, dict[str, str]]
+) -> Iterator[tuple[int, int | None]]:
     return map(
         lambda group: (first(group), last(group, None)),
         consecutive_groups(

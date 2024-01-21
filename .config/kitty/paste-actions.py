@@ -18,12 +18,17 @@ def filter_paste(text: str) -> str:
         case _:
             return text
 
+
 # Tests
 if __name__ == "__main__":
     print(filter_paste("https://github.com/org/user"))
     print(filter_paste("https://github.com/org/user/i"))
     print(filter_paste("https://github.com/org/user/a_remote"))
-    print(filter_paste("https://github.com/org/user/commit/aab81c2d32895950d46a62d34cba86c6eac11a15"))
+    print(
+        filter_paste(
+            "https://github.com/org/user/commit/aab81c2d32895950d46a62d34cba86c6eac11a15"
+        )
+    )
     print(filter_paste("https://www.notawebsite.com/"))
     print(filter_paste("/////////"))
     print(filter_paste("github.com"))
