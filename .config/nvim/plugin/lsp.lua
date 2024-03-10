@@ -35,31 +35,46 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
     border = "rounded",
 })
 
-local function on_attach(_, bufnr)
+local function on_attach(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
     vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, bufopts)
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+    vim.keymap.set("n", "<leader>rn", ":IncRename ", bufopts)
     vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", bufopts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
     vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
     vim.keymap.set("n", "gl", vim.diagnostic.open_float, bufopts)
     vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
+
+    if client.name == "clangd" then
+        local function switch()
+            vim.lsp.buf_request(bufnr, 'textDocument/switchSourceHeader', {
+                uri = vim.uri_from_bufnr(bufnr)
+            }, function(err, uri, _, _)
+                if err then
+                    vim.cmd.echoe("Server Errored:")
+                    print(vim.inspect(err))
+                end
+                vim.cmd.edit(vim.uri_to_fname(uri))
+            end)
+        end
+        vim.keymap.set("n", "<leader>-", switch, bufopts)
+    end
 end
 
 local lspconfig = require("lspconfig")
-local servers = { "clangd", "pylsp", "lua_ls", "yamlls", "rust_analyzer", "tsserver", "gopls" }
+local servers = { "clangd", "pylsp", "lua_ls", "yamlls", "rust_analyzer", "tsserver", "gopls", "cmake" }
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local server_opts = vim.defaulttable()
 
 local pylsp = server_opts.pylsp.settings
 pylsp.plugins.pylsp_mypy.enabled = true
 pylsp.plugins.pylsp_mypy.dmypy = true
-pylsp.plugins.pylsp_mypy.overrides =
-{ "--new-type-inference", "--enable-incomplete-feature=TypeVarTuple", "--enable-incomplete-feature=Unpack", true }
+pylsp.plugins.pylsp_mypy.overrides = { "--new-type-inference", "--enable-incomplete-feature=TypeVarTuple",
+    "--enable-incomplete-feature=Unpack", "--check-untyped-defs" }
 pylsp.plugins.ruff.enabled = true
 pylsp.plugins.rope_autoimport.enabled = true
 pylsp.plugins.rope_autoimport.memory = true

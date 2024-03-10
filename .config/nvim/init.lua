@@ -1,5 +1,6 @@
 vim.g.netrw_banner = 0
 vim.g.mapleader = " "
+vim.g.loaded_python3_provider = 0
 
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
@@ -32,7 +33,7 @@ require("lazy").setup({
         },
     },
 
-    { "L3MON4D3/LuaSnip", event = "VeryLazy" },
+    { "L3MON4D3/LuaSnip",   event = "VeryLazy" },
     "saadparwaiz1/cmp_luasnip",
 
     -- Fuzzy File Finder
@@ -166,8 +167,18 @@ require("lazy").setup({
         opts = {},
         config = true,
     },
+
+    {
+        "smjonas/inc-rename.nvim",
+        event = "LspAttach",
+        opts = {},
+        config = true,
+    }
 }, {
     lockfile = vim.fn.stdpath("state") .. "lazy/lazy-lock.json",
+    ui = {
+        border = "rounded"
+    },
 })
 
 vim.cmd.colorscheme("tokyonight-night")

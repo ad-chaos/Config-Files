@@ -1,4 +1,8 @@
-vim.keymap.set("n", "<leader>-", function()
-    local name, ext = unpack(vim.fn.split(vim.fn.expand("%:t") , "\\ze\\."))
-    return ":e " .. name .. ((ext == ".h") and  ".c" or ".h") .. "<CR>"
-end, { expr = true, buffer = true })
+vim.keymap.set("n", "<leader>fm", function()
+    vim.system({'clang-format', '-i', vim.fn.bufname()})
+    vim.cmd.normal([[g`"]])
+end
+)
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.autochdir = false
