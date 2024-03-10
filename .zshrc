@@ -14,11 +14,15 @@ zstyle ':vcs_info:*' enable git
 # setup a hook that runs before every prompt.
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
+SAVESIZE=1000000
 setopt prompt_subst
 setopt autocd
 setopt append_history
 setopt share_history
-setopt histignorealldups
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt inc_append_history
 setopt extended_glob
 
 # https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
@@ -37,7 +41,7 @@ zstyle ':vcs_info:git:*' formats "%F{#fd5cba}%m%u%c%f%F{#ffffff} %f%F{#eefd7a
 PROMPT="%B%F{#6ffffd}%2~%f%b \$vcs_info_msg_0_ %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
 
 # Add completions for brew installed tools
-fpath+=/opt/homebrew/share/zsh/site-functions
+fpath+=(/opt/homebrew/share/zsh/site-functions $HOME/.zfunc)
 
 # better tab completion
 autoload -Uz compinit
@@ -123,9 +127,9 @@ done
 
 #Some QOL aliases
 
-alias ls="eza --icons --group-directories-first -F"
-alias la="eza --icons --group-directories-first -aF"
-alias ll="eza --icons --group-directories-first -aF --long"
+alias ls="eza --icons --group-directories-first -F=always"
+alias la="eza --icons --group-directories-first -a -F=always"
+alias ll="eza --icons --group-directories-first -a -F=always --long"
 alias tree="eza --icons --tree"
 
 alias gimme="rg -F -uuu"
@@ -139,6 +143,7 @@ alias gc="git checkout"
 alias gb="git branch"
 alias gcma="git commit -am"
 alias oops="git commit --amend --no-edit"
+alias grs="git restore -p ."
 alias c-="cd -"
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
 alias cdcon="~/Config-Files/.config"
@@ -146,6 +151,7 @@ alias hg="kitty +kitten hyperlinked_grep"
 alias ...="../../"
 alias vimgolf='/opt/homebrew/lib/ruby/gems/3.1.0/bin/vimgolf'
 alias ssh='kitten ssh'
+alias broadcast="kitty +kitten broadcast -t state:active"
 
 # Zsh syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
