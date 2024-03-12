@@ -38,6 +38,7 @@ nnoremap ' `
 nnoremap ` '
 nnoremap zj mzyyP`z
 nnoremap zk mzyyp`z
+nnoremap <F5> <cmd>w<cr>
 " }}}
 
 " Visual Mode mappings {{{
@@ -59,3 +60,23 @@ inoremap <expr> <c-y> (line('.')-1)->getline()->matchstr('\v\k*.', col('.')-1)
 
 " Operator Pending Mode
 onoremap <expr> iw ['<esc>', v:operator, 2*v:count1-1, 'iw']->join('')
+
+lua<<EOF
+vim.keymap.set({ 'n', 'i', 's' }, '<C-k>', function()
+   if vim.snippet.jumpable(-1) then
+     vim.snippet.jump(-1)
+   end
+end)
+
+vim.keymap.set({ 'n', 'i', 's' }, '<C-j>', function()
+   if vim.snippet.jumpable(1) then
+     vim.snippet.jump(1)
+   end
+end)
+
+vim.keymap.set('n', '<esc>', function()
+    if vim.snippet.active() then
+        vim.snippet.exit()
+    end
+end)
+EOF

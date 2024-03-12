@@ -3,7 +3,6 @@ if vim.g.nocmp then
 end
 local cmp = require("cmp")
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-local luasnip = require("luasnip")
 
 local check_backspace = function()
     local col = vim.fn.col(".") - 1
@@ -40,6 +39,7 @@ local kind_icons = {
 -- }}}
 
 cmp.setup({
+    preselect = cmp.PreselectMode.None,
     mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -77,7 +77,7 @@ cmp.setup({
     },
     snippet = {
         expand = function(args)
-            luasnip.lsp_expand(args.body)
+            vim.snippet.expand(args.body)
         end,
     },
     formatting = {
@@ -86,7 +86,7 @@ cmp.setup({
             -- Kind icons
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
             vim_item.menu = ({
-                luasnip = "[snippet]",
+                luasnip = "[Snippet]",
                 nvim_lsp = "[LSP]",
                 buffer = "[Buffer]",
                 path = "[Path]",

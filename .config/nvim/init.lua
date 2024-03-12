@@ -33,9 +33,6 @@ require("lazy").setup({
         },
     },
 
-    { "L3MON4D3/LuaSnip",   event = "VeryLazy" },
-    "saadparwaiz1/cmp_luasnip",
-
     -- Fuzzy File Finder
     {
         "nvim-telescope/telescope.nvim",
