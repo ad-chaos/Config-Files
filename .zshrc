@@ -4,16 +4,8 @@ unsetopt BEEP
 # Enable vi mode
 bindkey -v
 export KEYTIMEOUT=1
-autoload -Uz vcs_info
-autoload edit-command-line
-zle -N edit-command-line
-
-# enable only git
-zstyle ':vcs_info:*' enable git
 
 # setup a hook that runs before every prompt.
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
 SAVESIZE=1000000
 setopt prompt_subst
 setopt autocd
@@ -25,20 +17,63 @@ setopt hist_save_no_dups
 setopt inc_append_history
 setopt extended_glob
 
-# https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-+vi-git-untracked() {
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-        git status --porcelain | grep '??' &> /dev/null ; then
-        hook_com[staged]+='!'
+# https://anishathalye.com/an-asynchronous-shell-prompt/
+function git_info() {
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) != 'true' ]] then
+        return
     fi
+    local BRANCH
+    BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
+    if [[ $? -gt 0 ]] then
+        BRANCH=$(git name-rev --name-only --no-undefined --always HEAD)
+        BRANCH=$BRANCH" ($(git rev-parse --short HEAD))"
+    fi
+
+    local CHANGES
+    CHANGES=$(git status --porcelain | grep 'M' &> /dev/null && echo 'U' || echo '')
+    CHANGES=$CHANGES$(git status --porcelain | grep '\?\?' &> /dev/null && echo '!' || echo '')
+    echo "%F{#fd5cba}$CHANGES%f%F{#ffffff} %f%F{#eefd7a}$BRANCH%f"
 }
 
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats "%F{#fd5cba}%m%u%c%f%F{#ffffff} %f%F{#eefd7a}%b%f"
+ASYNC_PROC=0
+function precmd() {
+    function async() {
+        printf "%s" "$(git_info)" > "${HOME}/.zsh_tmp_prompt"
+        kill -s USR1 $$
+    }
+
+    if [[ "${ASYNC_PROC}" != 0 ]]; then
+        kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
+    fi
+    async &!
+    ASYNC_PROC=$!
+}
+
+function TRAPUSR1() {
+    local prompt_parts
+    prompt_parts=("${(s: :)PROMPT}")
+
+    local git_info
+    git_info="$(cat ${HOME}/.zsh_tmp_prompt)"
+
+    if [[ -n "$git_info" ]] then
+        if [[ $#prompt_parts -eq 2 ]] then
+            prompt_parts[1]=("$prompt_parts[1]" "$(cat ${HOME}/.zsh_tmp_prompt)")
+        else
+            prompt_parts[2,-3]=("$(cat ${HOME}/.zsh_tmp_prompt)")
+        fi
+        PROMPT="${(j: :)prompt_parts}"
+    else
+        PROMPT="$SPROMPT"
+    fi
+
+    ASYNC_PROC=0
+    zle && zle reset-prompt
+}
 
 # Change My prompt
-PROMPT="%B%F{#6ffffd}%2~%f%b \$vcs_info_msg_0_ %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
+SPROMPT="%B%F{#6ffffd}%2~%f%b %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
+PROMPT="$SPROMPT"
 
 # Add completions for brew installed tools
 fpath+=(/opt/homebrew/share/zsh/site-functions $HOME/.zfunc)
@@ -60,7 +95,11 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect '^[' send-break
 bindkey -M menuselect '+' accept-and-hold
+
+autoload edit-command-line
+zle -N edit-command-line
 bindkey -a '^ ' edit-command-line
+
 bindkey -v '^?' backward-delete-char
 bindkey -v '^K' up-line-or-history
 
@@ -146,7 +185,7 @@ alias oops="git commit --amend --no-edit"
 alias grs="git restore -p ."
 alias c-="cd -"
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
-alias cdcon="~/Config-Files/.config"
+alias cdcon="$HOME/git-repos/ad-chaos/Config-Files/.config"
 alias hg="kitty +kitten hyperlinked_grep"
 alias ...="../../"
 alias vimgolf='/opt/homebrew/lib/ruby/gems/3.1.0/bin/vimgolf'
@@ -247,6 +286,19 @@ load_nvm() {
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+
+build-kitty() {
+    if [ -d .git ] && [ $(basename `git config --local --get remote.origin.url`) = "kitty.git" ]; then
+        cp -r ../kitty-icon/build/neue_azure.iconset/* logo/kitty.iconset/
+        make
+        make docs
+        make app
+        git restore logo/
+    else
+        echo "Need to be in kitty checkout"
+        return 1
+    fi
 }
 
 # Auto-completion
