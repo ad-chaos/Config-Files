@@ -36,7 +36,7 @@ function git_info() {
 }
 
 ASYNC_PROC=0
-function precmd() {
+function async_vcs_update() {
     function async() {
         printf "%s" "$(git_info)" > "${HOME}/.zsh_tmp_prompt"
         kill -s USR1 $$
@@ -48,6 +48,7 @@ function precmd() {
     async &!
     ASYNC_PROC=$!
 }
+precmd_functions+=async_vcs_update
 
 function TRAPUSR1() {
     local prompt_parts
