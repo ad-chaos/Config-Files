@@ -3,7 +3,7 @@ My config files for some programs that require them.
 
 # Installation
 ```zsh
-git clone https://github.com/Kiran-Raj-Dev/Config-Files
+git clone https://github.com/ad-chaos/Config-Files
 cd Config-Files
 chmod +x install.sh
 ./install.sh
