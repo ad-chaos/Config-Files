@@ -18,7 +18,6 @@ require("lazy").setup({
                 colors.bg_highlight = "#0d0e12"
             end,
         },
-        config = true,
         lazy = false,
         priority = 1000,
     },
@@ -77,7 +76,6 @@ require("lazy").setup({
                 add = { text = "▎" },
                 change = { text = "▎" },
             },
-            current_line_blame = true,
             on_attach = function()
                 local gs = require("gitsigns")
                 vim.keymap.set("n", "<leader>gb", gs.blame_line)
@@ -87,11 +85,11 @@ require("lazy").setup({
                 vim.keymap.set("n", "[g", gs.prev_hunk)
             end,
         },
-        config = true,
     },
 
     {
         "sindrets/diffview.nvim",
+        cmd = "DiffviewOpen",
         opts = {
             merge_tool = {
                 layout = "diff4_mixed",
@@ -104,7 +102,6 @@ require("lazy").setup({
                 },
             },
         },
-        config = true,
     },
 
     -- LSP
@@ -112,7 +109,6 @@ require("lazy").setup({
 
     --Tree Sitter
     "nvim-treesitter/nvim-treesitter",
-
     "nvim-treesitter/nvim-treesitter-context",
 
     -- Misc
@@ -123,7 +119,6 @@ require("lazy").setup({
         opts = {
             search_method = 'cover_or_nearest'
         },
-        config = true
     },
     {
         "kylechui/nvim-surround",
@@ -134,12 +129,6 @@ require("lazy").setup({
     "mbbill/undotree",
     {
         "j-hui/fidget.nvim",
-        tag = "legacy",
-        opts = {
-            text = {
-                spinner = "dots",
-            },
-        },
         config = true,
         lazy = true,
     },
@@ -154,21 +143,18 @@ require("lazy").setup({
         opts = {
             max_height_window_percentage = 100,
         },
-        config = true,
         lazy = true,
     },
 
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
-        opts = {},
         config = true,
     },
 
     {
         "smjonas/inc-rename.nvim",
         event = "LspAttach",
-        opts = {},
         config = true,
     }
 }, {

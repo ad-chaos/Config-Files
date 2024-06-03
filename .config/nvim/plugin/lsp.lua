@@ -20,10 +20,7 @@ vim.diagnostic.config({
         },
     },
     float = {
-        focusable = false,
-        style = "minimal",
         border = "rounded",
-        source = "always",
     },
 })
 
@@ -39,15 +36,12 @@ local function on_attach(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
     vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, bufopts)
     vim.keymap.set("n", "<leader>rn", ":IncRename ", bufopts)
     vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", bufopts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
     vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
     vim.keymap.set("n", "gl", vim.diagnostic.open_float, bufopts)
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
 
     if client.name == "clangd" then
         local function switch()

@@ -39,6 +39,7 @@ nnoremap ` '
 nnoremap zj mzyyP`z
 nnoremap zk mzyyp`z
 nnoremap <F5> <cmd>w<cr>
+nmap <C-/> gcc
 " }}}
 
 " Visual Mode mappings {{{
@@ -51,6 +52,7 @@ xnoremap > >gv
 xnoremap < <gv
 xnoremap <C-l> lOhO
 xnoremap <C-h> hOlO
+xmap <C-/> gc
 " }}}
 
 " Insert Mode Mappings
