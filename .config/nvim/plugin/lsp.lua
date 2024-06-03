@@ -54,6 +54,8 @@ local function on_attach(client, bufnr)
                 end
                 if uri then
                     vim.cmd.edit(vim.uri_to_fname(uri))
+                else
+                    vim.notify("No corresponding implementation file!", vim.log.levels.ERROR)
                 end
             end)
         end
