@@ -52,7 +52,9 @@ local function on_attach(client, bufnr)
                     vim.cmd.echoe("Server Errored:")
                     print(vim.inspect(err))
                 end
-                vim.cmd.edit(vim.uri_to_fname(uri))
+                if uri then
+                    vim.cmd.edit(vim.uri_to_fname(uri))
+                end
             end)
         end
         vim.keymap.set("n", "<leader>-", switch, bufopts)
