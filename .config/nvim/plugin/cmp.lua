@@ -4,9 +4,9 @@ end
 local cmp = require("cmp")
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
-local check_backspace = function()
+local has_words_before = function()
     local col = vim.fn.col(".") - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+    return col ~= 0 or vim.fn.getline("."):sub(col, col):match("%a")
 end
 
 -- Icons for completions and other niceties {{{
@@ -55,8 +55,8 @@ cmp.setup({
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif check_backspace() then
-                fallback()
+            elseif has_words_before() then
+                cmp.complete()
             else
                 fallback()
             end
