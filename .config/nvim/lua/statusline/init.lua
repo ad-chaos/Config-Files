@@ -32,11 +32,11 @@ function M.statusline()
         [[%{get(b:,'gitsigns_status','')}]],
         "%=",
         "%#warningmsg#",
-        "%{&ff!='unix' ? '['.&ff.'] ' : ''}",
-        "%{(&fenc!='utf-8' && &fenc!='') ? '['.&fenc.'] ' : ''}",
+        "%{&ff!='unix' ? ' |'.&ff.'| ' : ''}",
+        "%{(&fenc!='utf-8' && &fenc!='') ? ' |'.&fenc.'| ' : ''}",
         "%*",
         [[%{%luaeval("require'statusline'.diagnostic_status()")%}]],
-        "%L/ %l:%c %P",
+        "[%L] %l:%c %P",
     }
 
     return table.concat(parts)

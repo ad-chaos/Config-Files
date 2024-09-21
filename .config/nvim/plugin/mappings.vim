@@ -7,7 +7,7 @@ noremap <leader>d "_d
 tnoremap ;q <C-\><C-n>
 " Normal Mode mappings {{{
 nnoremap <leader>o :e <C-R>=expand('%:p:h')..'/'<CR>
-nnoremap <leader>a <cmd>Lex 30<CR>
+nnoremap <leader>a <cmd>NvimTreeToggle<CR>
 nnoremap <leader>u g~w
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+y$

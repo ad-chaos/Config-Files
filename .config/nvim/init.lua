@@ -4,14 +4,14 @@ vim.g.loaded_python3_provider = 0
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -57,7 +57,19 @@ require("lazy").setup({
             local telescope = require("telescope")
             local telescope_builtin = require("telescope.builtin")
             local action_layout = require("telescope.actions.layout")
-
+            local actions = require("telescope.actions")
+            local open_in_new_tab = {
+                mappings = {
+                    n = {
+                        ["<CR>"] = actions.select_tab,
+                        ["<C-CR>"] = actions.select_default
+                    },
+                    i = {
+                        ["<CR>"] = actions.select_tab,
+                        ["<C-CR>"] = actions.select_default
+                    }
+                }
+            }
             telescope.setup({
                 defaults = {
                     prompt_prefix = "  ",
@@ -68,11 +80,17 @@ require("lazy").setup({
                         },
                     },
                 },
+                pickers = {
+                    find_files = open_in_new_tab,
+                    lsp_dynamic_workspace_symbols = open_in_new_tab,
+                    live_grep = open_in_new_tab
+                }
             })
 
             telescope.load_extension("fzf")
             vim.keymap.set("n", "<leader>fl", telescope_builtin.find_files)
             vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
+            vim.keymap.set("n", "<leader>fs", telescope_builtin.lsp_dynamic_workspace_symbols)
             vim.keymap.set("n", "<leader>gf", telescope_builtin.git_files)
             vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers)
             vim.keymap.set("n", "<leader>fh", telescope_builtin.help_tags)
@@ -124,7 +142,7 @@ require("lazy").setup({
 
     -- Misc
     "nvim-tree/nvim-web-devicons",
-    { "chrisbra/Colorizer", lazy = true },
+    "chrisbra/Colorizer",
     {
         "echasnovski/mini.ai",
         opts = {
@@ -141,12 +159,6 @@ require("lazy").setup({
     {
         "j-hui/fidget.nvim",
         config = true,
-        lazy = true,
-    },
-
-    {
-        "iamcco/markdown-preview.nvim",
-        lazy = true,
     },
 
     {
@@ -167,6 +179,12 @@ require("lazy").setup({
         "smjonas/inc-rename.nvim",
         event = "LspAttach",
         config = true,
+    },
+
+    {
+        "nvim-tree/nvim-tree.lua",
+        config = true
+
     }
 }, {
     lockfile = vim.fn.stdpath("state") .. "lazy/lazy-lock.json",
@@ -177,3 +195,6 @@ require("lazy").setup({
 
 vim.cmd.colorscheme("tokyonight-night")
 vim.o.statusline = "%!v:lua.require'statusline'.statusline()"
+vim.cmd [[hi! link NvimTreeNormal Normal
+hi! NvimTreeOpenedFile guifg=#a9b1d6 guibg=#16161e
+]]
