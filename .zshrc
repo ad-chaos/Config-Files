@@ -5,7 +5,7 @@ unsetopt BEEP
 bindkey -v
 export KEYTIMEOUT=1
 
-# setup a hook that runs before every prompt.
+HISTSIZE=10000000
 SAVESIZE=1000000
 setopt prompt_subst
 setopt autocd
@@ -30,8 +30,7 @@ function git_info() {
     fi
 
     local CHANGES
-    CHANGES=$(git status --porcelain | grep 'M' &> /dev/null && echo 'U' || echo '')
-    CHANGES=$CHANGES$(git status --porcelain | grep '\?\?' &> /dev/null && echo '!' || echo '')
+    CHANGES=$(git status --porcelain=v2 | cut -d ' ' -f 1,2 | git-status-prompt)
     echo "%F{#fd5cba}$CHANGES%f%F{#ffffff} %f%F{#eefd7a}$BRANCH%f"
 }
 
@@ -48,7 +47,6 @@ function async_vcs_update() {
     async &!
     ASYNC_PROC=$!
 }
-precmd_functions+=async_vcs_update
 
 function TRAPUSR1() {
     local prompt_parts
@@ -58,10 +56,12 @@ function TRAPUSR1() {
     git_info="$(cat ${HOME}/.zsh_tmp_prompt)"
 
     if [[ -n "$git_info" ]] then
-        if [[ $#prompt_parts -eq 2 ]] then
-            prompt_parts[1]=("$prompt_parts[1]" "$(cat ${HOME}/.zsh_tmp_prompt)")
+        if [[ $#prompt_parts -eq 3 ]] then
+            prompt_parts[1]=("$prompt_parts[1]" "$git_info")
         else
-            prompt_parts[2,-3]=("$(cat ${HOME}/.zsh_tmp_prompt)")
+            local nvcs
+            nvcs=${prompt_parts[(I)*]}
+            prompt_parts[nvcs,nvcs+1]=("$git_info")
         fi
         PROMPT="${(j: :)prompt_parts}"
     else
@@ -71,6 +71,8 @@ function TRAPUSR1() {
     ASYNC_PROC=0
     zle && zle reset-prompt
 }
+
+precmd_functions+=async_vcs_update
 
 # Change My prompt
 SPROMPT="%B%F{#6ffffd}%2~%f%b %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
@@ -164,6 +166,10 @@ for m in visual viopp; do
     done
 done
 
+change-prompt() {
+    PROMPT="%B%F{#6ffffd}$1%b %F{#47cc5d}ζ%f "
+}
+
 
 #Some QOL aliases
 
@@ -179,7 +185,9 @@ alias diff="kitten diff"
 alias gcm="git commit -m"
 alias gst="git status"
 alias gd="git diff"
+alias gdc="git diff --cached"
 alias gc="git checkout"
+alias gcf="git checkout --force"
 alias gb="git branch"
 alias gcma="git commit -am"
 alias oops="git commit --amend --no-edit"
@@ -302,6 +310,18 @@ build-kitty() {
     fi
 }
 
+need-brewlibs() {
+    if [ $1 ]; then
+        export CPATH=/opt/homebrew/include/
+        export LIBRARY_PATH=/opt/homebrew/lib/
+        export DYLD_LIBRARY_PATH=/opt/homebrew/lib/
+    else
+        unset CPATH
+        unset LIBRARY_PATH
+        unset DYLD_LIBRARY_PATH
+    fi
+}
+
 # Auto-completion
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
@@ -316,10 +336,6 @@ autopair-init
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-export CPATH=/opt/homebrew/include/
-export LIBRARY_PATH=/opt/homebrew/lib/
-export DYLD_LIBRARY_PATH=/opt/homebrew/lib/
 
 # default editor neovim please
 export EDITOR=nvim
