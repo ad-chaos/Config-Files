@@ -55,18 +55,13 @@ function TRAPUSR1() {
     local git_info
     git_info="$(cat ${HOME}/.zsh_tmp_prompt)"
 
-    if [[ -n "$git_info" ]] then
-        if [[ $#prompt_parts -eq 3 ]] then
-            prompt_parts[1]=("$prompt_parts[1]" "$git_info")
-        else
-            local nvcs
-            nvcs=${prompt_parts[(I)*]}
-            prompt_parts[nvcs,nvcs+1]=("$git_info")
-        fi
-        PROMPT="${(j: :)prompt_parts}"
+    if [[ $#prompt_parts -eq 3 ]] then
+        prompt_parts[1]=("$prompt_parts[1]" "$git_info")
     else
-        PROMPT="$SPROMPT"
+        local svcs=${prompt_parts[(I)*]} evcs=${#prompt_parts}
+        prompt_parts[svcs,evcs-2]=("$git_info")
     fi
+    PROMPT="${(@j: :)prompt_parts:#} "
 
     ASYNC_PROC=0
     zle && zle reset-prompt
@@ -320,6 +315,14 @@ need-brewlibs() {
         unset LIBRARY_PATH
         unset DYLD_LIBRARY_PATH
     fi
+}
+
+tol() {
+    tar cvzf "$1.tar.gz" "$1"
+}
+
+untol() {
+    tar xvzf "$1"
 }
 
 # Auto-completion
