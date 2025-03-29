@@ -93,5 +93,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
         vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, bufopts)
         vim.keymap.set("n", "gl", vim.diagnostic.open_float, bufopts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, bufopts)
     end
 })
