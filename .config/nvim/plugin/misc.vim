@@ -33,3 +33,7 @@ cnorea <expr> <silent> s g:visb ? {-> 's'..getcharstr(0)..'\%V'}() : 's'
 augroup autosave
     au TextChanged,InsertLeave * if &modifiable && !empty(bufname()) && &buftype != 'nofile' | update | endif
 augroup END
+
+augroup update_status_line
+    au LspNotify * redrawstatus
+augroup END

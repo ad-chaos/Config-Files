@@ -15,7 +15,6 @@ set completeopt=menuone,noselect
 set diffopt+=algorithm:patience,indent-heuristic
 set pumheight=10
 set nrformats+=alpha
-set autochdir
 set foldmethod=marker
 set fo+=/ro
 set laststatus=3

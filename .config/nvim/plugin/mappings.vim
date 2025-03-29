@@ -36,10 +36,13 @@ nnoremap 0 ^
 nnoremap ^ 0
 nnoremap ' `
 nnoremap ` '
-nnoremap zj mzyyP`z
-nnoremap zk mzyyp`z
+nnoremap zj mzyyP`zbce
+nnoremap zJ mzyyP`z
+nnoremap zk mzyyp`zbce
+nnoremap zK mzyyp`z
 nnoremap <F5> <cmd>w<cr>
 nmap <C-/> gcc
+nnoremap X <cmd>q!<cr>
 " }}}
 
 " Visual Mode mappings {{{
@@ -58,27 +61,27 @@ xmap <C-/> gc
 " Insert Mode Mappings
 inoremap <M-k> <esc><cmd>m -2<CR>a
 inoremap <M-j> <esc><cmd>m +1<CR>a
-inoremap <expr> <c-y> (line('.')-1)->getline()->matchstr('\v\k*.', col('.')-1)
+inoremap <expr> <c-y> (line('.')-1)->getline()->matchstr('\v\k*', col('.')-1)
 
 " Operator Pending Mode
 onoremap <expr> iw ['<esc>', v:operator, 2*v:count1-1, 'iw']->join('')
 
 lua<<EOF
 vim.keymap.set({ 'n', 'i', 's' }, '<C-k>', function()
-   if vim.snippet.jumpable(-1) then
+   if vim.snippet.active({ direction = -1 }) then
      vim.snippet.jump(-1)
    end
 end)
 
 vim.keymap.set({ 'n', 'i', 's' }, '<C-j>', function()
-   if vim.snippet.jumpable(1) then
+   if vim.snippet.active({ direction = 1 }) then
      vim.snippet.jump(1)
    end
 end)
 
 vim.keymap.set('n', '<esc>', function()
     if vim.snippet.active() then
-        vim.snippet.exit()
+        vim.snippet.stop()
     end
 end)
 EOF

@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.g.loaded_python3_provider = 0
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",
@@ -25,8 +25,6 @@ require("lazy").setup({
             style = "night",
             on_colors = function(colors)
                 colors.bg = "#0d0e12"
-                colors.bg_dark = "#0d0e12"
-                colors.bg_highlight = "#0d0e12"
             end,
         },
         lazy = false,
@@ -154,19 +152,9 @@ require("lazy").setup({
         config = true,
     },
 
-    -- some fun
-    "mbbill/undotree",
     {
         "j-hui/fidget.nvim",
         config = true,
-    },
-
-    {
-        "3rd/image.nvim",
-        opts = {
-            max_height_window_percentage = 100,
-        },
-        lazy = true,
     },
 
     {
@@ -195,6 +183,4 @@ require("lazy").setup({
 
 vim.cmd.colorscheme("tokyonight-night")
 vim.o.statusline = "%!v:lua.require'statusline'.statusline()"
-vim.cmd [[hi! link NvimTreeNormal Normal
-hi! NvimTreeOpenedFile guifg=#a9b1d6 guibg=#16161e
-]]
+vim.cmd [[hi! link NvimTreeNormal Normal]]
