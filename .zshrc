@@ -5,16 +5,18 @@ unsetopt BEEP
 bindkey -v
 export KEYTIMEOUT=1
 
-HISTSIZE=10000000
-SAVESIZE=1000000
-setopt prompt_subst
-setopt autocd
-setopt append_history
-setopt share_history
+export HISTSIZE=10000000
+export SAVESIZE=10000000
+export HISTFILE=~/.zhistory
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt inc_append_history
+
+setopt prompt_subst
+setopt autocd
+setopt append_history
+setopt share_history
 setopt extended_glob
 
 # https://anishathalye.com/an-asynchronous-shell-prompt/
@@ -22,6 +24,7 @@ function git_info() {
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) != 'true' ]] then
         return
     fi
+
     local BRANCH
     BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
     if [[ $? -gt 0 ]] then
@@ -37,7 +40,7 @@ function git_info() {
 ASYNC_PROC=0
 function async_vcs_update() {
     function async() {
-        printf "%s" "$(git_info)" > "${HOME}/.zsh_tmp_prompt"
+        printf "%s" "$(git_info)" > "${HOME}/.zsh_vcs_prompt"
         kill -s USR1 $$
     }
 
@@ -53,7 +56,13 @@ function TRAPUSR1() {
     prompt_parts=("${(s: :)PROMPT}")
 
     local git_info
-    git_info="$(cat ${HOME}/.zsh_tmp_prompt)"
+    git_info="$(cat ${HOME}/.zsh_vcs_prompt)"
+
+    local invenv=""
+    if [[ ${prompt_parts[1]} =~ ".*(venv).*" ]] then
+        invenv="${prompt_parts[1]}"
+        prompt_parts=("${prompt_parts[@]:1}")
+    fi
 
     if [[ $#prompt_parts -eq 3 ]] then
         prompt_parts[1]=("$prompt_parts[1]" "$git_info")
@@ -61,6 +70,11 @@ function TRAPUSR1() {
         local svcs=${prompt_parts[(I)*]} evcs=${#prompt_parts}
         prompt_parts[svcs,evcs-2]=("$git_info")
     fi
+
+    if [[ -n $invenv ]] then
+        prompt_parts=($invenv $prompt_parts)
+    fi
+
     PROMPT="${(@j: :)prompt_parts:#} "
 
     ASYNC_PROC=0
@@ -70,8 +84,7 @@ function TRAPUSR1() {
 precmd_functions+=async_vcs_update
 
 # Change My prompt
-SPROMPT="%B%F{#6ffffd}%2~%f%b %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
-PROMPT="$SPROMPT"
+PROMPT="%B%F{#6ffffd}%2~%f%b %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
 
 # Add completions for brew installed tools
 fpath+=(/opt/homebrew/share/zsh/site-functions $HOME/.zfunc)
@@ -264,7 +277,7 @@ pair() {
 }
 
 swap() {
-    mv $1 tmp && mv $2 $1 && mv tmp $2
+    mv $1 __tmp && mv $2 $1 && mv __tmp $2
 }
 
 nvim() {
@@ -318,7 +331,7 @@ need-brewlibs() {
 }
 
 tol() {
-    tar cvzf "$1.tar.gz" "$1"
+    tar -cv --lzma -f "$1.tar.xz" "$1"
 }
 
 untol() {
