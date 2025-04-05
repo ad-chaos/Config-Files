@@ -260,6 +260,23 @@ fzf-map() {
 zle -N fzf-map
 bindkey -M viins '^O' fzf-map
 
+# https://github.com/junegunn/fzf/blob/master/ADVANCED.md#switching-to-fzf-only-search-mode
+fzf-second() {
+    RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case"
+    fzf --ansi --disabled \
+        --bind "start:reload:$RG_PREFIX {q}" \
+        --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
+        --bind "alt-enter:unbind(change,ctrl-/)+change-prompt(2. fzf> )+enable-search+clear-query" \
+        --color "hl:-1:underline,hl+:-1:underline:reverse" \
+        --prompt '1. ripgrep> ' \
+        --delimiter : \
+        --preview 'bat --color=always {1} --highlight-line {2}' \
+        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
+        --bind 'enter:become(nvim {1} +{2})'
+}
+zle -N fzf-second
+bindkey -M viins '^P' fzf-second
+
 chpwd() {
     if [[ $- =~ i && -z $NO_CD_HOOK ]]; then
         clear
