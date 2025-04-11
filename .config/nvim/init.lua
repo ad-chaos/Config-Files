@@ -33,6 +33,7 @@ require("lazy").setup({
 
     {
         "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
@@ -93,6 +94,7 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers)
             vim.keymap.set("n", "<leader>fh", telescope_builtin.help_tags)
         end,
+        keys = { "<leader>fl", "<leader>fg", "<leader>fs", "<leader>gf", "<leader>fb", "<leader>fh" },
     },
 
     -- Git integration
@@ -143,17 +145,20 @@ require("lazy").setup({
     "chrisbra/Colorizer",
     {
         "echasnovski/mini.ai",
+        event = "InsertEnter",
         opts = {
             search_method = 'cover_or_nearest'
         },
     },
     {
         "kylechui/nvim-surround",
+        event = "InsertEnter",
         config = true,
     },
 
     {
         "j-hui/fidget.nvim",
+        event = "LspAttach",
         config = true,
     },
 
