@@ -93,8 +93,10 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader>gf", telescope_builtin.git_files)
             vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers)
             vim.keymap.set("n", "<leader>fh", telescope_builtin.help_tags)
+            vim.keymap.set("n", "gr", telescope_builtin.lsp_references)
+            vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations)
         end,
-        keys = { "<leader>fl", "<leader>fg", "<leader>fs", "<leader>gf", "<leader>fb", "<leader>fh" },
+        keys = { "<leader>fl", "<leader>fg", "<leader>fs", "<leader>gf", "<leader>fb", "<leader>fh", "gr", "gi" },
     },
 
     -- Git integration
