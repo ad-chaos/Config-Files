@@ -5,9 +5,9 @@ unsetopt BEEP
 bindkey -v
 export KEYTIMEOUT=1
 
-export HISTSIZE=10000000
-export SAVESIZE=10000000
-export HISTFILE=~/.zhistory
+HISTFILE=~/.zhistory
+HISTSIZE=10000000
+SAVEHIST=10000000
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
@@ -76,8 +76,9 @@ function TRAPUSR1() {
     fi
 
     PROMPT="${(@j: :)prompt_parts:#} "
-
     ASYNC_PROC=0
+
+    _ksi_precmd
     zle && zle reset-prompt
 }
 
@@ -181,9 +182,9 @@ change-prompt() {
 
 #Some QOL aliases
 
-alias ls="eza --icons --group-directories-first -F=always"
-alias la="eza --icons --group-directories-first -a -F=always"
-alias ll="eza --icons --group-directories-first -a -F=always --long"
+alias ls="eza --icons --group-directories-first -F=always --sort newest"
+alias la="eza --icons --group-directories-first -a -F=always --sort newest"
+alias ll="eza --icons --group-directories-first -a -F=always --long --sort newest"
 alias tree="eza --icons --tree"
 
 alias gimme="rg -F -uuu"
@@ -199,7 +200,6 @@ alias gcf="git checkout --force"
 alias gb="git branch"
 alias gcma="git commit -am"
 alias oops="git commit --amend --no-edit"
-alias grs="git restore -p ."
 alias c-="cd -"
 alias cdr='cd "$(git rev-parse --show-toplevel || echo .)"'
 alias cdcon="$HOME/git-repos/ad-chaos/Config-Files/.config"
@@ -208,7 +208,7 @@ alias ...="../../"
 alias vimgolf='/opt/homebrew/lib/ruby/gems/3.1.0/bin/vimgolf'
 alias ssh='kitten ssh'
 alias broadcast="kitty +kitten broadcast -t state:active"
-
+alias lower="tr '[:upper:]' '[:lower:]'"
 # Zsh syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#ccb521'
@@ -234,12 +234,6 @@ ga() {
     fi
 }
 compdef _git ga=git-add
-
-nup() {
-    local NO_CD_HOOK="ye_no_list"
-    rm -rf build
-    make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
-}
 
 fzf-map() {
     local file_dir
@@ -285,7 +279,7 @@ chpwd() {
 }
 
 webm2mp4() {
-    ffmpeg -i $1 -acodec aac -vcodec libx264 ${1%%.webm}.mp4
+    ffmpeg -i $1 -acodec aac_at -vcodec h264_videotoolbox ${1%%.webm}.mp4
 }
 
 pair() {
@@ -325,10 +319,12 @@ load_nvm() {
 build-kitty() {
     if [ -d .git ] && [ $(basename `git config --local --get remote.origin.url`) = "kitty.git" ]; then
         cp -r ../kitty-icon/build/neue_azure.iconset/* logo/kitty.iconset/
+        git apply ../caps_ctrl_escape_better.patch
         make
         make docs
         make app
         git restore logo/
+        git restore kitty/keys.c
     else
         echo "Need to be in kitty checkout"
         return 1
@@ -336,15 +332,15 @@ build-kitty() {
 }
 
 need-brewlibs() {
-    if [ $1 ]; then
-        export CPATH=/opt/homebrew/include/
-        export LIBRARY_PATH=/opt/homebrew/lib/
-        export DYLD_LIBRARY_PATH=/opt/homebrew/lib/
-    else
-        unset CPATH
-        unset LIBRARY_PATH
-        unset DYLD_LIBRARY_PATH
-    fi
+    export CPATH=/opt/homebrew/include/
+    export LIBRARY_PATH=/opt/homebrew/lib/
+    export DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib/
+}
+
+no-need-brewlibs() {
+    unset CPATH
+    unset LIBRARY_PATH
+    unset DYLD_FALLBACK_LIBRARY_PATH
 }
 
 tol() {
@@ -355,13 +351,15 @@ untol() {
     tar xvzf "$1"
 }
 
-# Auto-completion
-[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+# Auto-completion and Key bindings for fzf
+[[ $- == *i* ]] &&
+    source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null &&
+    source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
-# Key bindings for fzf
-source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+# Opam
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
 
-#auto pairs
+# auto pairs
 source "$HOME/autopair.zsh"
 autopair-init
 
@@ -369,6 +367,14 @@ autopair-init
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 # default editor neovim please
 export EDITOR=nvim
@@ -386,4 +392,3 @@ export PYTHONBREAKPOINT='ipdb.set_trace'
 
 # Load zsh-syntax-highlighting; should be last.
 source "/opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-# bat -p $HOME/TODO.md
