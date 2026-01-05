@@ -25,9 +25,11 @@ vim.diagnostic.config({
     },
 })
 
-local lspconfig = require("lspconfig")
+local lspconfig = vim.lsp.config
 
-lspconfig.lua_ls.setup({
+lspconfig('*', { capabilities = require('cmp_nvim_lsp').default_capabilities() })
+
+lspconfig('lua_ls', {
     settings = {
         Lua = {
             runtime = {
@@ -47,41 +49,36 @@ lspconfig.lua_ls.setup({
     }
 })
 
-lspconfig.rust_analyzer.setup({
+lspconfig('rust_analyzer', {
     settings = { ['rust-analyzer'] = { check = { command = 'clippy' } } },
 })
 
-lspconfig.clangd.setup({
+lspconfig('clangd', {
     on_attach = function(_, bufnr)
-    local function switch()
-        vim.lsp.buf_request(bufnr, 'textDocument/switchSourceHeader', {
-            uri = vim.uri_from_bufnr(bufnr)
-        }, function(err, uri, _, _)
-            if err then
-                vim.cmd.echoe("Couldn't Switch:")
-                print(vim.inspect(err))
-            end
-            if uri then
-                vim.cmd.edit(vim.uri_to_fname(uri))
-            else
-                vim.notify("No corresponding implementation file:", vim.log.levels.ERROR)
-            end
-        end)
+        local function switch()
+            vim.lsp.buf_request(bufnr, 'textDocument/switchSourceHeader', {
+                uri = vim.uri_from_bufnr(bufnr)
+            }, function(err, uri, _, _)
+                if err then
+                    vim.cmd.echoe("Couldn't Switch:")
+                    print(vim.inspect(err))
+                end
+                if uri then
+                    vim.cmd.edit(vim.uri_to_fname(uri))
+                else
+                    vim.notify("No corresponding implementation file:", vim.log.levels.ERROR)
+                end
+            end)
+        end
+        vim.keymap.set("n", "<leader>-", switch, { noremap = true, silent = true })
     end
-    vim.keymap.set("n", "<leader>-", switch, {noremap = true, silent = true})
-end
 })
 
-lspconfig.ts_ls.setup({
+lspconfig('ts_ls', {
     settings = { javascript = { suggestionActions = { enabled = false } } }
 })
 
-lspconfig.yamlls.setup({})
-lspconfig.gopls.setup({})
-lspconfig.pyright.setup({})
-lspconfig.cmake.setup({})
-
-vim.lsp.config('*', { capabilities = require('cmp_nvim_lsp').default_capabilities() })
+vim.lsp.enable({ 'lua_ls', 'rust_analyzer', 'clangd', 'ts_ls', 'yamlls', 'gopls', 'pyright', 'cmake' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
@@ -90,10 +87,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
         vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, bufopts)
         vim.keymap.set("n", "<leader>rn", ":IncRename ", bufopts)
-        vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", bufopts)
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
         vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, bufopts)
         vim.keymap.set("n", "gl", vim.diagnostic.open_float, bufopts)
+        vim.keymap.set("n", "gK", function()
+            vim.g.lsp_errors = not vim.g.lsp_errors
+            local only_errors = {
+                severity = {
+                    min = vim.diagnostic.severity.ERROR
+                }
+            }
+            vim.diagnostic.config({
+                virtual_text = vim.g.lsp_errors and only_errors or true
+            })
+        end)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, bufopts)
     end
 })
