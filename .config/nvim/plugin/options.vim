@@ -16,7 +16,7 @@ set diffopt+=algorithm:patience,indent-heuristic
 set pumheight=10
 set nrformats+=alpha
 set foldmethod=marker
-set fo+=/ro
+set formatoptions+=/ro
 set laststatus=3
 set gdefault
 set list listchars=tab:├─,eol:↲,nbsp:␣,trail:•
