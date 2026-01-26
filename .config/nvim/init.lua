@@ -173,7 +173,7 @@ require("lazy").setup({
                 "python",
             }
             ts.install(langs)
-            vim.api.nvim_create_autocmd("FiletType", {
+            vim.api.nvim_create_autocmd("FileType", {
                 pattern = langs,
                 callback = function()
                     vim.treesitter.start()
