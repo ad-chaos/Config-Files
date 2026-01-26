@@ -61,13 +61,13 @@ require("lazy").setup({
                 mappings = {
                     n = {
                         ["<CR>"] = actions.select_tab,
-                        ["<C-CR>"] = actions.select_default
+                        ["<C-CR>"] = actions.select_default,
                     },
                     i = {
                         ["<CR>"] = actions.select_tab,
-                        ["<C-CR>"] = actions.select_default
-                    }
-                }
+                        ["<C-CR>"] = actions.select_default,
+                    },
+                },
             }
             telescope.setup({
                 defaults = {
@@ -83,8 +83,8 @@ require("lazy").setup({
                     find_files = open_in_new_tab,
                     lsp_dynamic_workspace_symbols = open_in_new_tab,
                     live_grep = open_in_new_tab,
-                    lsp_document_symbols = open_in_new_tab
-                }
+                    lsp_document_symbols = open_in_new_tab,
+                },
             })
 
             telescope.load_extension("fzf")
@@ -98,7 +98,17 @@ require("lazy").setup({
             vim.keymap.set("n", "gr", telescope_builtin.lsp_references)
             vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations)
         end,
-        keys = { "<leader>fl", "<leader>fg", "<leader>fs", "<leader>ds", "<leader>gf", "<leader>fb", "<leader>fh", "gr", "gi" },
+        keys = {
+            "<leader>fl",
+            "<leader>fg",
+            "<leader>fs",
+            "<leader>ds",
+            "<leader>gf",
+            "<leader>fb",
+            "<leader>fh",
+            "gr",
+            "gi",
+        },
     },
 
     -- Git integration
@@ -146,16 +156,30 @@ require("lazy").setup({
         config = function()
             local ts = require("nvim-treesitter")
             local langs = {
-                "go", "c", "comment", "cpp", "css", "html", "javascript", "lua", "rust", "toml", "typescript", "vim", "perl", "markdown", "python"
+                "go",
+                "c",
+                "comment",
+                "cpp",
+                "css",
+                "html",
+                "javascript",
+                "lua",
+                "rust",
+                "toml",
+                "typescript",
+                "vim",
+                "perl",
+                "markdown",
+                "python",
             }
             ts.install(langs)
             vim.api.nvim_create_autocmd("FiletType", {
                 pattern = langs,
                 callback = function()
                     vim.treesitter.start()
-                end
+                end,
             })
-        end
+        end,
     },
     "nvim-treesitter/nvim-treesitter-context",
 
@@ -166,7 +190,7 @@ require("lazy").setup({
         "echasnovski/mini.ai",
         event = "InsertEnter",
         opts = {
-            search_method = 'cover_or_nearest'
+            search_method = "cover_or_nearest",
         },
     },
     {
@@ -195,16 +219,15 @@ require("lazy").setup({
 
     {
         "nvim-tree/nvim-tree.lua",
-        config = true
-
-    }
+        config = true,
+    },
 }, {
     lockfile = vim.fn.stdpath("state") .. "lazy/lazy-lock.json",
     ui = {
-        border = "rounded"
+        border = "rounded",
     },
 })
 
 vim.cmd.colorscheme("tokyonight-night")
 vim.o.statusline = "%!v:lua.require'statusline'.statusline()"
-vim.cmd [[hi! link NvimTreeNormal Normal]]
+vim.cmd([[hi! link NvimTreeNormal Normal]])
