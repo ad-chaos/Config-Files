@@ -317,7 +317,7 @@ load_nvm() {
 }
 
 build-kitty() {
-    if [ -d .git ] && [ $(basename `git config --local --get remote.origin.url`) = "kitty.git" ]; then
+    if [ -d .git ] && [ $(basename `git config --local --get remote.origin.url`) = "kitty" ]; then
         cp -r ../kitty-icon/build/neue_azure.iconset/* logo/kitty.iconset/
         git apply ../caps_ctrl_escape_better.patch
         make

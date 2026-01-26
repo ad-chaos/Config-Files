@@ -36,13 +36,17 @@ nnoremap 0 ^
 nnoremap ^ 0
 nnoremap ' `
 nnoremap ` '
-nnoremap zj mzyyP`zbce
+nnoremap zj mzyyP`zciw
 nnoremap zJ mzyyP`z
-nnoremap zk mzyyp`zbce
+nnoremap zk mzyyp`zciw
 nnoremap zK mzyyp`z
 nnoremap <F5> <cmd>w<cr>
 nmap <C-/> gcc
 nnoremap X <cmd>q!<cr>
+nnoremap W <cmd>eval searchpos('\k\+')<cr>
+nnoremap B <cmd>eval searchpos('\k\+', 'b')<cr>
+nnoremap e <cmd>eval searchpos('\k\+', 'e')<cr>
+nnoremap E <cmd>eval searchpos('\k\+', 'be')<cr>
 " }}}
 
 " Visual Mode mappings {{{
@@ -83,5 +87,19 @@ vim.keymap.set('n', '<esc>', function()
     if vim.snippet.active() then
         vim.snippet.stop()
     end
+end)
+
+vim.keymap.set('n', '[e', function()
+    vim.diagnostic.jump({
+        severity = vim.diagnostic.severity.ERROR,
+        count = -1
+    })
+end)
+
+vim.keymap.set('n', ']e', function()
+    vim.diagnostic.jump({
+        severity = vim.diagnostic.severity.ERROR,
+        count = 1
+    })
 end)
 EOF

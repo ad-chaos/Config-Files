@@ -82,7 +82,8 @@ require("lazy").setup({
                 pickers = {
                     find_files = open_in_new_tab,
                     lsp_dynamic_workspace_symbols = open_in_new_tab,
-                    live_grep = open_in_new_tab
+                    live_grep = open_in_new_tab,
+                    lsp_document_symbols = open_in_new_tab
                 }
             })
 
@@ -90,13 +91,14 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader>fl", telescope_builtin.find_files)
             vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
             vim.keymap.set("n", "<leader>fs", telescope_builtin.lsp_dynamic_workspace_symbols)
+            vim.keymap.set("n", "<leader>ds", telescope_builtin.lsp_document_symbols)
             vim.keymap.set("n", "<leader>gf", telescope_builtin.git_files)
             vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers)
             vim.keymap.set("n", "<leader>fh", telescope_builtin.help_tags)
             vim.keymap.set("n", "gr", telescope_builtin.lsp_references)
             vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations)
         end,
-        keys = { "<leader>fl", "<leader>fg", "<leader>fs", "<leader>gf", "<leader>fb", "<leader>fh", "gr", "gi" },
+        keys = { "<leader>fl", "<leader>fg", "<leader>fs", "<leader>ds", "<leader>gf", "<leader>fb", "<leader>fh", "gr", "gi" },
     },
 
     -- Git integration
@@ -139,7 +141,22 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
 
     --Tree Sitter
-    "nvim-treesitter/nvim-treesitter",
+    {
+        "nvim-treesitter/nvim-treesitter",
+        config = function()
+            local ts = require("nvim-treesitter")
+            local langs = {
+                "go", "c", "comment", "cpp", "css", "html", "javascript", "lua", "rust", "toml", "typescript", "vim", "perl", "markdown", "python"
+            }
+            ts.install(langs)
+            vim.api.nvim_create_autocmd("FiletType", {
+                pattern = langs,
+                callback = function()
+                    vim.treesitter.start()
+                end
+            })
+        end
+    },
     "nvim-treesitter/nvim-treesitter-context",
 
     -- Misc

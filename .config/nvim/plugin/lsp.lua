@@ -92,14 +92,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set("n", "gl", vim.diagnostic.open_float, bufopts)
         vim.keymap.set("n", "gK", function()
             vim.g.lsp_errors = not vim.g.lsp_errors
-            local only_errors = {
-                severity = {
-                    min = vim.diagnostic.severity.ERROR
-                }
-            }
-            vim.diagnostic.config({
-                virtual_text = vim.g.lsp_errors and only_errors or true
-            })
+            vim.diagnostic.config({ virtual_text = vim.g.lsp_errors })
         end)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, bufopts)
     end
