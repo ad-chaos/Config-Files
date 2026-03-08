@@ -126,6 +126,7 @@ require("lazy").setup({
                 vim.keymap.set("n", "<leader>rb", gs.reset_buffer)
                 vim.keymap.set("n", "]g", gs.next_hunk)
                 vim.keymap.set("n", "[g", gs.prev_hunk)
+                vim.keymap.set("n", "<leader>d", gs.preview_hunk_inline)
             end,
         },
     },

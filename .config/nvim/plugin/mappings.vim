@@ -44,9 +44,8 @@ nnoremap <F5> <cmd>w<cr>
 nmap <C-/> gcc
 nnoremap X <cmd>q!<cr>
 nnoremap W <cmd>eval searchpos('\k\+')<cr>
-nnoremap B <cmd>eval searchpos('\k\+', 'b')<cr>
+nnoremap B <cmd>eval searchpos('\k\+', 'be')<cr>
 nnoremap e <cmd>eval searchpos('\k\+', 'e')<cr>
-nnoremap E <cmd>eval searchpos('\k\+', 'be')<cr>
 " }}}
 
 " Visual Mode mappings {{{
@@ -59,6 +58,7 @@ xnoremap > >gv
 xnoremap < <gv
 xnoremap <C-l> lOhO
 xnoremap <C-h> hOlO
+xnoremap ih <cmd>Gitsigns select_hunk<cr>
 xmap <C-/> gc
 " }}}
 
@@ -69,6 +69,7 @@ inoremap <expr> <c-y> (line('.')-1)->getline()->matchstr('\v\k*', col('.')-1)
 
 " Operator Pending Mode
 onoremap <expr> iw ['<esc>', v:operator, 2*v:count1-1, 'iw']->join('')
+onoremap ih <cmd>Gitsigns select_hunk<cr>
 
 lua<<EOF
 vim.keymap.set({ 'n', 'i', 's' }, '<C-k>', function()

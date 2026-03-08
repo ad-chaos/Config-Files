@@ -42,6 +42,7 @@ local kind_icons = {
 cmp.setup({
     preselect = cmp.PreselectMode.None,
     mapping = {
+        ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-y>"] = cmp.config.disable,
         ["<C-e>"] = cmp.mapping({
             i = cmp.mapping.abort(),
