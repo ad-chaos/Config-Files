@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+local windows=$(kitten @ ls -t state:active | jq -c '.[0].tabs.[0].windows | map({is_active, id})')
+if [ $(jq -n --argjson windows "${windows}" '$windows | length') -ne 2 ]; then
+    kitten @ launch --cwd current --type overlay
+else
+    local switch=$(jq -n --argjson windows "$windows" '$windows.[] | select(.is_active == false) | .id')
+    kitten @ focus-window -m "id:$switch"
+fi
