@@ -82,7 +82,16 @@ function TRAPUSR1() {
     zle && zle reset-prompt
 }
 
-precmd_functions+=async_vcs_update
+autoload -Uz add-zsh-hook
+
+# fahh() {
+#     if [[ $? -gt 0 ]]; then
+#         ffplay -loglevel quiet -nodisp -autoexit ~/fahh.aac  >/dev/null 2>&1 &!
+#     fi
+# }
+#
+# add-zsh-hook precmd fahh
+add-zsh-hook precmd async_vcs_update
 
 # Change My prompt
 PROMPT="%B%F{#6ffffd}%2~%f%b %B%(?.%F{#47cc5d}ζ%f.%F{196}ζ%f)%b "
@@ -349,6 +358,15 @@ tol() {
 
 untol() {
     tar xvzf "$1"
+}
+
+scratch() {
+    local sdir="$HOME/Coding-Adventures/Scratch/$(date +%Y-%m-%d)"
+    mkdir -p $sdir
+    cd $sdir
+    if [ $1 ]; then
+        nvim $1
+    fi
 }
 
 # Auto-completion and Key bindings for fzf
